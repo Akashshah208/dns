@@ -1,0 +1,14 @@
+.nav-item {
+    padding: 0 6px;
+
+    .nav-link {
+        font-size: 16px;
+        font-weight: $font-weight-normal;
+        color: $secondary;
+        transition: all 0.4s ease-in-out;
+
+        &:hover {
+            color: $primary;
+        }
+    }
+}

@@ -1,0 +1,222 @@
+// =======================================
+// Gray Color
+// =======================================
+$white: #fff !default;
+$gray-100: #c4dbf6 !default; // changed
+$gray-200: #fcfcfc !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #99abb4 !default;
+$gray-600: #434b5d !default; // changed
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #252530 !default; // changed
+$black: #000 !default;
+
+
+// =======================================
+// Color Code
+// =======================================
+$blue: #3b8beb !default; // changed
+$indigo: #0072b1 !default;
+$purple: #6f42c1 !default;
+$pink: #e11271 !default;
+$red: #b23850 !default; // changed
+$orange: #fd7e14 !default;
+$yellow: #ffae1f !default;
+$green: #26c491 !default;
+$teal: #20c997 !default;
+$cyan: #544ba2 !default;
+
+// =======================================
+// Main Color Variables
+// =======================================
+$primary: $blue !default; // changed
+$secondary: $gray-600 !default; // changed
+$success: $green !default;
+$info: $cyan !default;
+$warning: $yellow !default;
+$danger: $red !default; // changed
+$light: $gray-100 !default; // changed
+$muted: $gray-500 !default;
+$dark: $gray-900 !default;
+
+
+// =======================================
+// Light Color Code
+// =======================================
+$light-primary: #edeaff;
+$light-secondary: #efeff8;
+$light-info: #e8e6f4;
+$light-success: #e3fdf7;
+$light-warning: #fef5e5;
+$light-danger: #fdede8;
+$light-indigo: #ebf3fe;
+
+
+// =======================================
+// Dark Color Code
+// =======================================
+$dark-primary: #7067a4;
+$dark-warning: #ae8e59;
+$dark-info: #6099a9;
+$dark-danger: #b18d7c;
+$dark-success: #5cab99;
+$dark-indigo: #557fb9;
+
+
+// =======================================
+// Theme Colors
+// =======================================
+$theme-colors: ("primary": $primary,
+    "secondary": $secondary,
+    "success": $success,
+    "info": $info,
+    "warning": $warning,
+    "danger": $danger,
+    "light": $light,
+    "dark": $dark,
+    "muted": $muted,
+    "indigo": $indigo,
+    "light-primary": $light-primary,
+    "light-secondary": $light-secondary,
+    "light-info": $light-info,
+    "light-success": $light-success,
+    "light-warning": $light-warning,
+    "light-danger": $light-danger,
+    "light-indigo": $light-indigo,
+    "dark-primary": $dark-primary,
+    "dark-info": $dark-info,
+    "dark-success": $dark-success,
+    "dark-warning": $dark-warning,
+    "dark-danger": $dark-danger,
+    "dark-indigo": $dark-indigo,
+) !default;
+
+
+// =======================================
+// Body
+// =======================================
+$body-bg: $white !default;
+$body-color: $secondary !default;
+
+
+// =======================================
+// Spacers
+// =======================================
+$spacer: 1rem !default;
+$spacers: (0: 0,
+    1: $spacer * .25,
+    2: $spacer * .5,
+    3: $spacer,
+    4: $spacer * 1.5,
+    5: $spacer * 3,
+    6: 30px,
+    7: 60px,
+    8: 90px,
+    9: 100px,
+    10: 120px,
+    11: 150px,
+) !default;
+
+
+// =======================================
+// container-max-widths
+// =======================================
+$container-max-widths: (sm: 540px,
+    md: 720px,
+    lg: 960px,
+    xl: 1200px,
+    xxl: 1320px) !default;
+
+
+// =======================================
+// Common
+// =======================================
+$min-contrast-ratio: 1.7 !default;
+$text-muted: $muted !default;
+$offcanvas-horizontal-width: 230px;
+$grid-gutter-width: 30px !default;
+
+
+// =======================================
+// Margins
+// =======================================
+$enable-negative-margins: true !default;
+
+
+// =======================================
+// Font Weights
+// =======================================
+$font-weight-lighter: 300 !default;
+$font-weight-light: 400 !default;
+$font-weight-normal: 500 !default;
+$font-weight-bold: 700 !default;
+$font-weight-bolder: bolder !default;
+$font-weight-base: $font-weight-light !default;
+
+// $min-contrast-ratio:   0 !default;
+
+
+// =======================================
+// Font Family
+// =======================================
+$font-family-sans-serif: 'DM Sans',
+sans-serif !default;
+
+
+// =======================================
+// Font Sizes
+// =======================================
+$font-sizes: (1: 10px,
+    2: 12px,
+    3: 14px,
+    4: 16px,
+    5: 18px,
+    6: 20px,
+    7: 24px,
+    8: 30px,
+    9: 36px,
+    10: 40px,
+    11: 45px,
+    12: 48px,
+    13: 55px,
+) !default;
+$font-size-base: 1rem !default;
+
+
+// =======================================
+// Card
+// =======================================
+$card-spacer-y: 1.875rem !default;
+$card-spacer-x: 1.875rem !default;
+$card-border-width: 0 !default;
+$card-border-radius: 15px !default;
+
+
+// =======================================
+// Heading
+// =======================================
+$headings-color: $dark !default;
+$headings-font-weight: 500 !default;
+
+
+// =======================================
+// Button
+// =======================================
+$btn-padding-y: 8px !default;
+$btn-padding-x: 24px !default;
+
+
+// =======================================
+// Progressbar
+// =======================================
+$progress-bg: $gray-100;
+$progress-height: 8px;
+$progress-bar-animation-timing: 2s linear infinite;
+
+
+// =======================================
+// Form Floating
+// =======================================
+$offcanvas-horizontal-width: 280px;
