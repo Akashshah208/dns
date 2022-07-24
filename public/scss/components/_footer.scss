@@ -1,0 +1,12 @@
+.footer-btn {
+    padding: 4px 0;
+
+    .footer-link {
+        color: $white;
+        opacity: 0.5;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+}

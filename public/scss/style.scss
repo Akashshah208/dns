@@ -1,0 +1,30 @@
+// ==============================================
+// Used Font
+// ==============================================
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+
+// ==============================================
+// Necessary File
+// ==============================================
+@import "./variables";
+
+// ==============================================
+// Bootstrap V5.2.0 - Beta-1
+// ==============================================
+@import "../assets/libs/node_modules/bootstrap/scss/bootstrap.scss";
+
+// ==============================================
+// Third Party Plugins
+// ==============================================
+@import "../../scss/icons/font-awesome/css/fontawesome-all.css";
+
+// ==============================================
+// Comman Files
+// ==============================================
+@import "./global";
+@import "./components/header";
+@import "./components/footer";
+@import "./pages/home";
+@import "./pages/review-detail";
+@import "./pages/login";
+@import "./pages/404";

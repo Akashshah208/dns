@@ -1,0 +1,42 @@
+.content-sidebar {
+    width: 300px;
+    min-width: 230px;
+    background-color: rgba($color: $secondary, $alpha: 0.04);
+    border: 1px solid $gray-500;
+    border-radius: 10px;
+
+    .nav-item {
+        padding: 0;
+        padding-bottom: 8px;
+        margin-bottom: 8px;
+    }
+
+    .nav-link {
+        color: $secondary;
+        font-weight: 500;
+        border-radius: 8px;
+
+        &:hover {
+            background: linear-gradient(to right, rgba($color: $gray-500, $alpha: 0.4), rgba($color: $gray-500, $alpha: 0.5));
+            color: $dark;
+        }
+    }
+
+    .active {
+        background: linear-gradient(to right, rgba($color: $gray-500, $alpha: 0.4), rgba($color: $gray-500, $alpha: 0.5));
+        border-radius: 8px;
+        color: $dark;
+    }
+}
+
+.offcanvas {
+    .nav-item {
+        padding: 0;
+        padding-bottom: 8px;
+        margin-bottom: 8px;
+    }
+
+    .nav-link.active {
+        color: $primary !important;
+    }
+}
