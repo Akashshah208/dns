@@ -16,13 +16,13 @@
     <!-- ================================ -->
     <!-- Favicon -->
     <!-- ================================ -->
-    <link rel="shortcut icon" href="../dist/images/logo/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="{{asset('dist/images/logo/favicon.png')}}" type="image/x-icon">
 
     <!-- ================================ -->
     <!-- Core -->
     <!-- ================================ -->
-    <link href="../assets/libs/node_modules/simplebar/dist/simplebar.css" rel="stylesheet">
-    <link rel="stylesheet" href="../dist/css/style.css">
+    <link href="{{asset('assets/libs/node_modules/simplebar/dist/simplebar.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('dist/css/style.css')}}">
 </head>
 
 <body data-simplebar>
