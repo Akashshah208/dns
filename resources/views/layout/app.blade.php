@@ -37,7 +37,7 @@
 <header class="fixed-top">
     <nav class="navbar navbar-expand-lg shadow-sm bg-white">
         <div class="container-fluid max-width-base">
-            <a class="navbar-brand" href="{{url('/')}}">
+            <a class="navbar-brand" href="{{route('index')}}">
                 <img src="{{asset('dist/images/logo/dnsmastertools.png')}}" height="50" alt="">
             </a>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas"
@@ -49,10 +49,10 @@
                 <div class="d-lg-block d-none ms-auto">
                     <ul class="navbar-nav mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="/welcome">About Us</a>
+                            <a class="nav-link" aria-current="page" href="#">About Us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{{url('/welcome')}}">Blog</a>
+                            <a class="nav-link" aria-current="page" href="#">Blog</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="#">privacy policy</a>
@@ -79,67 +79,67 @@
             <div class="content-sidebar d-lg-block d-none me-md-6 p-3">
                 <ul class="mb-0">
                     <li class="nav-item border-bottom">
-                        <a href="./index.html" class="nav-link active py-1 px-3">
+                        <a href="{{route('index')}}" class="nav-link active py-1 px-3">
                             MX Lookup
                         </a>
                     </li>
                     <li class="nav-item border-bottom">
-                        <a href="./blacklist-check.html" class="nav-link py-1 px-3">
+                        <a href="{{route('blacklist_check')}}" class="nav-link py-1 px-3">
                             Blacklist Check
                         </a>
                     </li>
                     <li class="nav-item border-bottom">
-                        <a href="./email-server-tester.html" class="nav-link py-1 px-3">
+                        <a href="{{route('email_server_tester')}}" class="nav-link py-1 px-3">
                             Email Server Tester
                         </a>
                     </li>
                     <li class="nav-item border-bottom">
-                        <a href="./reverse-dns.html" class="nav-link py-1 px-3">
+                        <a href="{{route('reverse_dns')}}" class="nav-link py-1 px-3">
                             Reverse DNS Lookup
                         </a>
                     </li>
                     <li class="nav-item border-bottom">
-                        <a href="./dns.html" class="nav-link py-1 px-3">
+                        <a href="{{route('dns')}}" class="nav-link py-1 px-3">
                             DNS Check
                         </a>
                     </li>
                     <li class="nav-item border-bottom">
-                        <a href="./spf.html" class="nav-link py-1 px-3">
+                        <a href="{{route('spf')}}" class="nav-link py-1 px-3">
                             SPF Lookup
                         </a>
                     </li>
                     <li class="nav-item border-bottom">
-                        <a href="./dmarc.html" class="nav-link py-1 px-3">
+                        <a href="{{route('dmarc')}}" class="nav-link py-1 px-3">
                             DMARC Lookup
                         </a>
                     </li>
                     <li class="nav-item border-bottom">
-                        <a href="./ssl.html" class="nav-link py-1 px-3">
+                        <a href="{{route('ssl')}}" class="nav-link py-1 px-3">
                             SSL Lookup
                         </a>
                     </li>
                     <li class="nav-item border-bottom">
-                        <a href="./bmi.html" class="nav-link py-1 px-3">
+                        <a href="{{route('bmi')}}" class="nav-link py-1 px-3">
                             BMI Lookup
                         </a>
                     </li>
                     <li class="nav-item border-bottom">
-                        <a href="./cname.html" class="nav-link py-1 px-3">
+                        <a href="{{route('cname')}}" class="nav-link py-1 px-3">
                             CNAME Lookup
                         </a>
                     </li>
                     <li class="nav-item border-bottom">
-                        <a href="./txt.html" class="nav-link py-1 px-3">
+                        <a href="{{route('txt')}}" class="nav-link py-1 px-3">
                             TXT Lookup
                         </a>
                     </li>
                     <li class="nav-item border-bottom">
-                        <a href="./http.html" class="nav-link py-1 px-3">
+                        <a href="{{route('http')}}" class="nav-link py-1 px-3">
                             HTTP Lookup
                         </a>
                     </li>
                     <li>
-                        <a href="./https.html" class="nav-link py-1 px-3">
+                        <a href="{{route('http_s')}}" class="nav-link py-1 px-3">
                             HTTPS Lookup
                         </a>
                     </li>
