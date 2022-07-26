@@ -56,9 +56,15 @@ Route::get('cname', function () {
 Route::get('txt', function () {
     return view('txt');
 })->name('txt');
+
 Route::get('http', function () {
     return view('https');
 })->name('http');
+
 Route::get('http_s', function () {
     return view('https');
 })->name('http_s');
+
+Route::get('about', function () {
+    return view('about');
+})->name('about');

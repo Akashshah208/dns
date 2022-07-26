@@ -21,6 +21,8 @@
     <!-- ================================ -->
     <!-- Core -->
     <!-- ================================ -->
+    <link rel="stylesheet" href="{{asset('assets/libs/node_modules/owl.carousel/dist/assets/owl.carousel.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/libs/node_modules/owl.carousel/dist/assets/owl.theme.green.css')}}">
     <link href="{{asset('assets/libs/node_modules/simplebar/dist/simplebar.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('dist/css/style.css')}}">
 </head>
@@ -37,7 +39,7 @@
 <header class="fixed-top">
     <nav class="navbar navbar-expand-lg shadow-sm bg-white">
         <div class="container-fluid max-width-base">
-            <a class="navbar-brand" href="{{url('/')}}">
+            <a class="navbar-brand" href="{{route('index')}}">
                 <img src="{{asset('dist/images/logo/dnsmastertools.png')}}" height="50" alt="">
             </a>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas"
@@ -49,7 +51,7 @@
                 <div class="d-lg-block d-none ms-auto">
                     <ul class="navbar-nav mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="/welcome">About Us</a>
+                            <a class="nav-link" aria-current="page" href="{{route('about')}}">About Us</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="{{url('/welcome')}}">Blog</a>
