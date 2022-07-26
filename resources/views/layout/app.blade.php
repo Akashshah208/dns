@@ -79,67 +79,80 @@
             <div class="content-sidebar d-lg-block d-none me-md-6 p-3">
                 <ul class="mb-0">
                     <li class="nav-item border-bottom">
-                        <a href="{{route('index')}}" class="nav-link active py-1 px-3">
+                        <a href="{{route('index')}}"
+                           class="nav-link {{ Illuminate\Support\Facades\Route::currentRouteName() == 'index' ? 'active' : '' }} py-1 px-3">
                             MX Lookup
                         </a>
                     </li>
                     <li class="nav-item border-bottom">
-                        <a href="{{route('blacklist_check')}}" class="nav-link py-1 px-3">
+                        <a href="{{route('blacklist_check')}}"
+                           class="nav-link {{ Illuminate\Support\Facades\Route::currentRouteName() == 'blacklist_check' ? 'active' : '' }} py-1 px-3">
                             Blacklist Check
                         </a>
                     </li>
                     <li class="nav-item border-bottom">
-                        <a href="{{route('email_server_tester')}}" class="nav-link py-1 px-3">
+                        <a href="{{route('email_server_tester')}}"
+                           class="nav-link {{ Illuminate\Support\Facades\Route::currentRouteName() == 'email_server_tester' ? 'active' : '' }} py-1 px-3">
                             Email Server Tester
                         </a>
                     </li>
                     <li class="nav-item border-bottom">
-                        <a href="{{route('reverse_dns')}}" class="nav-link py-1 px-3">
+                        <a href="{{route('reverse_dns')}}"
+                           class="nav-link {{ Illuminate\Support\Facades\Route::currentRouteName() == 'reverse_dns' ? 'active' : '' }} py-1 px-3">
                             Reverse DNS Lookup
                         </a>
                     </li>
                     <li class="nav-item border-bottom">
-                        <a href="{{route('dns')}}" class="nav-link py-1 px-3">
+                        <a href="{{route('dns')}}"
+                           class="nav-link {{ Illuminate\Support\Facades\Route::currentRouteName() == 'dns' ? 'active' : '' }} py-1 px-3">
                             DNS Check
                         </a>
                     </li>
                     <li class="nav-item border-bottom">
-                        <a href="{{route('spf')}}" class="nav-link py-1 px-3">
+                        <a href="{{route('spf')}}"
+                           class="nav-link {{ Illuminate\Support\Facades\Route::currentRouteName() == 'spf' ? 'active' : '' }} py-1 px-3">
                             SPF Lookup
                         </a>
                     </li>
                     <li class="nav-item border-bottom">
-                        <a href="{{route('dmarc')}}" class="nav-link py-1 px-3">
+                        <a href="{{route('dmarc')}}"
+                           class="nav-link {{ Illuminate\Support\Facades\Route::currentRouteName() == 'dmarc' ? 'active' : '' }} py-1 px-3">
                             DMARC Lookup
                         </a>
                     </li>
                     <li class="nav-item border-bottom">
-                        <a href="{{route('ssl')}}" class="nav-link py-1 px-3">
+                        <a href="{{route('ssl')}}"
+                           class="nav-link {{ Illuminate\Support\Facades\Route::currentRouteName() == 'ssl' ? 'active' : '' }} py-1 px-3">
                             SSL Lookup
                         </a>
                     </li>
                     <li class="nav-item border-bottom">
-                        <a href="{{route('bmi')}}" class="nav-link py-1 px-3">
+                        <a href="{{route('bmi')}}"
+                           class="nav-link {{ Illuminate\Support\Facades\Route::currentRouteName() == 'bmi' ? 'active' : '' }} py-1 px-3">
                             BMI Lookup
                         </a>
                     </li>
                     <li class="nav-item border-bottom">
-                        <a href="{{route('cname')}}" class="nav-link py-1 px-3">
+                        <a href="{{route('cname')}}"
+                           class="nav-link {{ Illuminate\Support\Facades\Route::currentRouteName() == 'cname' ? 'active' : '' }} py-1 px-3">
                             CNAME Lookup
                         </a>
                     </li>
                     <li class="nav-item border-bottom">
-                        <a href="{{route('txt')}}" class="nav-link py-1 px-3">
+                        <a href="{{route('txt')}}"
+                           class="nav-link {{ Illuminate\Support\Facades\Route::currentRouteName() == 'txt' ? 'active' : '' }} py-1 px-3">
                             TXT Lookup
                         </a>
                     </li>
                     <li class="nav-item border-bottom">
-                        <a href="{{route('http')}}" class="nav-link py-1 px-3">
+                        <a href="{{route('http')}}"
+                           class="nav-link {{ Illuminate\Support\Facades\Route::currentRouteName() == 'http' ? 'active' : '' }} py-1 px-3">
                             HTTP Lookup
                         </a>
                     </li>
                     <li>
-                        <a href="{{route('http_s')}}" class="nav-link py-1 px-3">
+                        <a href="{{route('http_s')}}"
+                           class="nav-link {{ Illuminate\Support\Facades\Route::currentRouteName() == 'http_s' ? 'active' : '' }} py-1 px-3">
                             HTTPS Lookup
                         </a>
                     </li>
