@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('index', ['mxLookupData' => null, 'domain' => null]);
 })->name('index');
 
 Route::get('blacklist_check', function () {
@@ -68,3 +68,5 @@ Route::get('http_s', function () {
 Route::get('about', function () {
     return view('about');
 })->name('about');
+
+Route::get('mxLookupData', [\App\Http\Controllers\LookupDataController::class, 'mxLookupData'])->name('mxLookupData');
