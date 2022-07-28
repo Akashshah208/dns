@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index', ['mxLookupData' => null, 'domain' => null]);
-})->name('index');
+/*Route::get('/', function () {
+    return view('index', ['mxLookupData' => null, 'domain' => null, 'ip4' => null, 'ip6' => null]);
+})->name('index');*/
 
 Route::get('blacklist_check', function () {
     return view('blacklist-check');
@@ -69,4 +69,6 @@ Route::get('about', function () {
     return view('about');
 })->name('about');
 
-Route::get('mxLookupData', [\App\Http\Controllers\LookupDataController::class, 'mxLookupData'])->name('mxLookupData');
+//Route::get('mxLookupData', [\App\Http\Controllers\LookupDataController::class, 'mxLookupData'])->name('mxLookupData');
+
+Route::match(['get', 'post'], '/', [\App\Http\Controllers\LookupDataController::class, 'mxLookupData'])->name('index');
