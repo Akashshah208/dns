@@ -21,6 +21,7 @@ class LookupDataController extends Controller
         /*$ip6 = dns_get_record($domain, DNS_AAAA);
         $mxLookupData = dns_get_record($domain, DNS_TXT);
         $mxLookupData = dns_get_record($domain, DNS_NS);*/
+//        dd($mxLookupData, $ip);
         return view('index', compact('mxLookupData', 'domain', 'ip'));
     }
 }

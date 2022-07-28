@@ -3,7 +3,8 @@
     <div class="w-100 mt-4">
         <div class="row mb-4 pb-3">
             <div class="col-lg-6">
-                <form action="{{ route('index') }}" method="GET" id="add_college" class="forms-sample">
+                <form action="{{ route('index') }}" method="POST" id="add_college" class="forms-sample">
+                    @csrf
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Enter Domain name to lookup"
                                aria-label="Enter Domain name to lookup" name="domain_name"
@@ -32,15 +33,15 @@
                         @if($mxLookupData)
                             @forelse ($mxLookupData as $key => $data)
                                 <tr>
-                                    <th scope="row" rowspan="2">{{ ++$key }}</th>
-                                    <td rowspan="2">{{ $data['pri'] }}</td>
-                                    <td rowspan="2">{{ $data['target'] }}</td>
+                                    <th scope="row">{{ ++$key }}</th>
+                                    <td>{{ $data['pri'] }}</td>
+                                    <td>{{ $data['target'] }}</td>
                                     <td> {{ $ip[0]['ip'] ?? 'N/A' }} </td>
                                     <td> {{ $ip[1]['ipv6'] ?? 'N/A' }} </td>
                                     {{--@foreach($ip as $ipData)
                                         <td>{{ $ipData['ip'] ?? $ipData['ipv6'] }}</td>
                                     @endforeach--}}
-                                    <td rowspan="2">{{ $data['ttl'] . ' Sec' }}</td>
+                                    <td>{{ $data['ttl'] . ' Sec' }}</td>
                                 </tr>
                             @empty
                                 <tr>
