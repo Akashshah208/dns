@@ -21,9 +21,9 @@ Route::get('blacklist_check', function () {
     return view('blacklist-check');
 })->name('blacklist_check');
 
-Route::get('email_server_tester', function () {
+/*Route::get('email_server_tester', function () {
     return view('email-server-tester');
-})->name('email_server_tester');
+})->name('email_server_tester');*/
 
 Route::get('reverse_dns', function () {
     return view('reverse-dns');
@@ -72,3 +72,4 @@ Route::get('about', function () {
 //Route::get('mxLookupData', [\App\Http\Controllers\LookupDataController::class, 'mxLookupData'])->name('mxLookupData');
 
 Route::match(['get', 'post'], '/', [\App\Http\Controllers\LookupDataController::class, 'mxLookupData'])->name('index');
+Route::match(['get', 'post'], 'email_server_tester', [\App\Http\Controllers\LookupDataController::class, 'emailServerTester'])->name('email_server_tester');
