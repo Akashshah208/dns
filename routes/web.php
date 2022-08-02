@@ -73,3 +73,4 @@ Route::get('about', function () {
 
 Route::match(['get', 'post'], '/', [\App\Http\Controllers\LookupDataController::class, 'mxLookupData'])->name('index');
 Route::match(['get', 'post'], 'email_server_tester', [\App\Http\Controllers\LookupDataController::class, 'emailServerTester'])->name('email_server_tester');
+Route::match(['get', 'post'], 'dns', [\App\Http\Controllers\LookupDataController::class, 'dns'])->name('dns');

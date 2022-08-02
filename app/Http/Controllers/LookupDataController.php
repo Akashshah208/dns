@@ -37,10 +37,18 @@ class LookupDataController extends Controller
             $mxLookupData = null;
             $ip = null;
         }
-        /*$ip6 = dns_get_record($domain, DNS_AAAA);
-        $mxLookupData = dns_get_record($domain, DNS_TXT);
-        $mxLookupData = dns_get_record($domain, DNS_NS);*/
-//        dd($mxLookupData, $ip);
         return view('email-server-tester', compact('mxLookupData', 'domain', 'ip'));
+    }
+
+    public function dns(Request $request)
+    {
+        if (!empty($request->all())) {
+            $domain = $request->domain_name;
+            $dnsCheckRecord = dns_check_record($domain, "MX");
+        } else {
+            $domain = null;
+            $dnsCheckRecord = null;
+        }
+        return view('dns', compact('dnsCheckRecord', 'domain'));
     }
 }
