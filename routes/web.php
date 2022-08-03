@@ -29,9 +29,9 @@ Route::get('reverse_dns', function () {
     return view('reverse-dns');
 })->name('reverse_dns');
 
-Route::get('dns', function () {
+/*Route::get('dns', function () {
     return view('dns');
-})->name('dns');
+})->name('dns');*/
 
 Route::get('spf', function () {
     return view('spf');
@@ -53,9 +53,9 @@ Route::get('cname', function () {
     return view('cname');
 })->name('cname');
 
-Route::get('txt', function () {
+/*Route::get('txt', function () {
     return view('txt');
-})->name('txt');
+})->name('txt');*/
 
 Route::get('http', function () {
     return view('https');
@@ -74,3 +74,5 @@ Route::get('about', function () {
 Route::match(['get', 'post'], '/', [\App\Http\Controllers\LookupDataController::class, 'mxLookupData'])->name('index');
 Route::match(['get', 'post'], 'email_server_tester', [\App\Http\Controllers\LookupDataController::class, 'emailServerTester'])->name('email_server_tester');
 Route::match(['get', 'post'], 'dns', [\App\Http\Controllers\LookupDataController::class, 'dns'])->name('dns');
+Route::match(['get', 'post'], 'cname', [\App\Http\Controllers\LookupDataController::class, 'cname'])->name('cname');
+Route::match(['get', 'post'], 'txt', [\App\Http\Controllers\LookupDataController::class, 'txt'])->name('txt');

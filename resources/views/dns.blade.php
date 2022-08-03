@@ -27,13 +27,19 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <th scope="row"><img
-                                    src="{{ $dnsCheckRecord ? asset('dist/images/icon/ok.png') : asset('dist/images/icon/problem.png') }}"
-                                    width="17" alt=""></th>
-                            <td>DNS Record Published</td>
-                            <td>{{ $dnsCheckRecord ? 'DNS Record Found' : 'DNS Record Not Found' }}</td>
-                        </tr>
+                        @if($domain)
+                            <tr>
+                                <th scope="row"><img
+                                        src="{{ $dnsCheckRecord ? asset('dist/images/icon/ok.png') : asset('dist/images/icon/problem.png') }}"
+                                        width="17" alt=""></th>
+                                <td>DNS Record Published</td>
+                                <td>{{ $dnsCheckRecord ? 'DNS Record Found' : 'DNS Record Not Found' }}</td>
+                            </tr>
+                        @else
+                            <tr>
+                                <th scope="row" colspan="3" style="text-align: center">No Data Found</th>
+                            </tr>
+                        @endif
                         </tbody>
                     </table>
                 </div>

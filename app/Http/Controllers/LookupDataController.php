@@ -44,11 +44,43 @@ class LookupDataController extends Controller
     {
         if (!empty($request->all())) {
             $domain = $request->domain_name;
-            $dnsCheckRecord = dns_check_record($domain, "MX");
+            $dnsCheckRecord = checkdnsrr($domain, "MX");
         } else {
             $domain = null;
             $dnsCheckRecord = null;
         }
         return view('dns', compact('dnsCheckRecord', 'domain'));
     }
+
+    public function cname(Request $request)
+    {
+        if (!empty($request->all())) {
+            $domain = $request->domain_name;
+            $dmarcCheckRecord = checkdnsrr($domain, "CNAME");
+        } else {
+            $domain = null;
+            $dmarcCheckRecord = null;
+        }
+        return view('cname', compact('dmarcCheckRecord', 'domain'));
+    }
+
+    public function txt(Request $request)
+    {
+        if (!empty($request->all())) {
+            $domain = $request->domain_name;
+            $mxLookupData = dns_get_record($domain, "TXT");
+            dd($mxLookupData);
+            $ip = dns_get_record($domain, DNS_A + DNS_AAAA);
+        } else {
+            $domain = null;
+            $mxLookupData = null;
+            $ip = null;
+        }
+        /*$ip6 = dns_get_record($domain, DNS_AAAA);
+        $mxLookupData = dns_get_record($domain, DNS_TXT);
+        $mxLookupData = dns_get_record($domain, DNS_NS);*/
+//        dd($mxLookupData, $ip);
+        return view('txt', compact('mxLookupData', 'domain', 'ip'));
+    }
+
 }
