@@ -76,3 +76,12 @@ Route::match(['get', 'post'], 'email_server_tester', [\App\Http\Controllers\Look
 Route::match(['get', 'post'], 'dns', [\App\Http\Controllers\LookupDataController::class, 'dns'])->name('dns');
 Route::match(['get', 'post'], 'cname', [\App\Http\Controllers\LookupDataController::class, 'cname'])->name('cname');
 Route::match(['get', 'post'], 'txt', [\App\Http\Controllers\LookupDataController::class, 'txt'])->name('txt');
+
+/* Login System */
+Route::get('login', [\App\Http\Controllers\LoginController::class, 'login'])->name('login');
+Route::post('doLogin', [\App\Http\Controllers\LoginController::class, 'doLogin'])->name('doLogin');
+
+/* Admin */
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+    Route::get('', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
+});
