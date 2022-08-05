@@ -39,4 +39,27 @@ class AdminController extends Controller
         }
     }
 
+    public function storeAuthor(Request $request)
+    {
+        $input = $request->all();
+        $validator = Validator::make($input, [
+            'nameAuth' => 'required',
+            'workAuth' => 'required',
+            'discAuth' => 'required',
+            'profileAuth' => 'required|mimes:jpg,jpeg,png',
+        ]);
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+        try {
+            dd($request->all());
+        } catch (\Exception $e) {
+            Log::info($e->getMessage());
+            return redirect()->back();
+        }
+    }
+
+
 }

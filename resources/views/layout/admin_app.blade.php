@@ -71,7 +71,7 @@
                                data-bs-target="#addcategory" href="javascript:void(0)">Add Category</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="./add-author.html">Add Author</a>
+                            <a class="nav-link" aria-current="page" href="{{ route('admin.addAuthor') }}">Add Author</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown"
@@ -101,16 +101,15 @@
 <!-- ================================ -->
 <!-- Content Start -->
 <!-- ================================ -->
-<section class="mt-7 py-7">
+<section class="mt-7 py-7" style="background: rgba(0, 0, 0, 0.05);">
     <div class="container-fluid max-width-base">
-        <div class="d-md-flex d-block">
-            <!-- ================================ -->
-            <!-- Main Content Start -->
-            <!-- ================================ -->
+        <!-- ================================ -->
+        <!-- Main Content Start -->
+        <!-- ================================ -->
+    @yield('content')
             <!-- ================================ -->
             <!-- End Main Content Start -->
             <!-- ================================ -->
-        </div>
     </div>
 </section>
 <!-- ================================ -->
@@ -192,7 +191,7 @@
                     </a>
                 </li>
                 <li class="nav-item border-bottom">
-                    <a href="./add-author.html"
+                    <a href="{{ route('admin.addAuthor') }}"
                        class="nav-link active py-1">
                         Add Author
                     </a>
