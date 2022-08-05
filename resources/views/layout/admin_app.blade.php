@@ -59,7 +59,7 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <div class="d-lg-block d-none ms-auto">
-                    <ul class="navbar-nav mb-2 mb-lg-0">
+                    <ul class="navbar-nav mb-2 mb-lg-0 align-items-center">
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="./index.html">Blog</a>
                         </li>
@@ -72,6 +72,21 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="./add-author.html">Add Author</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                <img src="{{asset('dist/images/user/user6.jpg')}}" class="rounded-circle" height="50"
+                                     alt="">
+                                <i class="fas fa-chevron-down fs-3 ms-2"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end mt-2 shadow">
+                                <li><a class="dropdown-item" href="#"><i class="far fa-user me-2"></i> Account</a>
+                                </li>
+                                <li><a class="dropdown-item" href="{{ route('logout') }}"><i
+                                            class="fas fa-sign-out-alt me-2"></i> Log
+                                        Out</a></li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -199,11 +214,13 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <form action="{{ route('admin.addCategory') }}" method="POST">
+                    @csrf
                     <div class="mb-3">
                         <label for="title" class="form-label opacity-75">Add Category <span
                                 class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="title" placeholder="Enter category" required>
+                        <input type="text" class="form-control" id="title" name="name" placeholder="Enter category"
+                               required>
                     </div>
 
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Discard</button>

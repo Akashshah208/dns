@@ -80,8 +80,10 @@ Route::match(['get', 'post'], 'txt', [\App\Http\Controllers\LookupDataController
 /* Login System */
 Route::get('login', [\App\Http\Controllers\LoginController::class, 'login'])->name('login');
 Route::post('doLogin', [\App\Http\Controllers\LoginController::class, 'doLogin'])->name('doLogin');
+Route::get('logout', [\App\Http\Controllers\LoginController::class, 'logout'])->name('logout');
 
 /* Admin */
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
+    Route::post('addCategory', [App\Http\Controllers\AdminController::class, 'addCategory'])->name('admin.addCategory');
 });

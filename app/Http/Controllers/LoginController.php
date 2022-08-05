@@ -25,4 +25,13 @@ class LoginController extends Controller
         return redirect()
             ->back();
     }
+
+    public function logout()
+    {
+        Session::flush();
+        Auth::logout();
+        return redirect()
+            ->route('login')
+            ->with('status', 'Logout successfully...!');
+    }
 }
