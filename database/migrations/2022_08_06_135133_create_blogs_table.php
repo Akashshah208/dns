@@ -17,7 +17,7 @@ class CreateBlogsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('tag');
-            $table->string('profile');
+            $table->string('banner');
             $table->longText('description');
             $table->unsignedBigInteger('auth_id')->unsigned();
             $table->enum('status', ['0', '1'])->default('1');

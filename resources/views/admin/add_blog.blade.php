@@ -3,6 +3,14 @@
 
     <div class="row justify-content-center">
         <div class="col-lg-8">
+
+            @if (session()->has('result'))
+                <div class="alert alert-{{ session('result')['type'] }} alert-dismissible fade show" role="alert">
+                    <strong>{{ session('result')['message'] }}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
+
             <h1 class="mb-4">Add Blog</h1>
 
             <form class="mb-5" action="{{ route('admin.storeBlog') }}" method="POST" enctype="multipart/form-data">
@@ -36,8 +44,7 @@
                 <div class="mb-3">
                     <label class="form-label opacity-75">Add
                         Description</label>
-                    <div class="summernote" id="description">
-                    </div>
+                    <textarea name="description" id="description" cols="30" rows="10" class="summernote"></textarea>
                 </div>
 
                 <div class="mb-5">
@@ -54,7 +61,6 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary">Add Blog</button>
-                <button type="button" class="btn btn-primary" onclick="myFunction()">Add Blog</button>
             </form>
         </div>
     </div>
