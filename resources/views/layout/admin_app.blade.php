@@ -64,7 +64,7 @@
                             <a class="nav-link" aria-current="page" href="./index.html">Blog</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="./add-blog.html">Add Blog</a>
+                            <a class="nav-link" aria-current="page" href="{{ route('admin.addBlog') }}">Add Blog</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" data-bs-toggle="modal"
@@ -181,7 +181,7 @@
                     </a>
                 </li>
                 <li class="nav-item border-bottom">
-                    <a href="./add-blog.html" class="nav-link active py-1">
+                    <a href="{{ route('admin.addBlog') }}" class="nav-link active py-1">
                         Add Blog
                     </a>
                 </li>
