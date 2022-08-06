@@ -89,6 +89,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('account', [\App\Http\Controllers\LoginController::class, 'account'])->name('admin.account');
     Route::post('accountUpdate', [\App\Http\Controllers\LoginController::class, 'accountUpdate'])->name('admin.accountUpdate');
 
+    Route::get('blog', [\App\Http\Controllers\BlogController::class, 'index'])->name('admin.blog');
     Route::get('addBlog', [\App\Http\Controllers\BlogController::class, 'addBlog'])->name('admin.addBlog');
     Route::post('storeBlog', [\App\Http\Controllers\BlogController::class, 'storeBlog'])->name('admin.storeBlog');
 

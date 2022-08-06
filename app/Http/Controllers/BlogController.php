@@ -11,6 +11,14 @@ use Illuminate\Support\Facades\Validator;
 
 class BlogController extends Controller
 {
+
+    public function index()
+    {
+        $blogs = Blog::all();
+        //dd($blogs[0]->title, date_format($blogs[0]->created_at,"M d, Y"));
+        return view('admin.index', compact('blogs'));
+    }
+
     public function addBlog()
     {
         $categories = Category::all();

@@ -61,7 +61,7 @@
                 <div class="d-lg-block d-none ms-auto">
                     <ul class="navbar-nav mb-2 mb-lg-0 align-items-center">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="./index.html">Blog</a>
+                            <a class="nav-link" aria-current="page" href="{{ route('admin.index') }}">Blog</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="{{ route('admin.addBlog') }}">Add Blog</a>
@@ -176,7 +176,7 @@
         <div class="d-lg-none d-block">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-lg-none d-block">
                 <li class="nav-item border-bottom">
-                    <a href="./index.html" class="nav-link active py-1">
+                    <a href="{{ route('admin.index') }}" class="nav-link active py-1">
                         Blog
                     </a>
                 </li>
