@@ -88,8 +88,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('logout', [\App\Http\Controllers\LoginController::class, 'logout'])->name('logout');
     Route::get('', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
     Route::post('addCategory', [App\Http\Controllers\AdminController::class, 'addCategory'])->name('admin.addCategory');
-    Route::get('addAuthor', function () {
-        return view('admin.add_author');
-    })->name('admin.addAuthor');
+    Route::get('addAuthor', [App\Http\Controllers\AdminController::class, 'addAuthor'])->name('admin.addAuthor');
     Route::post('storeAuthor', [App\Http\Controllers\AdminController::class, 'storeAuthor'])->name('admin.storeAuthor');;
 });

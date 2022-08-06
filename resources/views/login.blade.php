@@ -42,6 +42,14 @@
                 <div class="card shadow mb-0 border-0 rounded-0">
                     <div class="card-body d-flex align-items-center justify-content-center">
                         <div class="py-4">
+                            @if (session()->has('result'))
+                                <div class="alert alert-{{ session('result')['type'] }} alert-dismissible fade show"
+                                     role="alert">
+                                    <strong>{{ session('result')['message'] }}</strong>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                </div>
+                            @endif
                             <div class="text-center mb-5">
                                 <a href="{{ route('index') }}">
                                     <img src="{{asset('dist/images/logo/favicon.png')}}" height="60" alt="">
@@ -51,16 +59,6 @@
 
                             <form action="{{ route('doLogin') }}" method="POST">
                                 @csrf
-                                @if (session()->has('message'))
-                                    <div class="alert alert-success alert-dismissible "
-                                         role="alert">
-                                        <button type="button" class="close"
-                                                data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                        <strong>{{ session('message') }}</strong>
-                                    </div>
-                                @endif
                                 <div class="form-floating border rounded-3 mb-3">
                                     <input type="email" class="border-0 form-control text-primary"
                                            id="floatingInput3" placeholder="Email Address" name="email">
