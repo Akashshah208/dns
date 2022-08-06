@@ -86,6 +86,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'guest'], function () {
 /* Admin */
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('logout', [\App\Http\Controllers\LoginController::class, 'logout'])->name('logout');
+    Route::get('account', [\App\Http\Controllers\LoginController::class, 'account'])->name('admin.account');
+    Route::post('accountUpdate', [\App\Http\Controllers\LoginController::class, 'accountUpdate'])->name('admin.accountUpdate');
+
     Route::get('', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
     Route::post('addCategory', [App\Http\Controllers\AdminController::class, 'addCategory'])->name('admin.addCategory');
     Route::get('addAuthor', [App\Http\Controllers\AdminController::class, 'addAuthor'])->name('admin.addAuthor');

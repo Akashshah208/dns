@@ -81,7 +81,8 @@
                                 <i class="fas fa-chevron-down fs-3 ms-2"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end mt-2 shadow">
-                                <li><a class="dropdown-item" href="#"><i class="far fa-user me-2"></i> Account</a>
+                                <li><a class="dropdown-item" href="{{ route('admin.account') }}"><i
+                                            class="far fa-user me-2"></i> Account</a>
                                 </li>
                                 <li><a class="dropdown-item" href="{{ route('logout') }}"><i
                                             class="fas fa-sign-out-alt me-2"></i> Log
