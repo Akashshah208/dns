@@ -78,12 +78,14 @@ Route::match(['get', 'post'], 'cname', [\App\Http\Controllers\LookupDataControll
 Route::match(['get', 'post'], 'txt', [\App\Http\Controllers\LookupDataController::class, 'txt'])->name('txt');
 
 /* Login System */
-Route::get('login', [\App\Http\Controllers\LoginController::class, 'login'])->name('login');
-Route::post('doLogin', [\App\Http\Controllers\LoginController::class, 'doLogin'])->name('doLogin');
-Route::get('logout', [\App\Http\Controllers\LoginController::class, 'logout'])->name('logout');
+Route::group(['prefix' => 'admin', 'middleware' => 'guest'], function () {
+    Route::get('login', [\App\Http\Controllers\LoginController::class, 'login'])->name('login');
+    Route::post('doLogin', [\App\Http\Controllers\LoginController::class, 'doLogin'])->name('doLogin');
+});
 
 /* Admin */
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+    Route::get('logout', [\App\Http\Controllers\LoginController::class, 'logout'])->name('logout');
     Route::get('', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
     Route::post('addCategory', [App\Http\Controllers\AdminController::class, 'addCategory'])->name('admin.addCategory');
     Route::get('addAuthor', function () {

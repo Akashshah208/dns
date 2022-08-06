@@ -49,7 +49,7 @@
 <header class="fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark shadow-sm bg-dark">
         <div class="container-fluid max-width-base">
-            <a class="navbar-brand" href="./index.html">
+            <a class="navbar-brand" href="{{ route('admin.index') }}">
                 <img src="{{asset('dist/images/logo/logo-white.svg')}}" height="50" alt="">
             </a>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas"
