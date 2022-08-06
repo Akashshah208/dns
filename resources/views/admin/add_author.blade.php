@@ -47,40 +47,43 @@
                 <button type="submit" class="btn btn-primary">Add Author</button>
             </form>
 
-            <h2 class="mb-4">Author List</h2>
+                <h2 class="mb-4">Author List</h2>
 
-            <div class="table-responsive">
-                <table class="table text-nowrap table-bordered align-middle">
-                    <thead>
-                    <tr>
-                        <th scope="col">Profile</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Work Profile</th>
-                        <th scope="col">Discription</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @if(!empty($authors))
-                        @forelse($authors as $author)
-                            <tr>
-                                <td>
-                                    <img
-                                        src='{{$author->profile ? asset('uploadFile/author/'.$author->profile) : asset('dist/images/user/user2.jpg')}}'
-                                        class="rounded-circle" height="50" alt="">
-                                </td>
-                                <td>{{ $author->name }}</td>
-                                <td>{{ $author->work }}</td>
-                                <td>{{ $author->description }}</td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="4" style="text-align: center">
-                                    No Data Found
-                                </td>
-                            </tr>
-                        @endforelse
-                    @else
+                <div class="table-responsive">
+                    <table class="table text-nowrap table-bordered align-middle">
+                        <thead>
                         <tr>
+                            <th scope="col">Profile</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Work Profile</th>
+                            <th scope="col">Discription</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @if(!empty($authors))
+                            @forelse($authors as $author)
+                                <tr>
+                                    <td>
+                                        <img
+                                            src='{{$author->profile ? asset('uploadFile/author/'.$author->profile) : asset('dist/images/user/user2.jpg')}}'
+                                            class="rounded-circle" height="50" alt="">
+                                    </td>
+                                    <td>{{ $author->name }}</td>
+                                    <td>{{ $author->work }}</td>
+                                    <td>{{ $author->description }}</td>
+                                    <td><a type="button" href="{{ route('admin.authorDelete', $author->id) }}"
+                                           class="btn btn-sm btn-danger">Delete</a></td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="4" style="text-align: center">
+                                        No Data Found
+                                    </td>
+                                </tr>
+                            @endforelse
+                        @else
+                            <tr>
                             <td colspan="4" style="text-align: center">
                                 No Data Found
                             </td>

@@ -110,5 +110,28 @@ class AdminController extends Controller
         }
     }
 
+    public function authorDelete($id)
+    {
+        try {
+            $author = Author::findOrFail($id);
+            $result = $author->delete();
+
+            if ($result) {
+                session()->flash('result', [
+                    'message' => 'Author Delete Successfully..!',
+                    'type' => 'danger',
+                ]);
+                return redirect()->back();
+            }
+        } catch (\Exception $e) {
+            session()->flash('result', [
+                'message' => 'Operation Failed..!',
+                'type' => 'danger',
+            ]);
+            Log::info($e->getMessage());
+            return redirect()->back();
+        }
+    }
+
 
 }

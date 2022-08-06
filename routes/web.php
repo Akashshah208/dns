@@ -96,6 +96,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
     Route::get('', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
     Route::post('addCategory', [App\Http\Controllers\AdminController::class, 'addCategory'])->name('admin.addCategory');
+
     Route::get('addAuthor', [App\Http\Controllers\AdminController::class, 'addAuthor'])->name('admin.addAuthor');
+    Route::get('authorDelete/{id}', [App\Http\Controllers\AdminController::class, 'authorDelete'])->name('admin.authorDelete');
     Route::post('storeAuthor', [App\Http\Controllers\AdminController::class, 'storeAuthor'])->name('admin.storeAuthor');;
 });
