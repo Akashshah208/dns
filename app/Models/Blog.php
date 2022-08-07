@@ -9,9 +9,15 @@ class Blog extends Model
 {
     use HasFactory;
 
-    public function author()
+    public function author(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo('App\Models\Author', 'auth_id', 'id');
     }
+
+    public function tags()
+    {
+        return $this->hasMany('App\Models\Category', 'tag', 'id');
+    }
+
 
 }

@@ -15,11 +15,17 @@ class BlogController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->input('keyword');
+
         if ($keyword) {
-            dd($keyword);
+            $blogs = Blog::whereHas('author', function ($query) use ($keyword) {
+                $query->where('title', 'like', '%' . $keyword . '%');
+            })
+                ->with(['author' => function ($query) use ($keyword) {
+                    $query->where('name', 'like', '%' . $keyword . '%');
+                }])->get();
+        } else {
+            $blogs = Blog::all();
         }
-        $blogs = Blog::all();
-        //dd($blogs[0]->title, date_format($blogs[0]->created_at,"M d, Y"));
         return view('admin.index', compact('blogs'));
     }
 

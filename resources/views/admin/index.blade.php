@@ -8,10 +8,11 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
-            <form action="{{ route('admin.index') }}" method="GET" enctype="multipart/form-data">
+            <form action="{{ route('admin.index') }}" method="GET">
                 <div class="input-group mb-8 bg-white rounded-pill border p-2 overflow-hidden">
                     <input type="search" class="border-0 rounded-pill form-control" placeholder="Search blog..."
-                           aria-label="Search blog..." name="keyword" aria-describedby="button-addon2">
+                           aria-label="Search blog..." name="keyword" aria-describedby="button-addon2"
+                           value="{{ $keyword }}">
                     <button
                         class="btn btn-primary ms-1 d-flex align-items-center justify-content-center rounded-pill"
                         type="submit" id="button-addon2"><i class="fas fa-search me-2"></i> Search

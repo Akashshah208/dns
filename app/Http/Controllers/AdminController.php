@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Author;
+use App\Models\Blog;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -10,9 +11,24 @@ use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return redirect()->route('admin.blog');
+        $keyword = $request->input('keyword');
+
+        if ($keyword) {
+            /*$blogs = Blog::where('title', 'like', '%'.$keyword.'%')
+                ->get();*/
+            $blogs = Blog::whereHas('author', function ($query) use ($keyword) {
+                $query->where('title', 'like', '%' . $keyword . '%');
+            })
+                ->with(['author' => function ($query) use ($keyword) {
+                    $query->where('name', 'like', '%' . $keyword . '%');
+                }])->get();
+        } else {
+            $blogs = Blog::all();
+        }
+        return view('admin.index', compact('blogs', 'keyword'));
+        //return redirect()->route('admin.blog');
     }
 
     public function addCategory(Request $request)
