@@ -31,7 +31,14 @@ class AdminController extends Controller
         //return redirect()->route('admin.blog');
     }
 
-    public function addCategory(Request $request)
+
+    public function addCategory()
+    {
+        $categories = Category::all();
+        return view('admin.add_category', ['categories' => $categories]);
+    }
+
+    public function storeCategory(Request $request)
     {
         $input = $request->all();
         $validator = Validator::make($input, [
@@ -53,6 +60,29 @@ class AdminController extends Controller
                 session()->flash('result', [
                     'message' => 'Category Add Successfully..!',
                     'type' => 'success',
+                ]);
+                return redirect()->back();
+            }
+        } catch (\Exception $e) {
+            session()->flash('result', [
+                'message' => 'Operation Failed..!',
+                'type' => 'danger',
+            ]);
+            Log::info($e->getMessage());
+            return redirect()->back();
+        }
+    }
+
+    public function categoryDelete($id)
+    {
+        try {
+            $category = Category::findOrFail($id);
+            $result = $category->delete();
+
+            if ($result) {
+                session()->flash('result', [
+                    'message' => 'Category Delete Successfully..!',
+                    'type' => 'danger',
                 ]);
                 return redirect()->back();
             }

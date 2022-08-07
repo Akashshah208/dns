@@ -67,8 +67,8 @@
                             <a class="nav-link" aria-current="page" href="{{ route('admin.addBlog') }}">Add Blog</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" data-bs-toggle="modal"
-                               data-bs-target="#addcategory" href="javascript:void(0)">Add Category</a>
+                            <a class="nav-link" aria-current="page" href="{{ route('admin.addCategory') }}">Add
+                                Category</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="{{ route('admin.addAuthor') }}">Add Author</a>
@@ -201,38 +201,6 @@
         </div>
     </div>
 </div>
-
-
-<!-- ================================ -->
-<!-- Add Category Start -->
-<!-- ================================ -->
-<div class="modal fade" id="addcategory" tabindex="1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Category</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="{{ route('admin.addCategory') }}" method="POST">
-                    @csrf
-                    <div class="mb-3">
-                        <label for="title" class="form-label opacity-75">Add Category <span
-                                class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="title" name="name" placeholder="Enter category"
-                               required>
-                    </div>
-
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Discard</button>
-                    <button type="submit" class="btn btn-success">Add Category</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- ================================ -->
-<!-- Add Category End -->
-<!-- ================================ -->
 
 
 <!-- ================================ -->
