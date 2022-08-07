@@ -8,14 +8,16 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
-            <div class="input-group mb-8 bg-white rounded-pill border p-2 overflow-hidden">
-                <input type="search" class="border-0 rounded-pill form-control" placeholder="Search blog..."
-                       aria-label="Search blog..." aria-describedby="button-addon2">
-                <button
-                    class="btn btn-primary ms-1 d-flex align-items-center justify-content-center rounded-pill"
-                    type="button" id="button-addon2"><i class="fas fa-search me-2"></i> Search
-                </button>
-            </div>
+            <form action="{{ route('admin.index') }}" method="GET" enctype="multipart/form-data">
+                <div class="input-group mb-8 bg-white rounded-pill border p-2 overflow-hidden">
+                    <input type="search" class="border-0 rounded-pill form-control" placeholder="Search blog..."
+                           aria-label="Search blog..." name="keyword" aria-describedby="button-addon2">
+                    <button
+                        class="btn btn-primary ms-1 d-flex align-items-center justify-content-center rounded-pill"
+                        type="submit" id="button-addon2"><i class="fas fa-search me-2"></i> Search
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -37,7 +39,7 @@
                             </a>
                         </h4>
                         <span class="text-secondary">By <a href="#" target="_blank"
-                                                           class="me-1">{{ $blog->author->name }}</a>
+                                                           class="me-1">{{ $blog->author ? $blog->author->name : 'Unknown Author'}}</a>
                                 {{ date_format($blog->created_at, "M d, Y") }}
                             </span>
                     </div>
