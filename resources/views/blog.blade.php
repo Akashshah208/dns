@@ -54,7 +54,7 @@
                             <a class="nav-link" aria-current="page" href="{{route('about')}}">About Us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{{route('blog')}}">Blog</a>
+                            <a class="nav-link" aria-current="page" href="{{ route('blog') }}">Blog</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="#">privacy policy</a>
@@ -79,133 +79,70 @@
 <!-- ================================ -->
 
 <!-- ================================ -->
-<!-- About Us Start -->
+<!-- Content Start -->
 <!-- ================================ -->
-<section class="mt-7 py-6">
+<section class="mt-7 py-7">
     <div class="container-fluid max-width-base">
-        <div class="text-center">
-            <h2 class="mb-5">About Us</h2>
+
+        <div class="text-center mb-4">
+            <h1>Master Blog</h1>
         </div>
 
         <div class="row justify-content-center">
             <div class="col-lg-8">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="mb-3">
-                            What is Dnsmastertools?
-                        </h4>
-
-                        <span class="d-block">
-                                This test will list dnsmastertools records for a domain in priority order. The MX lookup
-                                is done directly against the domain's authoritative name server, so changes to
-                                dnsmastertools Records should show up instantly. You can click Diagnostics , which will
-                                connect to the mail server, verify reverse DNS records, perform a simple Open Relay
-                                check and measure response time performance. You may also check each dnsmastertools
-                                record (IP Address) against 105 DNS based blacklists . (Commonly called RBLs, DNSBLs)
-                            </span>
+                @if (session()->has('result'))
+                    <div class="alert alert-{{ session('result')['type'] }} alert-dismissible fade show" role="alert">
+                        <strong>{{ session('result')['message'] }}</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
-                </div>
+                @endif
+                <form action="{{ route('blog') }}" method="GET">
+                    <div class="input-group mb-8 rounded-pill border p-2 overflow-hidden">
+                        <input type="search" class="border-0 rounded-pill form-control" placeholder="Search blog..."
+                               aria-label="Search blog..." name="keyword" aria-describedby="button-addon2"
+                               value="{{ $keyword }}">
+                        <button
+                            class="btn btn-primary ms-1 d-flex align-items-center justify-content-center rounded-pill"
+                            type="submit" id="button-addon2"><i class="fas fa-search me-2"></i> Search
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
-    </div>
-</section>
-<!-- ================================ -->
-<!-- About Us End -->
-<!-- ================================ -->
 
-<!-- ================================ -->
-<!-- Founder Start -->
-<!-- ================================ -->
-<section class="py-6">
-    <div class="container-fluid max-width-base">
-        <div class="text-center">
-            <h2 class="mb-5">Founders Note</h2>
-        </div>
-
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="owl-carousel owl-theme">
-                            <div class="item">
-                                <div class="d-flex justify-content-center mb-3">
-                                    <div class="d-flex justify-content-center">
-                                        <img src="{{asset('dist/images/owners/akash.jpg')}}" width="100" height="100"
-                                             class="rounded-circle" alt="">
-                                    </div>
-                                </div>
-
-                                <div class="text-center">
-                                    <h3 class="mb-3">
-                                        Akash Shah
-                                    </h3>
-
-                                    <a href="https://www.linkedin.com/in/akash-shah-a103abg/" class="text-indigo">
-                                        <i class="fab fa-linkedin fs-7"></i>
-                                    </a>
-
-                                    <p class="mt-3">
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde laborum iure
-                                        hic aspernatur quam consectetur, nam natus, incidunt, commodi vero eligendi
-                                        nostrum suscipit sequi possimus veniam distinctio eveniet! Consequatur, a.
-                                    </p>
-
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat neque
-                                        libero eius nihil. Commodi repudiandae nihil non, obcaecati similique vero
-                                        est ex perspiciatis harum velit amet earum, nemo itaque veniam dignissimos
-                                        suscipit corrupti saepe libero ut id officiis ipsum labore cumque. Itaque
-                                        pariatur dolores minus modi amet odit doloremque voluptates maiores
-                                        perferendis eveniet. Deserunt architecto harum commodi consequatur, fugiat
-                                        aliquid?
-                                    </p>
-                                </div>
+        <div class="row">
+            @forelse($blogs as $blog)
+                <div class="col-md-6 col-lg-4 d-flex align-items-strech">
+                    <div class="card bg-transparent shadow-sm border-0 overflow-hidden w-100">
+                        <a href="{{ route('blogDetails', $blog->id) }}">
+                            <div class="overflow-hidden">
+                                <img
+                                    src='{{$blog->banner ? asset('uploadFile/blogBanner/'.$blog->banner) : asset('dist/images/user/user2.jpg')}}'
+                                    class="zoom-in img-fluid" alt="">
                             </div>
-
-                            <div class="item">
-                                <div class="d-flex justify-content-center mb-3">
-                                    <div class="d-flex justify-content-center">
-                                        <img src="{{asset('dist/images/owners/deep.jpg')}}" width="100" height="100"
-                                             class="rounded-circle" alt="">
-                                    </div>
-                                </div>
-
-                                <div class="text-center">
-                                    <h3 class="mb-3">
-                                        Deep Javiya
-                                    </h3>
-
-                                    <a href="https://www.linkedin.com/in/deep-javiya-a036121b9/"
-                                       class="text-indigo">
-                                        <i class="fab fa-linkedin fs-7"></i>
-                                    </a>
-
-                                    <p class="mt-3">
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde laborum iure
-                                        hic aspernatur quam consectetur, nam natus, incidunt, commodi vero eligendi
-                                        nostrum suscipit sequi possimus veniam distinctio eveniet! Consequatur, a.
-                                    </p>
-
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat neque
-                                        libero eius nihil. Commodi repudiandae nihil non, obcaecati similique vero
-                                        est ex perspiciatis harum velit amet earum, nemo itaque veniam dignissimos
-                                        suscipit corrupti saepe libero ut id officiis ipsum labore cumque. Itaque
-                                        pariatur dolores minus modi amet odit doloremque voluptates maiores
-                                        perferendis eveniet. Deserunt architecto harum commodi consequatur, fugiat
-                                        aliquid?
-                                    </p>
-                                </div>
-                            </div>
+                        </a>
+                        <div class="card-body">
+                            <h4 class="mb-3">
+                                <a href="{{ route('blogDetails', $blog->id) }}" class="dark-link">
+                                    {{ $blog->title }}
+                                </a>
+                            </h4>
+                            <span class="text-secondary">By <a href="{{ route('blogDetails', $blog->id) }}"
+                                                               target="_blank"
+                                                               class="me-1">{{ $blog->author ? $blog->author->name : 'Unknown Author'}}</a>
+                                {{ date_format($blog->created_at, "M d, Y") }}
+                            </span>
                         </div>
                     </div>
                 </div>
-            </div>
+            @empty
+                No Data Found
+            @endforelse
         </div>
     </div>
 </section>
 <!-- ================================ -->
-<!-- Founder End -->
+<!-- Content End -->
 <!-- ================================ -->
 
 

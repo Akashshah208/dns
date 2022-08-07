@@ -96,7 +96,7 @@ class LoginController extends Controller
         ]);
         Auth::logout();
         return redirect()
-            ->route('login')
+            ->route('index')
             ->with('status', 'Logout successfully...!');
     }
 }

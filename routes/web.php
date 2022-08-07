@@ -77,6 +77,10 @@ Route::match(['get', 'post'], 'dns', [\App\Http\Controllers\LookupDataController
 Route::match(['get', 'post'], 'cname', [\App\Http\Controllers\LookupDataController::class, 'cname'])->name('cname');
 Route::match(['get', 'post'], 'txt', [\App\Http\Controllers\LookupDataController::class, 'txt'])->name('txt');
 
+Route::get('blog', [\App\Http\Controllers\Clint\BlogController::class, 'index'])->name('blog');
+Route::get('blogDetails/{id}', [\App\Http\Controllers\Clint\BlogController::class, 'details'])->name('blogDetails');
+
+
 /* Login System */
 Route::group(['prefix' => 'admin', 'middleware' => 'guest'], function () {
     Route::get('login', [\App\Http\Controllers\LoginController::class, 'login'])->name('login');

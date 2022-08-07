@@ -51,7 +51,7 @@
                     </div>
 
 
-                    {{ htmlspecialchars($blog->description) }}
+                    {{ $blog->description }}
                     {{--                  {{ htmlspecialchars($blog->description }}--}}
                     {{--    {{ htmlspecialchars($blog->description) }}
                       {{ htmlspecialchars_decode($blog->description) }}--}}
