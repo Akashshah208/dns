@@ -26,7 +26,7 @@
         @forelse($blogs as $blog)
             <div class="col-md-6 col-lg-4 d-flex align-items-strech">
                 <div class="card bg-transparent shadow-sm border-0 overflow-hidden w-100">
-                    <a href="#">
+                    <a href="{{ route('admin.blogDetails', $blog->id) }}">
                         <div class="overflow-hidden">
                             <img
                                 src='{{$blog->banner ? asset('uploadFile/blogBanner/'.$blog->banner) : asset('dist/images/user/user2.jpg')}}'
@@ -35,11 +35,12 @@
                     </a>
                     <div class="card-body">
                         <h4 class="mb-3">
-                            <a href="#" class="dark-link">
+                            <a href="{{ route('admin.blogDetails', $blog->id) }}" class="dark-link">
                                 {{ $blog->title }}
                             </a>
                         </h4>
-                        <span class="text-secondary">By <a href="#" target="_blank"
+                        <span class="text-secondary">By <a href="{{ route('admin.blogDetails', $blog->id) }}"
+                                                           target="_blank"
                                                            class="me-1">{{ $blog->author ? $blog->author->name : 'Unknown Author'}}</a>
                                 {{ date_format($blog->created_at, "M d, Y") }}
                             </span>

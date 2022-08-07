@@ -26,8 +26,18 @@ class BlogController extends Controller
         } else {
             $blogs = Blog::all();
         }
-        return view('admin.index', compact('blogs'));
+        return view('admin.index', compact('blogs', 'keyword'));
     }
+
+    public function details($id)
+    {
+        $blog = Blog::findOrFail($id);
+        $strTags = implode(',', json_decode($blog->tag));
+        $tags = Category::findMany($strTags);
+        $allTags = Category::all();
+        return view('admin.blog_detail', compact('blog', 'tags', 'allTags'));
+    }
+
 
     public function addBlog()
     {
@@ -93,5 +103,29 @@ class BlogController extends Controller
         }
         dd('storeBlog', $request->all());
     }
+
+    public function blogDelete($id)
+    {
+        try {
+            $blog = Blog::findOrFail($id);
+            $result = $blog->delete();
+
+            if ($result) {
+                session()->flash('result', [
+                    'message' => 'Blog Delete Successfully..!',
+                    'type' => 'danger',
+                ]);
+                return redirect()->route('admin.blog');
+            }
+        } catch (\Exception $e) {
+            session()->flash('result', [
+                'message' => 'Operation Failed..!',
+                'type' => 'danger',
+            ]);
+            Log::info($e->getMessage());
+            return redirect()->route('admin.blog');
+        }
+    }
+
 
 }

@@ -90,8 +90,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::post('accountUpdate', [\App\Http\Controllers\LoginController::class, 'accountUpdate'])->name('admin.accountUpdate');
 
     Route::get('blog', [\App\Http\Controllers\BlogController::class, 'index'])->name('admin.blog');
+    Route::get('blogDetails/{id}', [\App\Http\Controllers\BlogController::class, 'details'])->name('admin.blogDetails');
     Route::get('addBlog', [\App\Http\Controllers\BlogController::class, 'addBlog'])->name('admin.addBlog');
     Route::post('storeBlog', [\App\Http\Controllers\BlogController::class, 'storeBlog'])->name('admin.storeBlog');
+    Route::get('blogDelete/{id}', [App\Http\Controllers\BlogController::class, 'blogDelete'])->name('admin.blogDelete');
 
 
     Route::get('', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
