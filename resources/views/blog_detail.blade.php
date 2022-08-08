@@ -122,98 +122,27 @@
                 </div>
 
 
-                @php
-                    echo("$blog->description");
-                @endphp
+                    @php
+                        echo("$blog->description");
+                    @endphp
 
-                {{--<h3 class="mb-4">Related Article</h3>
-
-                <div class="owl-carousel owl-theme mb-5">
-                    <div class="item">
-                        <div class="card bg-transparent w-100 border-0 overflow-hidden">
-                            <a href="./blog-details.html">
-                                <div class="overflow-hidden">
-                                    <img src="../dist/images/blog/2.jpg" class="zoom-in img-fluid" alt="">
+                    <div class="card border-0 shadow-sm mb-5">
+                        <div class="card-body">
+                            <h3 class="mb-4">Author</h3>
+                            <div class="d-flex align-items-start">
+                                <div class="me-3 ps-2">
+                                    <img
+                                        src='{{$blog->author->profile ? asset('uploadFile/author/'.$blog->author->profile) : Avatar::create($blog->author->name)->toBase64()}}'
+                                        class="rounded-circle border" height="70"
+                                        alt="">
                                 </div>
-                            </a>
-                            <div class="card-body">
-                                <h5 class="mb-3">
-                                    <a href="./blog-details.html" class="dark-link">
-                                        MX Lookup - How to Find a Domain's online MX Records
-                                    </a>
-                                </h5>
-                                <span class="text-secondary">By <a href="https://ethenex.com/" target="_blank"
-                                                                   class="me-1">Akash Shah</a>
-                                    On
-                                    July 20, 2022
-                                </span>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="item">
-                        <div class="card bg-transparent border-0 overflow-hidden w-100">
-                            <a href="./blog-details.html">
-                                <div class="overflow-hidden">
-                                    <img src="../dist/images/blog/3.jpg" class="zoom-in img-fluid" alt="">
-                                </div>
-                            </a>
-                            <div class="card-body">
-                                <h5 class="mb-3">
-                                    <a href="./blog-details.html" class="dark-link">
-                                        Guide to SSL: What It is & Why It Makes Your Website More Secure
-                                    </a>
-                                </h5>
-                                <span class="text-secondary">By <a href="https://ethenex.com/" target="_blank"
-                                                                   class="me-1">Parth Goshwami</a>
-                                    On
-                                    July 14, 2022
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <div class="card bg-transparent border-0 overflow-hidden w-100">
-                            <a href="./blog-details.html">
-                                <div class="overflow-hidden">
-                                    <img src="../dist/images/blog/4.jpg" class="zoom-in img-fluid" alt="">
-                                </div>
-                            </a>
-                            <div class="card-body">
-                                <h5 class="mb-3">
-                                    <a href="./blog-details.html" class="dark-link">
-                                        TXT Lookup - Free online tool to DNS Text (TXT) records for a domain
-                                    </a>
-                                </h5>
-                                <span class="text-secondary">By <a href="https://ethenex.com/" target="_blank"
-                                                                   class="me-1">Anna Dicosta</a>
-                                    On
-                                    July 09, 2022
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>--}}
-
-                <div class="card border-0 shadow-sm mb-5">
-                    <div class="card-body">
-                        <h3 class="mb-4">Author</h3>
-                        <div class="d-flex align-items-start">
-                            <div class="me-3 ps-2">
-                                <img
-                                    src='{{$blog->author->profile ? asset('uploadFile/author/'.$blog->author->profile) : asset('dist/images/user/user2.jpg')}}'
-                                    class="rounded-circle border" height="70"
-                                    alt="">
-                            </div>
-
-                            <div>
-                                <h5 class="mb-0">{{ $blog->author->name }}</h5>
-                                <span class="fs-3">{{ $blog->author->work }}</span>
-                                <p class="mt-3 text-dark opacity-50 mb-0">
-                                    {{ $blog->author->description }}
-                                </p>
+                                <div>
+                                    <h5 class="mb-0">{{ $blog->author->name }}</h5>
+                                    <span class="fs-3">{{ $blog->author->work }}</span>
+                                    <p class="mt-3 text-dark opacity-50 mb-0">
+                                        {{ $blog->author->description }}
+                                    </p>
                             </div>
                         </div>
                     </div>
@@ -250,22 +179,23 @@
                 </form>
 
 
-                <h3 class="mb-4">Comments</h3>
+                    <h3 class="mb-4">Comments</h3>
 
-                @forelse($comments as $comment)
-                    <div class="d-md-flex d-block align-items-start mb-5 pb-5 border-bottom">
-                        <div class="me-3">
-                            <img src="{{asset('dist/images/owners/deep.jpg')}}" height="50"
-                                 class="mb-3 mb-md-0 rounded-circle"
-                                 alt="">
-                        </div>
-
-                        <div>
-                            <div class="d-md-flex d-block align-items-center justify-content-between mb-3">
-                                <h6 class="fs-5 mb-0">{{ $comment->name }}</h6> <span
-                                    class="ms-md-3 fs-14 opacity-50 ms-0">{{ date_format($comment->created_at, "M d, Y") }}</span>
+                    @forelse($comments as $comment)
+                        <div class="d-md-flex d-block align-items-start mb-5 pb-5 border-bottom">
+                            <div class="me-3">
+                                {{--                            <img src="{{asset('dist/images/owners/deep.jpg')}}" height="50"--}}
+                                <img src="{{ Avatar::create($comment->name)->toBase64() }}" height="50"
+                                     class="mb-3 mb-md-0 rounded-circle"
+                                     alt="">
                             </div>
-                            <p class="mb-3">
+
+                            <div>
+                                <div class="d-md-flex d-block align-items-center justify-content-between mb-3">
+                                    <h6 class="fs-5 mb-0">{{ $comment->name }}</h6> <span
+                                        class="ms-md-3 fs-14 opacity-50 ms-0">{{ date_format($comment->created_at, "M d, Y") }}</span>
+                                </div>
+                                <p class="mb-3">
                                 {{ $comment->comment }}
                             </p>
                             <a href="javascript:void(0)" class="reply-btn link-primary"><i

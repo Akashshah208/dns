@@ -18,7 +18,7 @@ class CreateCommentsTable extends Migration
             $table->unsignedBigInteger('blog_id')->unsigned();
             $table->string('name');
             $table->string('email');
-            $table->string('comment');
+            $table->longText('comment');
             $table->timestamps();
             $table->foreign('blog_id')->references('id')->on('blogs');
         });

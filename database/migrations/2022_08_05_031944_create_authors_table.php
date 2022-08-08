@@ -18,7 +18,7 @@ class CreateAuthorsTable extends Migration
             $table->string('name');
             $table->string('profile');
             $table->string('work');
-            $table->string('description');
+            $table->longText('description');
             $table->enum('status', ['0', '1'])->default('1');
             $table->timestamps();
         });

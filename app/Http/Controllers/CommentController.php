@@ -15,8 +15,8 @@ class CommentController extends Controller
         $input = $request->all();
         $validator = Validator::make($input, [
             'id' => 'required',
-            'name' => 'required|max:100',
-            'email' => 'required|max:100',
+            'name' => 'required',
+            'email' => 'required',
             'comment' => 'required',
         ]);
 

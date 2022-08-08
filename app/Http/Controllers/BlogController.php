@@ -55,7 +55,7 @@ class BlogController extends Controller
             'tags' => 'required',
             'description' => 'required',
             'auth' => 'required',
-            'banner' => 'required|mimes:jpg,jpeg,png',
+            'banner' => 'mimes:jpeg,jpg,png,gif|required',
         ]);
         if ($validator->fails()) {
             session()->flash('result', [
