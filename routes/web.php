@@ -80,6 +80,8 @@ Route::match(['get', 'post'], 'txt', [\App\Http\Controllers\LookupDataController
 Route::get('blog', [\App\Http\Controllers\Clint\BlogController::class, 'index'])->name('blog');
 Route::get('blogDetails/{id}', [\App\Http\Controllers\Clint\BlogController::class, 'details'])->name('blogDetails');
 
+Route::post('postComment', [\App\Http\Controllers\CommentController::class, 'postComment'])->name('postComment');
+
 
 /* Login System */
 Route::group(['prefix' => 'admin', 'middleware' => 'guest'], function () {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Clint;
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use App\Models\Category;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -32,7 +33,8 @@ class BlogController extends Controller
         $strTags = implode(',', json_decode($blog->tag));
         $tags = Category::findMany($strTags);
         $allTags = Category::all();
-        return view('blog_detail', compact('blog', 'tags', 'allTags'));
+        $comments = Comment::where('blog_id', $id)->get();
+        return view('blog_detail', compact('blog', 'tags', 'allTags', 'comments'));
     }
 
 }

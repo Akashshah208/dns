@@ -50,8 +50,10 @@
                         </div>
                     </div>
 
+                    @php
+                        echo("$blog->description");
+                    @endphp
 
-                    {{ $blog->description }}
                     {{--                  {{ htmlspecialchars($blog->description }}--}}
                     {{--    {{ htmlspecialchars($blog->description) }}
                       {{ htmlspecialchars_decode($blog->description) }}--}}

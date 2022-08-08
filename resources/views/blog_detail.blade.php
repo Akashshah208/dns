@@ -85,7 +85,12 @@
     <div class="container-fluid max-width-base">
         <div class="row">
             <div class="col-lg-8">
-
+                @if (session()->has('result'))
+                    <div class="alert alert-{{ session('result')['type'] }} alert-dismissible fade show" role="alert">
+                        <strong>{{ session('result')['message'] }}</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
                 <h2 class="mb-2">
                     {{ $blog->title }}
                 </h2>
@@ -117,30 +122,9 @@
                 </div>
 
 
-                {{ $blog->description }}
-                {{--                  {{ htmlspecialchars($blog->description }}--}}
-                {{--    {{ htmlspecialchars($blog->description) }}
-                  {{ htmlspecialchars_decode($blog->description) }}--}}
-
-                {{--<div class="mb-5">
-                    <ul class="d-flex">
-                        <li class="me-2">
-                            <a href="javascript:void(0)" class="facebook-btn text-white">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                        </li>
-                        <li class="me-2">
-                            <a href="javascript:void(0)" class="twitter-btn text-white">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                        </li>
-                        <li class="me-2">
-                            <a href="javascript:void(0)" class="linkedin-btn text-white">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>--}}
+                @php
+                    echo("$blog->description");
+                @endphp
 
                 {{--<h3 class="mb-4">Related Article</h3>
 
@@ -235,122 +219,64 @@
                     </div>
                 </div>
 
-                {{-- <h3 class="mb-4">Comments</h3>
+                <h3>Leave a reply</h3>
+                <p class="opacity-75 mb-4">Your email address will not be published. Required fields are marked *
+                </p>
 
-                 <div class="d-md-flex d-block align-items-start mb-5 pb-5 border-bottom">
-                     <div class="me-3">
-                         <img src="../dist/images/owners/deep.jpg" height="50" class="mb-3 mb-md-0 rounded-circle"
-                              alt="">
-                     </div>
+                <form class="mb-5" action="{{ route('postComment') }}" method="POST">
+                    @csrf
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput2" class="opacity-75 form-label">Name <span
+                                class="text-danger">*</span></label>
+                        <input type="hidden" name="id" value="{{ $blog->id }}">
+                        <input type="name" class="form-control" id="exampleFormControlInput2"
+                               placeholder="Enter your name here" name="name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="opacity-75 form-label">Email <span
+                                class="text-danger">*</span></label>
+                        <input type="email" class="form-control" id="exampleFormControlInput1"
+                               placeholder="Enter your email here" name="email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="opacity-75 form-label">Message</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"
+                                  placeholder="Write message here" name="comment"></textarea>
+                    </div>
 
-                     <div>
-                         <div class="d-md-flex d-block align-items-center justify-content-between mb-0">
-                             <h6 class="fs-5 mb-0">Javiya Deep</h6> <span class="ms-md-3 fs-14 opacity-50 ms-0">3
-                                 weeks ago</span>
-                         </div>
-                         <p class="opacity-50">example@info.com</p>
-                         <p class="mb-3">
-                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, a. Numquam veniam
-                             repellat aliquid reprehenderit, aspernatur deleniti officia, id ipsa ipsum, eligendi
-                             itaque perferendis perspiciatis? Sapiente officiis excepturi libero quidem.
-                         </p>
-                         <div class="d-flex justify-content-between align-items-center">
-                             <a href="javascript:void(0)" class="reply-btn link-primary"><i
-                                     class='fas fa-reply me-2'></i>Reply</a>
-                             <button type="button"
-                                     class="btn btn-danger d-flex align-items-center justify-content-center"><i
-                                     class='fas fa-trash-alt me-2'></i>Delete</button>
-                         </div>
-                     </div>
-                 </div>
+                    <div class="mt-4">
+                        <button class="btn btn-primary" type="submit">Post Comment</button>
+                    </div>
+                </form>
 
-                 <div class="d-md-flex d-block align-items-start mb-5 pb-5 border-bottom">
-                     <div class="me-3">
-                         <img src="../dist/images/owners/akash.jpg" height="50" class="mb-3 mb-md-0 rounded-circle"
-                              alt="">
-                     </div>
 
-                     <div>
-                         <div class="d-md-flex d-block align-items-center justify-content-between mb-0">
-                             <h6 class="fs-5 mb-0">Akash Shah</h6> <span class="ms-md-3 fs-14 opacity-50 ms-0">5
-                                 weeks ago</span>
-                         </div>
-                         <p class="opacity-50">example@info.com</p>
-                         <p class="mb-3">
-                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, a. Numquam veniam
-                             repellat aliquid reprehenderit, aspernatur deleniti officia, id ipsa ipsum, eligendi
-                             itaque perferendis perspiciatis? Sapiente officiis excepturi libero quidem.
-                         </p>
-                         <div class="d-flex justify-content-between align-items-center">
-                             <a href="javascript:void(0)" class="reply-btn link-primary"><i
-                                     class='fas fa-reply me-2'></i>Reply</a>
-                             <button type="button"
-                                     class="btn btn-danger d-flex align-items-center justify-content-center"><i
-                                     class='fas fa-trash-alt me-2'></i>Delete</button>
-                         </div>
+                <h3 class="mb-4">Comments</h3>
 
-                         <!--  -->
-                         <div class="d-md-flex d-block align-items-start mt-5">
-                             <div class="me-3">
-                                 <img src="../dist/images/user/user6.jpg" height="50"
-                                      class="mb-3 mb-md-0 rounded-circle" alt="">
-                             </div>
+                @forelse($comments as $comment)
+                    <div class="d-md-flex d-block align-items-start mb-5 pb-5 border-bottom">
+                        <div class="me-3">
+                            <img src="{{asset('dist/images/owners/deep.jpg')}}" height="50"
+                                 class="mb-3 mb-md-0 rounded-circle"
+                                 alt="">
+                        </div>
 
-                             <div>
-                                 <div class="d-md-flex d-block align-items-center justify-content-between mb-0">
-                                     <h6 class="fs-5 mb-0">Admin</h6> <span class="ms-md-3 fs-14 opacity-50 ms-0">3
-                                         weeks ago</span>
-                                 </div>
-                                 <p class="opacity-50">example@info.com</p>
-                                 <p class="mb-3">
-                                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, a. Numquam
-                                     veniam
-                                     repellat aliquid reprehenderit, aspernatur deleniti officia, id ipsa ipsum,
-                                     eligendi
-                                     itaque perferendis perspiciatis? Sapiente officiis excepturi libero quidem.
-                                 </p>
-                                 <div class="d-flex justify-content-between align-items-center">
-                                     <a href="javascript:void(0)" class="reply-btn link-primary"><i
-                                             class='fas fa-reply me-2'></i>Reply</a>
-                                     <button type="button"
-                                             class="btn btn-danger d-flex align-items-center justify-content-center"><i
-                                             class='fas fa-trash-alt me-2'></i>Delete</button>
-                                 </div>
-                             </div>
-                         </div>
-
-                         <!--  -->
-                         <div class="d-md-flex d-block align-items-start mt-5">
-                             <div class="me-3">
-                                 <img src="../dist/images/user/user2.jpg" height="50"
-                                      class="mb-3 mb-md-0 rounded-circle" alt="">
-                             </div>
-
-                             <div>
-                                 <div class="d-md-flex d-block align-items-center justify-content-between mb-0">
-                                     <h6 class="fs-5 mb-0">Johnnath Andorson</h6> <span
-                                         class="ms-md-3 fs-14 opacity-50 ms-0">4
-                                         weeks ago</span>
-                                 </div>
-                                 <p class="opacity-50">example@info.com</p>
-                                 <p class="mb-3">
-                                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, a. Numquam
-                                     veniam
-                                     repellat aliquid reprehenderit, aspernatur deleniti officia, id ipsa ipsum,
-                                     eligendi
-                                     itaque perferendis perspiciatis? Sapiente officiis excepturi libero quidem.
-                                 </p>
-                                 <div class="d-flex justify-content-between align-items-center">
-                                     <a href="javascript:void(0)" class="reply-btn link-primary"><i
-                                             class='fas fa-reply me-2'></i>Reply</a>
-                                     <button type="button"
-                                             class="btn btn-danger d-flex align-items-center justify-content-center"><i
-                                             class='fas fa-trash-alt me-2'></i>Delete</button>
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
-                 </div>--}}
+                        <div>
+                            <div class="d-md-flex d-block align-items-center justify-content-between mb-3">
+                                <h6 class="fs-5 mb-0">{{ $comment->name }}</h6> <span
+                                    class="ms-md-3 fs-14 opacity-50 ms-0">{{ date_format($comment->created_at, "M d, Y") }}</span>
+                            </div>
+                            <p class="mb-3">
+                                {{ $comment->comment }}
+                            </p>
+                            <a href="javascript:void(0)" class="reply-btn link-primary"><i
+                                    class='fas fa-reply me-2'></i>Reply</a>
+                        </div>
+                    </div>
+                @empty
+                    <div class="d-md-flex d-block align-items-start mb-5 pb-5 border-bottom">
+                        <p>No Comment</p>
+                    </div>
+                @endforelse
             </div>
 
             <div class="col-lg-4">
