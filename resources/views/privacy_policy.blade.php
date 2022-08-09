@@ -80,133 +80,24 @@
 <!-- ================================ -->
 
 <!-- ================================ -->
-<!-- About Us Start -->
+<!-- Content Start -->
 <!-- ================================ -->
-<section class="mt-7 py-6">
+<section class="mt-7 py-7">
     <div class="container-fluid max-width-base">
         <div class="text-center">
-            <h2 class="mb-5">About Us</h2>
+            <h2 class="fw-bold mb-5">Privacy Policy</h2>
         </div>
 
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="mb-3">
-                            What is Dnsmastertools?
-                        </h4>
-
-                        <span class="d-block">
-                                This test will list dnsmastertools records for a domain in priority order. The MX lookup
-                                is done directly against the domain's authoritative name server, so changes to
-                                dnsmastertools Records should show up instantly. You can click Diagnostics , which will
-                                connect to the mail server, verify reverse DNS records, perform a simple Open Relay
-                                check and measure response time performance. You may also check each dnsmastertools
-                                record (IP Address) against 105 DNS based blacklists . (Commonly called RBLs, DNSBLs)
-                            </span>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @php
+            if ($privacyPolicy)
+                echo("$privacyPolicy->policy");
+            else
+                echo ("<p> No Data Found </p>");
+        @endphp
     </div>
 </section>
 <!-- ================================ -->
-<!-- About Us End -->
-<!-- ================================ -->
-
-<!-- ================================ -->
-<!-- Founder Start -->
-<!-- ================================ -->
-<section class="py-6">
-    <div class="container-fluid max-width-base">
-        <div class="text-center">
-            <h2 class="mb-5">Founders Note</h2>
-        </div>
-
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="owl-carousel owl-theme">
-                            <div class="item">
-                                <div class="d-flex justify-content-center mb-3">
-                                    <div class="d-flex justify-content-center">
-                                        <img src="{{asset('dist/images/owners/akash.jpg')}}" width="100" height="100"
-                                             class="rounded-circle" alt="">
-                                    </div>
-                                </div>
-
-                                <div class="text-center">
-                                    <h3 class="mb-3">
-                                        Akash Shah
-                                    </h3>
-
-                                    <a href="https://www.linkedin.com/in/akash-shah-a103abg/" class="text-indigo">
-                                        <i class="fab fa-linkedin fs-7"></i>
-                                    </a>
-
-                                    <p class="mt-3">
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde laborum iure
-                                        hic aspernatur quam consectetur, nam natus, incidunt, commodi vero eligendi
-                                        nostrum suscipit sequi possimus veniam distinctio eveniet! Consequatur, a.
-                                    </p>
-
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat neque
-                                        libero eius nihil. Commodi repudiandae nihil non, obcaecati similique vero
-                                        est ex perspiciatis harum velit amet earum, nemo itaque veniam dignissimos
-                                        suscipit corrupti saepe libero ut id officiis ipsum labore cumque. Itaque
-                                        pariatur dolores minus modi amet odit doloremque voluptates maiores
-                                        perferendis eveniet. Deserunt architecto harum commodi consequatur, fugiat
-                                        aliquid?
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="item">
-                                <div class="d-flex justify-content-center mb-3">
-                                    <div class="d-flex justify-content-center">
-                                        <img src="{{asset('dist/images/owners/deep.jpg')}}" width="100" height="100"
-                                             class="rounded-circle" alt="">
-                                    </div>
-                                </div>
-
-                                <div class="text-center">
-                                    <h3 class="mb-3">
-                                        Deep Javiya
-                                    </h3>
-
-                                    <a href="https://www.linkedin.com/in/deep-javiya-a036121b9/"
-                                       class="text-indigo">
-                                        <i class="fab fa-linkedin fs-7"></i>
-                                    </a>
-
-                                    <p class="mt-3">
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde laborum iure
-                                        hic aspernatur quam consectetur, nam natus, incidunt, commodi vero eligendi
-                                        nostrum suscipit sequi possimus veniam distinctio eveniet! Consequatur, a.
-                                    </p>
-
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat neque
-                                        libero eius nihil. Commodi repudiandae nihil non, obcaecati similique vero
-                                        est ex perspiciatis harum velit amet earum, nemo itaque veniam dignissimos
-                                        suscipit corrupti saepe libero ut id officiis ipsum labore cumque. Itaque
-                                        pariatur dolores minus modi amet odit doloremque voluptates maiores
-                                        perferendis eveniet. Deserunt architecto harum commodi consequatur, fugiat
-                                        aliquid?
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- ================================ -->
-<!-- Founder End -->
+<!-- Content End -->
 <!-- ================================ -->
 
 

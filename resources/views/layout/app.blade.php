@@ -55,10 +55,11 @@
                             <a class="nav-link" aria-current="page" href="{{ route('blog') }}">Blog</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">privacy policy</a>
+                            <a class="nav-link" aria-current="page" href="{{ route('privacyPolicy') }}">Privacy
+                                Policy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">Terms of services</a>
+                            <a class="nav-link" aria-current="page" href="{{ route('services') }}">Terms of services</a>
                         </li>
                         <li class="nav-item">
                             <a class="btn btn-primary text-white px-4 nav-link" aria-current="page"

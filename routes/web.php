@@ -80,6 +80,8 @@ Route::match(['get', 'post'], 'txt', [\App\Http\Controllers\LookupDataController
 Route::get('blog', [\App\Http\Controllers\Clint\BlogController::class, 'index'])->name('blog');
 Route::get('blogDetails/{id}', [\App\Http\Controllers\Clint\BlogController::class, 'details'])->name('blogDetails');
 
+Route::get('privacyPolicy', [App\Http\Controllers\AdminController::class, 'privacyPolicy'])->name('privacyPolicy');
+Route::get('services', [App\Http\Controllers\AdminController::class, 'services'])->name('services');
 Route::post('postComment', [\App\Http\Controllers\CommentController::class, 'postComment'])->name('postComment');
 
 
@@ -112,4 +114,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('addAuthor', [App\Http\Controllers\AdminController::class, 'addAuthor'])->name('admin.addAuthor');
     Route::get('authorDelete/{id}', [App\Http\Controllers\AdminController::class, 'authorDelete'])->name('admin.authorDelete');
     Route::post('storeAuthor', [App\Http\Controllers\AdminController::class, 'storeAuthor'])->name('admin.storeAuthor');
+
+    Route::get('addPrivacyPolicy', [App\Http\Controllers\AdminController::class, 'addPrivacyPolicy'])->name('admin.addPrivacyPolicy');
+    Route::post('storePrivacyPolicy', [App\Http\Controllers\AdminController::class, 'storePrivacyPolicy'])->name('admin.storePrivacyPolicy');
+    Route::get('privacyPolicyDelete/{id}', [App\Http\Controllers\AdminController::class, 'privacyPolicyDelete'])->name('admin.privacyPolicyDelete');
+
+    Route::get('addServices', [App\Http\Controllers\AdminController::class, 'addServices'])->name('admin.addServices');
+    Route::post('storeServices', [App\Http\Controllers\AdminController::class, 'storeServices'])->name('admin.storeServices');
+    Route::get('servicesDelete/{id}', [App\Http\Controllers\AdminController::class, 'servicesDelete'])->name('admin.servicesDelete');
+
+
 });

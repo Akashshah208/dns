@@ -67,7 +67,7 @@
                                     <td>
                                         <img
                                             src='{{$author->profile ? asset('uploadFile/author/'.$author->profile) : asset('dist/images/user/user2.jpg')}}'
-                                            class="rounded-circle" height="50" alt="">
+                                            class="rounded-circle" height="50" width="50" alt="">
                                     </td>
                                     <td>{{ $author->name }}</td>
                                     <td>{{ $author->work }}</td>

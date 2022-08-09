@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Author;
 use App\Models\Blog;
 use App\Models\Category;
+use App\Models\PrivacyPolicy;
+use App\Models\Services;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
@@ -165,6 +167,146 @@ class AdminController extends Controller
             if ($result) {
                 session()->flash('result', [
                     'message' => 'Author Delete Successfully..!',
+                    'type' => 'danger',
+                ]);
+                return redirect()->back();
+            }
+        } catch (\Exception $e) {
+            session()->flash('result', [
+                'message' => 'Operation Failed..!',
+                'type' => 'danger',
+            ]);
+            Log::info($e->getMessage());
+            return redirect()->back();
+        }
+    }
+
+    public function privacyPolicy()
+    {
+        $privacyPolicy = PrivacyPolicy::first();
+        return view('privacy_policy', ['privacyPolicy' => $privacyPolicy]);
+    }
+
+    public function addPrivacyPolicy()
+    {
+        $privacyPolicy = PrivacyPolicy::first();
+        return view('admin.privacy_policy', ['privacyPolicy' => $privacyPolicy]);
+    }
+
+    public function storePrivacyPolicy(Request $request)
+    {
+        $input = $request->all();
+        $validator = Validator::make($input, [
+            'policy' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            session()->flash('result', [
+                'message' => 'All Fields Are Required..!',
+                'type' => 'danger',
+            ]);
+            return redirect()->back();
+        }
+        try {
+            $privacyPolicy = new PrivacyPolicy();
+            $privacyPolicy->policy = $request->policy;
+            $result = $privacyPolicy->save();
+            if ($result) {
+                session()->flash('result', [
+                    'message' => 'Privacy Policy Add Successfully..!',
+                    'type' => 'success',
+                ]);
+                return redirect()->back();
+            }
+        } catch (\Exception $e) {
+            session()->flash('result', [
+                'message' => 'Operation Failed..!',
+                'type' => 'danger',
+            ]);
+            Log::info($e->getMessage());
+            return redirect()->back();
+        }
+    }
+
+    public function privacyPolicyDelete($id)
+    {
+        try {
+            $privacyPolicy = PrivacyPolicy::findOrFail($id);
+            $result = $privacyPolicy->delete();
+
+            if ($result) {
+                session()->flash('result', [
+                    'message' => 'Privacy Policy Delete Successfully..!',
+                    'type' => 'danger',
+                ]);
+                return redirect()->back();
+            }
+        } catch (\Exception $e) {
+            session()->flash('result', [
+                'message' => 'Operation Failed..!',
+                'type' => 'danger',
+            ]);
+            Log::info($e->getMessage());
+            return redirect()->back();
+        }
+    }
+
+    public function services()
+    {
+        $services = Services::first();
+        return view('terms_of_services', ['services' => $services]);
+    }
+
+    public function addServices()
+    {
+        $services = Services::first();
+        return view('admin.terms_of_services', ['services' => $services]);
+    }
+
+    public function storeServices(Request $request)
+    {
+        $input = $request->all();
+        $validator = Validator::make($input, [
+            'services' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            session()->flash('result', [
+                'message' => 'All Fields Are Required..!',
+                'type' => 'danger',
+            ]);
+            return redirect()->back();
+        }
+        try {
+            $services = new Services();
+            $services->services = $request->services;
+            $result = $services->save();
+            if ($result) {
+                session()->flash('result', [
+                    'message' => 'Services Add Successfully..!',
+                    'type' => 'success',
+                ]);
+                return redirect()->back();
+            }
+        } catch (\Exception $e) {
+            session()->flash('result', [
+                'message' => 'Operation Failed..!',
+                'type' => 'danger',
+            ]);
+            Log::info($e->getMessage());
+            return redirect()->back();
+        }
+    }
+
+    public function servicesDelete($id)
+    {
+        try {
+            $services = Services::findOrFail($id);
+            $result = $services->delete();
+
+            if ($result) {
+                session()->flash('result', [
+                    'message' => 'Terms Of Services Delete Successfully..!',
                     'type' => 'danger',
                 ]);
                 return redirect()->back();
