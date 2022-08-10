@@ -19,5 +19,10 @@ class Blog extends Model
         return $this->hasMany('App\Models\Category', 'tag', 'id');
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class)->whereNull('parent_id');
+    }
+
 
 }

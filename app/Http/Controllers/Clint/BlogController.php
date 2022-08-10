@@ -33,8 +33,7 @@ class BlogController extends Controller
         $strTags = implode(',', json_decode($blog->tag));
         $tags = Category::findMany($strTags);
         $allTags = Category::all();
-        $comments = Comment::where('blog_id', $id)->get();
-        return view('blog_detail', compact('blog', 'tags', 'allTags', 'comments'));
+        return view('blog_detail', compact('blog', 'tags', 'allTags'));
     }
 
 }
