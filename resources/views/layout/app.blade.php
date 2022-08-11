@@ -64,7 +64,7 @@
                         <li class="nav-item">
                             <a class="btn btn-primary text-white px-4 nav-link" aria-current="page"
                                href="{{ route('login') }}">
-                                Login
+                                {{ \Illuminate\Support\Facades\Auth::user() ? \Illuminate\Support\Facades\Auth::user()->name : 'Login' }}
                             </a>
                         </li>
                     </ul>

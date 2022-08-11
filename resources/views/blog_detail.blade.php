@@ -182,7 +182,7 @@
 
                     <h3 class="mb-4">Comments</h3>
 
-                    @forelse($comments as $comment)
+                    @forelse($blog->comments as $comment)
                         <div class="d-md-flex d-block align-items-start mb-5 pb-5 border-bottom">
                             <div class="me-3">
                                 {{--                            <img src="{{asset('dist/images/owners/deep.jpg')}}" height="50"--}}

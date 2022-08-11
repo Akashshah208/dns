@@ -55,7 +55,7 @@
                         @forelse($authors as $author)
                             <option value="{{ $author->id }}">{{ $author->name }}</option>
                         @empty
-                            <option disabled>HTTPS Lookup</option>
+                            <option disabled> No Data Found</option>
                         @endforelse
                     </select>
                 </div>

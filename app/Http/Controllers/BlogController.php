@@ -37,7 +37,8 @@ class BlogController extends Controller
         $strTags = implode(',', json_decode($blog->tag));
         $tags = Category::findMany($strTags);
         $allTags = Category::all();
-        return view('admin.blog_detail', compact('blog', 'tags', 'allTags'));
+        $authors = Author::all();
+        return view('admin.blog_detail', compact('blog', 'tags', 'allTags', 'authors'));
     }
 
 
