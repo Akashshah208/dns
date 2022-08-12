@@ -82,7 +82,12 @@ Route::get('blogDetails/{id}', [\App\Http\Controllers\Clint\BlogController::clas
 
 Route::get('privacyPolicy', [App\Http\Controllers\AdminController::class, 'privacyPolicy'])->name('privacyPolicy');
 Route::get('services', [App\Http\Controllers\AdminController::class, 'services'])->name('services');
+
+
 Route::post('postComment', [\App\Http\Controllers\CommentController::class, 'postComment'])->name('postComment');
+
+Route::post('replyCommentPopup', [\App\Http\Controllers\CommentController::class, 'replyCommentPopup'])->name('replyCommentPopup');
+
 Route::post('replyComment', [\App\Http\Controllers\CommentController::class, 'replyComment'])->name('replyComment');
 Route::get('commentDelete/{id}', [App\Http\Controllers\CommentController::class, 'commentDelete'])->name('admin.commentDelete');
 

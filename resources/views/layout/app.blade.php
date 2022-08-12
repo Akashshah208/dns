@@ -12,6 +12,7 @@
     <!-- ================================ -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- ================================ -->
     <!-- Favicon -->
@@ -308,12 +309,27 @@
 </div>
 
 
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+</script>
+
+
 <!-- ================================ -->
 <!-- Required Script -->
 <!-- ================================ -->
 <script src="{{asset('assets/libs/node_modules/jquery/dist/jquery.min.js')}}"></script>
 <script src="{{asset('assets/libs/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('assets/libs/node_modules/simplebar/dist/simplebar.js')}}"></script>
+
+<!-- ================================ -->
+<!-- Required Script -->
+<!-- ================================ -->
+<script src="{{ asset('js/reply_comment.js') }}"></script>
+
 
 <!-- ================================ -->
 <!-- Current Page Script -->

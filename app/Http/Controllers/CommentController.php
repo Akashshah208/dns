@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Author;
-use App\Models\Blog;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -54,6 +53,16 @@ class CommentController extends Controller
         }
 
     }
+
+    public function replyCommentPopup(Request $request)
+    {
+        # Request params
+        $blog_id = $request->input('blog_id');
+        $comment_id = $request->input('comment_id');
+        $authors = Author::all();
+        return view('components.reply-comment', ['comment_id' => $comment_id, 'blog_id' => $blog_id, 'authors' => $authors]);
+    }
+
 
     public function replyComment(Request $request)
     {

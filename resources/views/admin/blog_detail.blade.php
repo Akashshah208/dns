@@ -79,9 +79,9 @@
                 <div class="d-md-flex d-block align-items-start mb-5 pb-5 border-bottom">
                     <div class="me-3">
                         {{--                            <img src="{{asset('dist/images/owners/deep.jpg')}}" height="50"--}}
-                        <img src="{{ Avatar::create($comment->name)->toBase64() }}" height="50" width="50"
-                             class="mb-3 mb-md-0 rounded-circle"
-                             alt="">
+                        {{-- <img src="{{ Avatar::create($comment->name)->toBase64() }}" height="50" width="50"
+                              class="mb-3 mb-md-0 rounded-circle"
+                              alt="">--}}
                     </div>
 
                     <div>
@@ -94,9 +94,10 @@
                             {{ $comment->comment }}
                         </p>
                         <div class="d-flex justify-content-between align-items-center">
-                            <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#replymodal"
-                               class="reply-btn link-primary" data-id={{ $comment->id }}><i
-                                    class='fas fa-reply me-2'></i>Reply</a>
+                            <a href="javascript:;"
+                               class="reply-btn link-primary"
+                               onclick="ReplyComment('{{ route('replyCommentPopup') }}', '{{ $blog->id }}', '{{ $comment->id }}')">
+                                <i class='fas fa-reply me-2'></i>Reply</a>
                             <a href="{{ route('admin.commentDelete', $comment->id) }}" type="button"
                                class="btn btn-danger d-flex align-items-center justify-content-center"><i
                                     class='fas fa-trash-alt me-2'></i>Delete</a>
@@ -107,8 +108,8 @@
                         @forelse($comment->replies as $reply)
                             <div class="d-md-flex d-block align-items-start mt-5">
                                 <div class="me-3">
-                                    <img src="{{ Avatar::create($reply->name)->toBase64() }}" height="50" width="50"
-                                         class="mb-3 mb-md-0 rounded-circle" alt="">
+                                    {{-- <img src="{{ Avatar::create($reply->name)->toBase64() }}" height="50" width="50"
+                                          class="mb-3 mb-md-0 rounded-circle" alt="">--}}
                                 </div>
 
                                 <div>
@@ -121,9 +122,17 @@
                                         {{ $reply->comment }}
                                     </p>
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#replymodal"
-                                           class="reply-btn link-primary"><i class='fas fa-reply me-2'
-                                                                             data-id={{ $reply->id }}></i>Reply</a>
+                                        <a href="javascript:;"
+                                           class="reply-btn link-primary"
+                                           onclick="ReplyComment('{{ route('replyCommentPopup') }}', '{{ $blog->id }}', '{{ $comment->id }}')">
+                                            <i class='fas fa-reply me-2'></i>Reply</a>
+                                        {{--<a class="border-button" href="javascript:;"
+                                           onclick="ReplyComment('{{ route('change_status_popup') }}','{{ route('change_status', $user->id) }}', 'Are You Sure to change Status...?', 'user')">
+                                            <button type="button"
+                                                    class="{{$user->status === 'active' ? 'btn btn-success btn-sm' : 'btn btn-secondary btn-sm'}}">
+                                                {{ucfirst($user->status)}}
+                                            </button>
+                                        </a>--}}
                                         <a href="{{ route('admin.commentDelete', $reply->id) }}" type="button"
                                            class="btn btn-danger d-flex align-items-center justify-content-center"><i
                                                 class='fas fa-trash-alt me-2'></i>Delete</a>
@@ -136,63 +145,8 @@
                             </div>
                         @endforelse
 
-
                     </div>
                 </div>
-
-                <!-- ================================ -->
-                <!-- Reply Comments -->
-                <!-- ================================ -->
-
-                <div class="modal fade" id="replymodal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                     aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form class="mb-3" action="{{ route('replyComment') }}" method="POST">
-                                    @csrf
-                                    <input type="hidden" name="blog_id" value="{{ $blog->id }}">
-                                    <input type="hidden" name="parent_id" value="{{ $comment->id }}">
-                                    <div class="mb-3">
-                                        <label for="discaut" class="form-label opacity-75">Select Author <span
-                                                class="text-danger">*</span></label>
-                                        <select class="form-select" name="auth" required>
-                                            <option value="0" disabled>Select Blog Author</option>
-                                            @forelse($authors as $author)
-                                                <option value="{{ $author->id }}">{{ $author->name }}</option>
-                                            @empty
-                                                <option disabled> No Data Found</option>
-                                            @endforelse
-                                        </select>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlTextarea2"
-                                               class="opacity-75 form-label">Message</label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea2" rows="5"
-                                                  placeholder="Write message here" name="comment" required></textarea>
-                                    </div>
-
-                                    <div class="mt-4">
-                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Discard
-                                        </button>
-                                        <button class="btn btn-primary" type="submit">Post Reply</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ================================ -->
-                <!-- Reply Comments -->
-                <!-- ================================ -->
-
             @empty
                 <div class="d-md-flex d-block align-items-start mb-5 pb-5 border-bottom">
                     <p>No Comment</p>
@@ -279,5 +233,10 @@
             </div>--}}
         </div>
     </div>
+
+    <!-- Reply Comment Pop-Up -->
+    <div id="reply_comment_popup"></div>
+    <!-- /Reply Comment Pop-Up -->
+
 @stop
 
