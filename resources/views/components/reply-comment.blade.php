@@ -14,14 +14,13 @@
             <div class="modal-body">
                 <form class="mb-3" action="{{ route('replyComment') }}" method="POST">
                     @csrf
-                    <input type="text" name="blog_id" value="{{ $blog_id }}">
-                    <input type="text" name="parent_id" value="{{ $comment_id }}">
+                    <input type="hidden" name="blog_id" value="{{ $blog_id }}">
                     <input type="hidden" name="parent_id" value="{{ $comment_id }}">
                     <div class="mb-3">
                         <label for="discaut" class="form-label opacity-75">Select Author <span
                                 class="text-danger">*</span></label>
                         <select class="form-select" name="auth" required>
-                            <option value="0" disabled>Select Blog Author</option>
+                            <option value="0" disabled selected>Select Blog Author</option>
                             @forelse($authors as $author)
                                 <option value="{{ $author->id }}">{{ $author->name }}</option>
                             @empty

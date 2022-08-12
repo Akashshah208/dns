@@ -78,16 +78,15 @@
             @forelse($blog->comments as $comment)
                 <div class="d-md-flex d-block align-items-start mb-5 pb-5 border-bottom">
                     <div class="me-3">
-                        {{--                            <img src="{{asset('dist/images/owners/deep.jpg')}}" height="50"--}}
-                        {{-- <img src="{{ Avatar::create($comment->name)->toBase64() }}" height="50" width="50"
-                              class="mb-3 mb-md-0 rounded-circle"
-                              alt="">--}}
+                        <img src="{{ Avatar::create($comment->name)->toBase64() }}" height="50" width="50"
+                             class="mb-3 mb-md-0 rounded-circle"
+                             alt="">
                     </div>
 
                     <div>
-                        <div class="d-md-flex d-block align-items-center justify-content-between mb-3">
-                            <h6 class="fs-5 mb-0">{{ $comment->name }}</h6> <span
-                                class="ms-md-3 fs-14 opacity-50 ms-0">{{ date_format($comment->created_at, "M d, Y") }}</span>
+                        <div class="d-md-flex d-block align-items-center justify-content-between mb-0">
+                            <h6 class="fs-5 mb-0">{{ $comment->name }}</h6> <span class="ms-md-3 fs-14 opacity-50 ms-0">
+                               {{ date_format($comment->created_at, "M d, Y") }}</span>
                         </div>
                         <p class="opacity-50">{{ $comment->email }}</p>
                         <p class="mb-3">
@@ -108,8 +107,8 @@
                         @forelse($comment->replies as $reply)
                             <div class="d-md-flex d-block align-items-start mt-5">
                                 <div class="me-3">
-                                    {{-- <img src="{{ Avatar::create($reply->name)->toBase64() }}" height="50" width="50"
-                                          class="mb-3 mb-md-0 rounded-circle" alt="">--}}
+                                    <img src="{{ Avatar::create($reply->name)->toBase64() }}" height="50" width="50"
+                                         class="mb-3 mb-md-0 rounded-circle" alt="">
                                 </div>
 
                                 <div>
@@ -126,13 +125,6 @@
                                            class="reply-btn link-primary"
                                            onclick="ReplyComment('{{ route('replyCommentPopup') }}', '{{ $blog->id }}', '{{ $comment->id }}')">
                                             <i class='fas fa-reply me-2'></i>Reply</a>
-                                        {{--<a class="border-button" href="javascript:;"
-                                           onclick="ReplyComment('{{ route('change_status_popup') }}','{{ route('change_status', $user->id) }}', 'Are You Sure to change Status...?', 'user')">
-                                            <button type="button"
-                                                    class="{{$user->status === 'active' ? 'btn btn-success btn-sm' : 'btn btn-secondary btn-sm'}}">
-                                                {{ucfirst($user->status)}}
-                                            </button>
-                                        </a>--}}
                                         <a href="{{ route('admin.commentDelete', $reply->id) }}" type="button"
                                            class="btn btn-danger d-flex align-items-center justify-content-center"><i
                                                 class='fas fa-trash-alt me-2'></i>Delete</a>
@@ -140,9 +132,7 @@
                                 </div>
                             </div>
                         @empty
-                            <div class="d-md-flex d-block align-items-start mb-5 pb-5 border-bottom">
-                                <p>No Comment Reply</p>
-                            </div>
+                            <p>No Any Comment Reply</p>
                         @endforelse
 
                     </div>

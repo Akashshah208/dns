@@ -66,6 +66,7 @@ class CommentController extends Controller
 
     public function replyComment(Request $request)
     {
+       // dd($request->all());
         try {
             $input = $request->all();
             $validator = Validator::make($input, [
