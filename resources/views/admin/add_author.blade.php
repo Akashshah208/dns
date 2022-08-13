@@ -39,9 +39,8 @@
                 <div class="mb-5">
                     <label for="discaut" class="form-label opacity-75">Enter Author Discription <span
                             class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="discaut" name="discAuth"
-                           placeholder="Enter author discription"
-                           required>
+                    <textarea class="form-control" name="discAuth" id="discaut" cols="30" rows="10"
+                              placeholder="Enter author discription" required></textarea>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Add Author</button>

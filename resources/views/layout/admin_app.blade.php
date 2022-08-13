@@ -67,20 +67,26 @@
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="{{ route('admin.addBlog') }}">Add Blog</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{{ route('admin.addCategory') }}">Add
-                                Category</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{{ route('admin.addAuthor') }}">Add Author</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{{ route('admin.addPrivacyPolicy') }}">Add
-                                Privacy Policy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{{ route('admin.addServices') }}">Add Terms Of
-                                Services</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Add
+                                Contain</a>
+                            <ul class="dropdown-menu dropdown-menu-end mt-2 shadow">
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('admin.addCategory') }}">Add Category</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('admin.addAuthor') }}">Add Author</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('admin.addPrivacyPolicy') }}">Add
+                                        Privacy Policy</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('admin.addServices') }}">Add Terms Of
+                                        Services</a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown"
