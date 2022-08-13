@@ -169,27 +169,7 @@
                 @endforelse
             </div>
 
-            {{--<h3 class="mb-4">Related Articles</h3>
-
-            <div class="card shadow-sm border-0 overflow-hidden">
-                <a href="./blog-details.html">
-                    <div class="overflow-hidden">
-                        <img src="../dist/images/blog/2.jpg" class="zoom-in img-fluid" alt="">
-                    </div>
-                </a>
-                <div class="card-body">
-                    <h5 class="mb-3">
-                        <a href="./blog-details.html" class="dark-link">
-                            MX Lookup - How to Find a Domain's online MX Records
-                        </a>
-                    </h5>
-                    <span class="text-secondary">By <a href="https://ethenex.com/" target="_blank"
-                                                       class="me-1">Akash Shah</a>
-                        On
-                        July 20, 2022
-                    </span>
-                </div>
-            </div>
+            <h3 class="mb-4">Related Articles</h3>
 
             <div class="card bg-transparent shadow-sm border-0 overflow-hidden w-100">
                 <a href="./blog-details.html">
@@ -205,31 +185,13 @@
                     </h5>
                     <span class="text-secondary">By <a href="https://ethenex.com/" target="_blank"
                                                        class="me-1">Parth Goshwami</a>
-                        On
-                        July 14, 2022
-                    </span>
+                                On
+                                July 14, 2022
+                            </span>
                 </div>
             </div>
 
-            <div class="card bg-transparent shadow-sm border-0 overflow-hidden w-100">
-                <a href="./blog-details.html">
-                    <div class="overflow-hidden">
-                        <img src="../dist/images/blog/4.jpg" class="zoom-in img-fluid" alt="">
-                    </div>
-                </a>
-                <div class="card-body">
-                    <h5 class="mb-3">
-                        <a href="./blog-details.html" class="dark-link">
-                            TXT Lookup - Free online tool to DNS Text (TXT) records for a domain
-                        </a>
-                    </h5>
-                    <span class="text-secondary">By <a href="https://ethenex.com/" target="_blank"
-                                                       class="me-1">Anna Dicosta</a>
-                        On
-                        July 09, 2022
-                    </span>
-                </div>
-            </div>--}}
+
         </div>
     </div>
 
