@@ -29,7 +29,7 @@
                         @forelse($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                         @empty
-                            <option disabled>HTTPS Lookup</option>
+                            <option disabled>No Category Found</option>
                         @endforelse
                     </select>
                 </div>

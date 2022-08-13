@@ -108,6 +108,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('blogDetails/{id}', [\App\Http\Controllers\BlogController::class, 'details'])->name('admin.blogDetails');
     Route::get('addBlog', [\App\Http\Controllers\BlogController::class, 'addBlog'])->name('admin.addBlog');
     Route::post('storeBlog', [\App\Http\Controllers\BlogController::class, 'storeBlog'])->name('admin.storeBlog');
+    Route::put('editBlog', [\App\Http\Controllers\BlogController::class, 'editBlog'])->name('admin.editBlog');
     Route::get('blogDelete/{id}', [App\Http\Controllers\BlogController::class, 'blogDelete'])->name('admin.blogDelete');
 
 

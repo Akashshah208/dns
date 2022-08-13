@@ -26,8 +26,8 @@
                 {{ $blog->title }}
             </h2>
 
-            <div class="mb-4">
-                @forelse($tags as $tag)
+                <div class="mb-4" x>
+                    @forelse($tags as $tag)
                     <a href="javascript:void(0)" class="bg-dark text-white badge">
                         {{ $tag->name }}
                     </a>
@@ -36,11 +36,11 @@
                         No Tags
                     </a>
                 @endforelse
-            </div>
+                </div>
 
 
-            <span class="text-secondary d-block mb-4">By <a href="https://ethenex.com/" target="_blank"
-                                                            class="me-1">{{ $blog->author ? $blog->author->name : 'Unknown Author'}}</a>
+                <span class="text-secondary d-block mb-4">By <a href="#" target="_blank"
+                                                                class="me-1">{{ $blog->author ? $blog->author->name : 'Unknown Author'}}</a>
                         {{ date_format($blog->created_at, "M d, Y") }}
                     </span>
 
@@ -170,26 +170,31 @@
             </div>
 
             <h3 class="mb-4">Related Articles</h3>
-
-            <div class="card bg-transparent shadow-sm border-0 overflow-hidden w-100">
-                <a href="./blog-details.html">
-                    <div class="overflow-hidden">
-                        <img src="../dist/images/blog/3.jpg" class="zoom-in img-fluid" alt="">
-                    </div>
-                </a>
-                <div class="card-body">
-                    <h5 class="mb-3">
-                        <a href="./blog-details.html" class="dark-link">
-                            Guide to SSL: What It is & Why It Makes Your Website More Secure
-                        </a>
-                    </h5>
-                    <span class="text-secondary">By <a href="https://ethenex.com/" target="_blank"
-                                                       class="me-1">Parth Goshwami</a>
-                                On
-                                July 14, 2022
+            @forelse($related_blogs as $related_blog)
+                <div class="card bg-transparent shadow-sm border-0 overflow-hidden w-100">
+                    <a href="{{ route('admin.blogDetails', $related_blog->id) }}">
+                        <div class="overflow-hidden">
+                            <img
+                                src='{{$blog->banner ? asset('uploadFile/blogBanner/'.$blog->banner) : asset('dist/images/user/user2.jpg')}}'
+                                class="zoom-in img-fluid" alt="">
+                        </div>
+                    </a>
+                    <div class="card-body">
+                        <h5 class="mb-3">
+                            <a href="{{ route('admin.blogDetails', $related_blog->id) }}" class="dark-link">
+                                {{ $related_blog->title }}
+                            </a>
+                        </h5>
+                        <span class="text-secondary">By <a href="{{ route('admin.blogDetails', $related_blog->id) }}"
+                                                           target="_blank"
+                                                           class="me-1">{{ $related_blog->author ? $related_blog->author->name : 'Unknown Author'}}</a>
+                                {{ date_format($related_blog->created_at, "M d, Y") }}
                             </span>
+                    </div>
                 </div>
-            </div>
+            @empty
+                <p>No Related Blog</p>
+            @endforelse
 
 
         </div>
@@ -198,6 +203,82 @@
     <!-- Reply Comment Pop-Up -->
     <div id="reply_comment_popup"></div>
     <!-- /Reply Comment Pop-Up -->
+
+    <!-- ================================ -->
+    <!-- Edit Blog -->
+    <!-- ================================ -->
+    <div class="modal fade" id="editblog" tabindex="1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Blog</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="mb-5" action="{{ route('admin.editBlog') }}" method="POST"
+                          enctype="multipart/form-data">
+                        @method('put')
+                        @csrf
+                        <input type="hidden" name="id" value="{{ $blog->id }}">
+                        <div class="mb-3">
+                            <label for="title" class="form-label opacity-75">Edit Blog
+                                Title <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="title" name="title" value="{{ $blog->title }}"
+                                   placeholder="Enter blog title" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="select2-with-tags" class="form-label d-flex opacity-75">Add Tags</label>
+                            <select class="form-control" multiple="" id="select2-with-tags" name="tags[]" required>
+                                <option disabled>Select Tags</option>
+                                @forelse($allTags as $tag)
+                                    <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                @empty
+                                    <option disabled>No Category Found</option>
+                                @endforelse
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label opacity-75">Upload Banner <span
+                                    class="text-danger">*</span></label>
+                            <input class="form-control" type="file" id="formFile" name="banner"
+                                   accept=".jpg,.jpeg, .png"
+                                   required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label opacity-75">Edit
+                                Discription</label>
+                            <textarea name="description" id="description" cols="30" rows="10" class="summernote"
+                                      required>{{ $blog->description }}</textarea>
+                        </div>
+
+                        <div class="mb-5">
+                            <label for="discaut" class="form-label opacity-75">Select Blog Author <span
+                                    class="text-danger">*</span></label>
+                            <select class="form-select" name="auth" required>
+                                <option value="1">Select Blog Author</option>
+                                @forelse($authors as $author)
+                                    <option
+                                        value="{{ $author->id }}" {{ $author->id == $blog->auth_id ? 'selected' : '' }}>{{ $author->name }}</option>
+                                @empty
+                                    <option disabled> No Data Found</option>
+                                @endforelse
+                            </select>
+                        </div>
+
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Discard</button>
+                        <button type="submit" class="btn btn-success">Save changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ================================ -->
+    <!-- /Edit Blog -->
+    <!-- ================================ -->
+
 
 @stop
 
