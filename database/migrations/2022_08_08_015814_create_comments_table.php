@@ -17,11 +17,13 @@ class CreateCommentsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('blog_id')->unsigned();
             $table->integer('parent_id')->unsigned()->nullable();
+            $table->integer('reply_id')->unsigned()->nullable();
             $table->string('name');
             $table->string('email');
             $table->longText('comment');
             $table->timestamps();
             $table->foreign('blog_id')->references('id')->on('blogs');
+            $table->foreign('reply_id')->references('id')->on('comments');
         });
     }
 

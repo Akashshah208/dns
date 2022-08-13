@@ -1,4 +1,4 @@
-function ReplyComment(url, blog_id, comment_id) {
+function ReplyComment(url, blog_id, comment_id, reply_id) {
     console.log('here')
     $.ajax({
         method: "post",
@@ -7,6 +7,7 @@ function ReplyComment(url, blog_id, comment_id) {
             _token: $('meta[name="csrf-token"]').attr('content'),
             blog_id: blog_id,
             comment_id: comment_id,
+            reply_id: reply_id,
         },
         success: function (result) {
             $('#reply_comment_popup').html(result);

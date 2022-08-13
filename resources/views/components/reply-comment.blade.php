@@ -16,6 +16,7 @@
                     @csrf
                     <input type="hidden" name="blog_id" value="{{ $blog_id }}">
                     <input type="hidden" name="parent_id" value="{{ $comment_id }}">
+                    <input type="hidden" name="reply_id" value="{{ $reply_id }}">
                     <div class="mb-3">
                         <label for="discaut" class="form-label opacity-75">Select Author <span
                                 class="text-danger">*</span></label>

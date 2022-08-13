@@ -59,8 +59,9 @@ class CommentController extends Controller
         # Request params
         $blog_id = $request->input('blog_id');
         $comment_id = $request->input('comment_id');
+        $reply_id = $request->input('reply_id');
         $authors = Author::all();
-        return view('components.reply-comment', ['comment_id' => $comment_id, 'blog_id' => $blog_id, 'authors' => $authors]);
+        return view('components.reply-comment', ['comment_id' => $comment_id, 'blog_id' => $blog_id, 'authors' => $authors, 'reply_id' => $reply_id]);
     }
 
 
@@ -72,6 +73,7 @@ class CommentController extends Controller
             $validator = Validator::make($input, [
                 'blog_id' => 'required',
                 'parent_id' => 'required',
+                'reply_id' => 'required',
                 'auth' => 'required',
                 'comment' => 'required',
             ]);
@@ -89,6 +91,7 @@ class CommentController extends Controller
             $comment = new Comment();
             $comment->blog_id = $request->blog_id;
             $comment->parent_id = $request->parent_id;
+            $comment->reply_id = $request->reply_id;
             $comment->name = $authData->name;
             $comment->email = Auth::user()->email;
             $comment->comment = $request->comment;

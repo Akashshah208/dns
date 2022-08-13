@@ -16,7 +16,12 @@
 @section('content')
     <div class="row">
         <div class="col-lg-8">
-
+            @if (session()->has('result'))
+                <div class="alert alert-{{ session('result')['type'] }} alert-dismissible fade show" role="alert">
+                    <strong>{{ session('result')['message'] }}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
             <h2 class="mb-2">
                 {{ $blog->title }}
             </h2>
@@ -74,7 +79,6 @@
             </div>
 
             <h3 class="mb-4">Comments</h3>
-
             @forelse($blog->comments as $comment)
                 <div class="d-md-flex d-block align-items-start mb-5 pb-5 border-bottom">
                     <div class="me-3">
@@ -83,10 +87,11 @@
                              alt="">
                     </div>
 
-                    <div>
+                    <div class="w-100">
                         <div class="d-md-flex d-block align-items-center justify-content-between mb-0">
                             <h6 class="fs-5 mb-0">{{ $comment->name }}</h6> <span class="ms-md-3 fs-14 opacity-50 ms-0">
-                               {{ date_format($comment->created_at, "M d, Y") }}</span>
+                             {{ date_format($comment->created_at, "M d, Y") }}
+                        </span>
                         </div>
                         <p class="opacity-50">{{ $comment->email }}</p>
                         <p class="mb-3">
@@ -95,7 +100,7 @@
                         <div class="d-flex justify-content-between align-items-center">
                             <a href="javascript:;"
                                class="reply-btn link-primary"
-                               onclick="ReplyComment('{{ route('replyCommentPopup') }}', '{{ $blog->id }}', '{{ $comment->id }}')">
+                               onclick="ReplyComment('{{ route('replyCommentPopup') }}', '{{ $blog->id }}', '{{ $comment->id }}', '{{ $comment->id }}')">
                                 <i class='fas fa-reply me-2'></i>Reply</a>
                             <a href="{{ route('admin.commentDelete', $comment->id) }}" type="button"
                                class="btn btn-danger d-flex align-items-center justify-content-center"><i
@@ -103,7 +108,6 @@
                         </div>
 
                         <!--  -->
-
                         @forelse($comment->replies as $reply)
                             <div class="d-md-flex d-block align-items-start mt-5">
                                 <div class="me-3">
@@ -111,19 +115,25 @@
                                          class="mb-3 mb-md-0 rounded-circle" alt="">
                                 </div>
 
-                                <div>
+                                <div class="w-100">
                                     <div class="d-md-flex d-block align-items-center justify-content-between mb-0">
                                         <h6 class="fs-5 mb-0">{{ $reply->name }}</h6> <span
-                                            class="ms-md-3 fs-14 opacity-50 ms-0">{{ date_format($reply->created_at, "M d, Y") }}</span>
+                                            class="ms-md-3 fs-14 opacity-50 ms-0">
+                                    {{ date_format($reply->created_at, "M d, Y") }}
+                                </span>
                                     </div>
+                                    @php
+                                        $reply_name = \App\Models\Comment::findOrFail($reply->reply_id)->name;
+                                    @endphp
                                     <p class="opacity-50">{{ $reply->email }}</p>
+                                    <p class="opacity-50">{{ $reply->name . ' Reply On ' . $reply_name }} </p>
                                     <p class="mb-3">
                                         {{ $reply->comment }}
                                     </p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <a href="javascript:;"
                                            class="reply-btn link-primary"
-                                           onclick="ReplyComment('{{ route('replyCommentPopup') }}', '{{ $blog->id }}', '{{ $comment->id }}')">
+                                           onclick="ReplyComment('{{ route('replyCommentPopup') }}', '{{ $blog->id }}', '{{ $comment->id }}', '{{ $reply->id }}')">
                                             <i class='fas fa-reply me-2'></i>Reply</a>
                                         <a href="{{ route('admin.commentDelete', $reply->id) }}" type="button"
                                            class="btn btn-danger d-flex align-items-center justify-content-center"><i
@@ -134,13 +144,10 @@
                         @empty
                             <p>No Any Comment Reply</p>
                         @endforelse
-
                     </div>
                 </div>
             @empty
-                <div class="d-md-flex d-block align-items-start mb-5 pb-5 border-bottom">
-                    <p>No Comment</p>
-                </div>
+                <p>No Comment</p>
             @endforelse
 
         </div>
