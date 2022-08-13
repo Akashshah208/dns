@@ -60,16 +60,33 @@ class CommentController extends Controller
         $blog_id = $request->input('blog_id');
         $comment_id = $request->input('comment_id');
         $reply_id = $request->input('reply_id');
+        $user = $request->input('user');
         $authors = Author::all();
+
+        if ($user == 'user') {
+            return view('components.reply-comment-user', ['comment_id' => $comment_id, 'blog_id' => $blog_id, 'authors' => $authors, 'reply_id' => $reply_id, 'user' => $user]);
+        }
+
         return view('components.reply-comment', ['comment_id' => $comment_id, 'blog_id' => $blog_id, 'authors' => $authors, 'reply_id' => $reply_id]);
     }
 
 
     public function replyComment(Request $request)
     {
-       // dd($request->all());
-        try {
-            $input = $request->all();
+        //dd($request->all());
+        /*try {*/
+        $input = $request->all();
+        if ($request->input('user')) {
+            $validator = Validator::make($input, [
+                'blog_id' => 'required',
+                'parent_id' => 'required',
+                'reply_id' => 'required',
+                'name' => 'required',
+                'email' => 'required',
+                'comment' => 'required',
+            ]);
+        } else {
+            dd('2');
             $validator = Validator::make($input, [
                 'blog_id' => 'required',
                 'parent_id' => 'required',
@@ -77,42 +94,55 @@ class CommentController extends Controller
                 'auth' => 'required',
                 'comment' => 'required',
             ]);
+        }
 
-            if ($validator->fails()) {
-                session()->flash('result', [
-                    'message' => 'All Fields Are Required..!',
-                    'type' => 'danger',
-                ]);
-                return redirect()->back();
-            }
+        //dd($validator);
 
+        if ($validator->fails()) {
+            session()->flash('result', [
+                'message' => 'All Fields Are Required..!',
+                'type' => 'danger',
+            ]);
+            return redirect()->back();
+        }
+
+        $comment = new Comment();
+        $comment->blog_id = $request->blog_id;
+        $comment->parent_id = $request->parent_id;
+        $comment->reply_id = $request->reply_id;
+        if ($request->input('user')) {
+            $comment->name = $request->name;
+            $comment->email = $request->email;
+        } else {
             $authData = Author::findOrFail($request->auth);
-
-            $comment = new Comment();
-            $comment->blog_id = $request->blog_id;
-            $comment->parent_id = $request->parent_id;
-            $comment->reply_id = $request->reply_id;
             $comment->name = $authData->name;
             $comment->email = Auth::user()->email;
-            $comment->comment = $request->comment;
-            $result = $comment->save();
-            if ($result) {
-                session()->flash('result', [
-                    'message' => 'Comment Reply Post Successfully..!',
-                    'type' => 'success',
-                ]);
-                return redirect()->back();
+        }
+        $comment->comment = $request->comment;
+        $result = $comment->save();
+        if ($result) {
+            session()->flash('result', [
+                'message' => 'Comment Reply Post Successfully..!',
+                'type' => 'success',
+            ]);
+            if ($request->input('user')) {
+                return redirect()->route('blogDetails', $request->input('blog_id'));
             }
+            return redirect()->back();
+        }
 
 
-        } catch (\Exception $e) {
+        /*} catch (\Exception $e) {
             session()->flash('result', [
                 'message' => 'Operation Failed..!',
                 'type' => 'danger',
             ]);
             Log::info($e->getMessage());
+            if ($request->input('user')) {
+                return redirect()->route('blogDetails', $request->input('blog_id'));
+            }
             return redirect()->route('admin.blog');
-        }
+        }*/
     }
 
 

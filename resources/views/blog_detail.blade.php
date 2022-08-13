@@ -12,6 +12,7 @@
     <!-- ================================ -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- ================================ -->
     <!-- Favicon -->
@@ -25,6 +26,11 @@
     <link rel="stylesheet" href="{{asset('assets/libs/node_modules/owl.carousel/dist/assets/owl.theme.green.css')}}">
     <link href="{{asset('assets/libs/node_modules/simplebar/dist/simplebar.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('dist/css/style.css')}}">
+    <style>
+        .modal-backdrop.show {
+            display: none;
+        }
+    </style>
 </head>
 
 <body data-simplebar>
@@ -114,13 +120,13 @@
                         {{ date_format($blog->created_at, "M d, Y") }}
                     </span>
 
-                <div class="mb-5">
-                    <div class="card overflow-hidden border-0 shadow overflow-hidden">
-                        <img
-                            src='{{$blog->banner ? asset('uploadFile/blogBanner/'.$blog->banner) : asset('dist/images/user/user2.jpg')}}'
-                            class="zoom-in card-img-top" alt="">
+                    <div class="mb-5">
+                        <div class="card overflow-hidden border-0 shadow overflow-hidden">
+                            <img
+                                src='{{$blog->banner ? asset('uploadFile/blogBanner/'.$blog->banner) : asset('dist/images/user/user2.jpg')}}'
+                                class="zoom-in card-img-top" alt="">
+                        </div>
                     </div>
-                </div>
 
 
                     @php
@@ -144,70 +150,82 @@
                                     <p class="mt-3 text-dark opacity-50 mb-0">
                                         {{ $blog->author->description }}
                                     </p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <h3>Leave a reply</h3>
-                <p class="opacity-75 mb-4">Your email address will not be published. Required fields are marked *
-                </p>
-
-                <form class="mb-5" action="{{ route('postComment') }}" method="POST">
-                    @csrf
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput2" class="opacity-75 form-label">Name <span
-                                class="text-danger">*</span></label>
-                        <input type="hidden" name="id" value="{{ $blog->id }}">
-                        <input type="name" class="form-control" id="exampleFormControlInput2"
-                               placeholder="Enter your name here" name="name">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="opacity-75 form-label">Email <span
-                                class="text-danger">*</span></label>
-                        <input type="email" class="form-control" id="exampleFormControlInput1"
-                               placeholder="Enter your email here" name="email">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlTextarea1" class="opacity-75 form-label">Message</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"
-                                  placeholder="Write message here" name="comment"></textarea>
-                    </div>
-
-                    <div class="mt-4">
-                        <button class="btn btn-primary" type="submit">Post Comment</button>
-                    </div>
-                </form>
-
+                    <h3>Leave a reply</h3>
+                    <p class="opacity-75 mb-4">Your email address will not be published. Required fields are marked *
+                    </p>
 
                     <h3 class="mb-4">Comments</h3>
-
                     @forelse($blog->comments as $comment)
                         <div class="d-md-flex d-block align-items-start mb-5 pb-5 border-bottom">
                             <div class="me-3">
-                                {{--                            <img src="{{asset('dist/images/owners/deep.jpg')}}" height="50"--}}
-                                {{-- <img src="{{ Avatar::create($comment->name)->toBase64() }}" height="50"
-                                      class="mb-3 mb-md-0 rounded-circle"
-                                      alt="">--}}
+                                <img src="{{ Avatar::create($comment->name)->toBase64() }}" height="50" width="50"
+                                     class="mb-3 mb-md-0 rounded-circle"
+                                     alt="">
                             </div>
 
-                            <div>
-                                <div class="d-md-flex d-block align-items-center justify-content-between mb-3">
+                            <div class="w-100">
+                                <div class="d-md-flex d-block align-items-center justify-content-between mb-0">
                                     <h6 class="fs-5 mb-0">{{ $comment->name }}</h6> <span
-                                        class="ms-md-3 fs-14 opacity-50 ms-0">{{ date_format($comment->created_at, "M d, Y") }}</span>
+                                        class="ms-md-3 fs-14 opacity-50 ms-0">
+                             {{ date_format($comment->created_at, "M d, Y") }}
+                        </span>
                                 </div>
                                 <p class="mb-3">
-                                {{ $comment->comment }}
-                            </p>
-                            <a href="javascript:void(0)" class="reply-btn link-primary"><i
-                                    class='fas fa-reply me-2'></i>Reply</a>
+                                    {{ $comment->comment }}
+                                </p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <a href="javascript:;"
+                                       class="reply-btn link-primary"
+                                       onclick="ReplyCommentOnUser('{{ route('replyCommentPopup') }}', '{{ $blog->id }}', '{{ $comment->id }}', '{{ $comment->id }}', 'user')">
+                                        <i class='fas fa-reply me-2'></i>Reply</a>
+                                </div>
+
+                                <!--  -->
+                                @forelse($comment->replies as $reply)
+                                    <div class="d-md-flex d-block align-items-start mt-5">
+                                        <div class="me-3">
+                                            <img src="{{ Avatar::create($reply->name)->toBase64() }}" height="50"
+                                                 width="50"
+                                                 class="mb-3 mb-md-0 rounded-circle" alt="">
+                                        </div>
+
+                                        <div class="w-100">
+                                            <div
+                                                class="d-md-flex d-block align-items-center justify-content-between mb-0">
+                                                <h6 class="fs-5 mb-0">{{ $reply->name }}</h6> <span
+                                                    class="ms-md-3 fs-14 opacity-50 ms-0">
+                                    {{ date_format($reply->created_at, "M d, Y") }}
+                                </span>
+                                            </div>
+                                            @php
+                                                $reply_name_obj = \App\Models\Comment::find($reply->reply_id);
+                                                $reply_name = $reply_name_obj ? $reply_name_obj->name : 'Deleted Comment';
+                                            @endphp
+                                            <p class="opacity-50">{{ $reply->name . ' Reply On ' . $reply_name  }} </p>
+                                            <p class="mb-3">
+                                                {{ $reply->comment }}
+                                            </p>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <a href="javascript:;"
+                                                   class="reply-btn link-primary"
+                                                   onclick="ReplyCommentOnUser('{{ route('replyCommentPopup') }}', '{{ $blog->id }}', '{{ $comment->id }}', '{{ $reply->id }}', 'user')">
+                                                    <i class='fas fa-reply me-2'></i>Reply</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @empty
+                                    <p>No Any Comment Reply</p>
+                                @endforelse
+                            </div>
                         </div>
-                    </div>
-                @empty
-                    <div class="d-md-flex d-block align-items-start mb-5 pb-5 border-bottom">
+                    @empty
                         <p>No Comment</p>
-                    </div>
-                @endforelse
+                    @endforelse
             </div>
 
             <div class="col-lg-4">
@@ -225,69 +243,11 @@
                     @endforelse
                 </div>
 
-                {{--<h3 class="mb-4">Related Articles</h3>
-
-                <div class="card shadow-sm border-0 overflow-hidden">
-                    <a href="./blog-details.html">
-                        <div class="overflow-hidden">
-                            <img src="../dist/images/blog/2.jpg" class="zoom-in img-fluid" alt="">
-                        </div>
-                    </a>
-                    <div class="card-body">
-                        <h5 class="mb-3">
-                            <a href="./blog-details.html" class="dark-link">
-                                MX Lookup - How to Find a Domain's online MX Records
-                            </a>
-                        </h5>
-                        <span class="text-secondary">By <a href="https://ethenex.com/" target="_blank"
-                                                           class="me-1">Akash Shah</a>
-                            On
-                            July 20, 2022
-                        </span>
-                    </div>
-                </div>
-
-                <div class="card bg-transparent shadow-sm border-0 overflow-hidden w-100">
-                    <a href="./blog-details.html">
-                        <div class="overflow-hidden">
-                            <img src="../dist/images/blog/3.jpg" class="zoom-in img-fluid" alt="">
-                        </div>
-                    </a>
-                    <div class="card-body">
-                        <h5 class="mb-3">
-                            <a href="./blog-details.html" class="dark-link">
-                                Guide to SSL: What It is & Why It Makes Your Website More Secure
-                            </a>
-                        </h5>
-                        <span class="text-secondary">By <a href="https://ethenex.com/" target="_blank"
-                                                           class="me-1">Parth Goshwami</a>
-                            On
-                            July 14, 2022
-                        </span>
-                    </div>
-                </div>
-
-                <div class="card bg-transparent shadow-sm border-0 overflow-hidden w-100">
-                    <a href="./blog-details.html">
-                        <div class="overflow-hidden">
-                            <img src="../dist/images/blog/4.jpg" class="zoom-in img-fluid" alt="">
-                        </div>
-                    </a>
-                    <div class="card-body">
-                        <h5 class="mb-3">
-                            <a href="./blog-details.html" class="dark-link">
-                                TXT Lookup - Free online tool to DNS Text (TXT) records for a domain
-                            </a>
-                        </h5>
-                        <span class="text-secondary">By <a href="https://ethenex.com/" target="_blank"
-                                                           class="me-1">Anna Dicosta</a>
-                            On
-                            July 09, 2022
-                        </span>
-                    </div>
-                </div>--}}
             </div>
         </div>
+        <!-- Reply Comment Pop-Up -->
+        <div id="reply_comment_popup_user"></div>
+        <!-- /Reply Comment Pop-Up -->
     </div>
 </section>
 <!-- ================================ -->
@@ -351,6 +311,20 @@
 <script src="{{asset('assets/libs/node_modules/jquery/dist/jquery.min.js')}}"></script>
 <script src="{{asset('assets/libs/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('assets/libs/node_modules/simplebar/dist/simplebar.js')}}"></script>
+
+<!-- ================================ -->
+<!-- Required Script -->
+<!-- ================================ -->
+<script src="{{ asset('js/reply_comment.js') }}"></script>
+
+
+<script>
+    var loader = document.getElementById("prelord");
+    window.addEventListener("load", function () {
+        loader.style.display = "none";
+    })
+</script>
+
 
 <!-- ================================ -->
 <!-- Current Page Script -->
