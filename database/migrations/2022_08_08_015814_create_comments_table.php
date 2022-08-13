@@ -23,7 +23,6 @@ class CreateCommentsTable extends Migration
             $table->longText('comment');
             $table->timestamps();
             $table->foreign('blog_id')->references('id')->on('blogs');
-            $table->foreign('reply_id')->references('id')->on('comments');
         });
     }
 
