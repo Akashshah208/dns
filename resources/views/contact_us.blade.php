@@ -83,25 +83,77 @@
 <!-- ================================ -->
 
 <!-- ================================ -->
-<!-- Content Start -->
+<!-- Contact us Start -->
 <!-- ================================ -->
-<section class="mt-7 py-7">
+<section class="py-7 mt-7">
     <div class="container-fluid max-width-base">
-        <div class="text-center">
-            <h2 class="fw-bold mb-5">Terms Of Services</h2>
-        </div>
+        @if (session()->has('result'))
+            <div class="alert alert-{{ session('result')['type'] }} alert-dismissible fade show" role="alert">
+                <strong>{{ session('result')['message'] }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+        <div class="row align-items-center justify-content-between">
+            <div class="col-lg-5">
+                <h2>Let's talk</h2>
+                <p class="mb-5">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores dolores maxime ipsam repellat
+                    quas totam alias eligendi nam libero cum optio quo recusandae sapiente rerum eos, doloremque
+                    fugit magni repudiandae.
+                </p>
+                <form action="{{ route('storeContact') }}" method="POST">
+                    @csrf
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label for="firstName" class="form-label opacity-75">First Name <span
+                                        class="text-danger">*</span></label>
+                                <input class="form-control" type="text" name="firstName" id="firstName" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label for="lastName" class="form-label opacity-75">Last Name <span
+                                        class="text-danger">*</span></label>
+                                <input class="form-control" type="text" name="lastName" id="lastName" required>
+                            </div>
+                        </div>
+                    </div>
 
-        @php
-            if ($services)
-                echo("$services->services");
-            else
-                echo ("<p> No Data Found </p>");
-        @endphp
+                    <div class="mb-3">
+                        <label for="formEmail" class="form-label opacity-75">Email <span
+                                class="text-danger">*</span></label>
+                        <input class="form-control" type="text" name="email" id="formEmail" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="formEmail" class="form-label opacity-75">Phone Number <span
+                                class="text-danger">*</span></label>
+                        <input class="form-control" type="text" name="phone_no" id="formEmail" required>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label opacity-75">Your Message <span class="text-danger">*</span></label>
+                        <textarea cols="30" rows="5" name="message" placeholder="Enter your message here"
+                                  class="form-control"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+            <div class="col-lg-6">
+                <div class="bg-white p-3 shadow mt-lg-0 mt-4 rounded-4">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d118106.57849166066!2d73.10287440258264!3d22.322246337704442!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395fc8ab91a3ddab%3A0xac39d3bfe1473fb8!2sVadodara%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1660372107708!5m2!1sen!2sin"
+                        width="600" height="600" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 <!-- ================================ -->
-<!-- Content End -->
-<!-- ================================ -->
+<!-- Contact us End -->
 
 
 <!-- ================================ -->

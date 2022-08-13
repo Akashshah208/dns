@@ -54,6 +54,9 @@
                             <a class="nav-link" aria-current="page" href="{{route('about')}}">About Us</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="{{route('contact')}}">Contact Us</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="{{route('blog')}}">Blog</a>
                         </li>
                         <li class="nav-item">

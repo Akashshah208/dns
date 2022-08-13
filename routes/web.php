@@ -53,6 +53,11 @@ Route::get('cname', function () {
     return view('cname');
 })->name('cname');
 
+Route::get('contact', function () {
+    return view('contact_us');
+})->name('contact');
+
+
 /*Route::get('txt', function () {
     return view('txt');
 })->name('txt');*/
@@ -83,6 +88,8 @@ Route::get('blogDetails/{id}', [\App\Http\Controllers\Clint\BlogController::clas
 Route::get('privacyPolicy', [App\Http\Controllers\AdminController::class, 'privacyPolicy'])->name('privacyPolicy');
 Route::get('services', [App\Http\Controllers\AdminController::class, 'services'])->name('services');
 Route::get('about', [App\Http\Controllers\AboutController::class, 'about'])->name('about');
+
+Route::post('storeContact', [\App\Http\Controllers\AdminController::class, 'storeContact'])->name('storeContact');
 
 
 Route::post('postComment', [\App\Http\Controllers\CommentController::class, 'postComment'])->name('postComment');

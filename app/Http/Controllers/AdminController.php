@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Author;
 use App\Models\Blog;
 use App\Models\Category;
+use App\Models\Contact;
 use App\Models\PrivacyPolicy;
 use App\Models\Services;
 use Illuminate\Http\Request;
@@ -308,6 +309,50 @@ class AdminController extends Controller
                 session()->flash('result', [
                     'message' => 'Terms Of Services Delete Successfully..!',
                     'type' => 'danger',
+                ]);
+                return redirect()->back();
+            }
+        } catch (\Exception $e) {
+            session()->flash('result', [
+                'message' => 'Operation Failed..!',
+                'type' => 'danger',
+            ]);
+            Log::info($e->getMessage());
+            return redirect()->back();
+        }
+    }
+
+
+    public function storeContact(Request $request)
+    {
+        $input = $request->all();
+        $validator = Validator::make($input, [
+            'firstName' => 'required',
+            'lastName' => 'required',
+            'email' => 'required',
+            'phone_no' => 'required',
+            'message' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            session()->flash('result', [
+                'message' => 'All Fields Are Required..!',
+                'type' => 'danger',
+            ]);
+            return redirect()->back();
+        }
+        try {
+            $contact = new Contact();
+            $contact->first_name = $request->input('firstName');
+            $contact->last_name = $request->input('lastName');
+            $contact->email = $request->input('email');
+            $contact->phone_no = $request->input('phone_no');
+            $contact->message = $request->input('message');
+            $result = $contact->save();
+            if ($result) {
+                session()->flash('result', [
+                    'message' => 'Contact Save Successfully..!',
+                    'type' => 'success',
                 ]);
                 return redirect()->back();
             }
