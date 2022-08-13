@@ -125,76 +125,36 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="owl-carousel owl-theme">
-                            <div class="item">
-                                <div class="d-flex justify-content-center mb-3">
-                                    <div class="d-flex justify-content-center">
-                                        <img src="{{asset('dist/images/owners/akash.jpg')}}" width="100" height="100"
-                                             class="rounded-circle" alt="">
+
+                            @forelse($founders as $founder)
+                                <div class="item">
+                                    <div class="d-flex justify-content-center mb-3">
+                                        <div class="d-flex justify-content-center">
+                                            <img
+                                                src='{{$founder->profile ? asset('uploadFile/founder/'.$founder->profile) : asset('dist/images/user/user2.jpg')}}'
+                                                width="100" height="100"
+                                                class="rounded-circle" alt="">
+                                        </div>
+                                    </div>
+
+                                    <div class="text-center">
+                                        <h3 class="mb-3">
+                                            {{ $founder->name }}
+                                        </h3>
+
+                                        <a href="https://www.linkedin.com/in/akash-shah-a103abg/" class="text-indigo">
+                                            <i class="fab fa-linkedin fs-7"></i>
+                                        </a>
+
+                                        @php
+                                            echo("$founder->description");
+                                        @endphp
                                     </div>
                                 </div>
+                            @empty
+                                <p> No Data Found</p>
+                            @endforelse
 
-                                <div class="text-center">
-                                    <h3 class="mb-3">
-                                        Akash Shah
-                                    </h3>
-
-                                    <a href="https://www.linkedin.com/in/akash-shah-a103abg/" class="text-indigo">
-                                        <i class="fab fa-linkedin fs-7"></i>
-                                    </a>
-
-                                    <p class="mt-3">
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde laborum iure
-                                        hic aspernatur quam consectetur, nam natus, incidunt, commodi vero eligendi
-                                        nostrum suscipit sequi possimus veniam distinctio eveniet! Consequatur, a.
-                                    </p>
-
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat neque
-                                        libero eius nihil. Commodi repudiandae nihil non, obcaecati similique vero
-                                        est ex perspiciatis harum velit amet earum, nemo itaque veniam dignissimos
-                                        suscipit corrupti saepe libero ut id officiis ipsum labore cumque. Itaque
-                                        pariatur dolores minus modi amet odit doloremque voluptates maiores
-                                        perferendis eveniet. Deserunt architecto harum commodi consequatur, fugiat
-                                        aliquid?
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="item">
-                                <div class="d-flex justify-content-center mb-3">
-                                    <div class="d-flex justify-content-center">
-                                        <img src="{{asset('dist/images/owners/deep.jpg')}}" width="100" height="100"
-                                             class="rounded-circle" alt="">
-                                    </div>
-                                </div>
-
-                                <div class="text-center">
-                                    <h3 class="mb-3">
-                                        Deep Javiya
-                                    </h3>
-
-                                    <a href="https://www.linkedin.com/in/deep-javiya-a036121b9/"
-                                       class="text-indigo">
-                                        <i class="fab fa-linkedin fs-7"></i>
-                                    </a>
-
-                                    <p class="mt-3">
-                                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde laborum iure
-                                        hic aspernatur quam consectetur, nam natus, incidunt, commodi vero eligendi
-                                        nostrum suscipit sequi possimus veniam distinctio eveniet! Consequatur, a.
-                                    </p>
-
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat neque
-                                        libero eius nihil. Commodi repudiandae nihil non, obcaecati similique vero
-                                        est ex perspiciatis harum velit amet earum, nemo itaque veniam dignissimos
-                                        suscipit corrupti saepe libero ut id officiis ipsum labore cumque. Itaque
-                                        pariatur dolores minus modi amet odit doloremque voluptates maiores
-                                        perferendis eveniet. Deserunt architecto harum commodi consequatur, fugiat
-                                        aliquid?
-                                    </p>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
