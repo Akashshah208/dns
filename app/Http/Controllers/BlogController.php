@@ -176,7 +176,6 @@ class BlogController extends Controller
 
     public function blogDelete($id)
     {
-        //dd($id);
         try {
             $blog = Blog::findOrFail($id);
             $comments = Comment::where('blog_id', '=', $id)->get();
@@ -195,7 +194,6 @@ class BlogController extends Controller
                 return redirect()->route('admin.blog');
             }
         } catch (\Exception $e) {
-            dd('error');
             session()->flash('result', [
                 'message' => 'Operation Failed..!',
                 'type' => 'danger',
