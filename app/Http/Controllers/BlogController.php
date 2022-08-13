@@ -40,6 +40,7 @@ class BlogController extends Controller
         $allTags = Category::all();
         $authors = Author::all();
         $related_blogs = Blog::where('auth_id', '=', $blog->auth_id)->where('id', '!=', $blog->id)->get();
+       // dd($blog->comments);
         return view('admin.blog_detail', compact('blog', 'tags', 'allTags', 'authors', 'related_blogs'));
     }
 

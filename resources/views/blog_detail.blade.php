@@ -158,7 +158,31 @@
                     <h3>Leave a reply</h3>
                     <p class="opacity-75 mb-4">Your email address will not be published. Required fields are marked *
                     </p>
+                    <form class="mb-5" action="{{ route('postComment') }}" method="POST">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput2" class="opacity-75 form-label">Name <span
+                                    class="text-danger">*</span></label>
+                            <input type="hidden" name="id" value="{{ $blog->id }}">
+                            <input type="name" class="form-control" id="exampleFormControlInput2"
+                                   placeholder="Enter your name here" name="name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="opacity-75 form-label">Email <span
+                                    class="text-danger">*</span></label>
+                            <input type="email" class="form-control" id="exampleFormControlInput1"
+                                   placeholder="Enter your email here" name="email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="opacity-75 form-label">Message</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5"
+                                      placeholder="Write message here" name="comment"></textarea>
+                        </div>
 
+                        <div class="mt-4">
+                            <button class="btn btn-primary" type="submit">Post Comment</button>
+                        </div>
+                    </form>
                     <h3 class="mb-4">Comments</h3>
                     @forelse($blog->comments as $comment)
                         <div class="d-md-flex d-block align-items-start mb-5 pb-5 border-bottom">
