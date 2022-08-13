@@ -67,6 +67,10 @@
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="{{ route('admin.addBlog') }}">Add Blog</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="{{ route('admin.contactUs') }}">Contact
+                                List</a>
+                        </li>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Add

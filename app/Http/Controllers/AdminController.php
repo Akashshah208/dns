@@ -11,6 +11,7 @@ use App\Models\Services;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
+use phpDocumentor\Reflection\Types\Context;
 
 class AdminController extends Controller
 {
@@ -308,6 +309,36 @@ class AdminController extends Controller
             if ($result) {
                 session()->flash('result', [
                     'message' => 'Terms Of Services Delete Successfully..!',
+                    'type' => 'danger',
+                ]);
+                return redirect()->back();
+            }
+        } catch (\Exception $e) {
+            session()->flash('result', [
+                'message' => 'Operation Failed..!',
+                'type' => 'danger',
+            ]);
+            Log::info($e->getMessage());
+            return redirect()->back();
+        }
+    }
+
+
+    public function contactUs()
+    {
+        $contacts = Contact::all();
+        return view('admin.contact_us', ['contacts' => $contacts]);
+    }
+
+    public function contactUsDelete($id)
+    {
+        try {
+            $contact = Contact::findOrFail($id);
+            $result = $contact->delete();
+
+            if ($result) {
+                session()->flash('result', [
+                    'message' => 'Contact Delete Successfully..!',
                     'type' => 'danger',
                 ]);
                 return redirect()->back();

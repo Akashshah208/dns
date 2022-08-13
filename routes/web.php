@@ -150,5 +150,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::post('storeServices', [App\Http\Controllers\AdminController::class, 'storeServices'])->name('admin.storeServices');
     Route::get('servicesDelete/{id}', [App\Http\Controllers\AdminController::class, 'servicesDelete'])->name('admin.servicesDelete');
 
+    Route::get('contactUs', [App\Http\Controllers\AdminController::class, 'contactUs'])->name('admin.contactUs');
+    Route::get('contactUsDelete/{id}', [App\Http\Controllers\AdminController::class, 'contactUsDelete'])->name('admin.contactUsDelete');
+
 
 });
