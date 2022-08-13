@@ -86,6 +86,9 @@
                                     <a class="dropdown-item" href="{{ route('admin.addServices') }}">Add Terms Of
                                         Services</a>
                                 </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('admin.addAbout') }}">Add About</a>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">

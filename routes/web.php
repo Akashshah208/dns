@@ -65,9 +65,9 @@ Route::get('http_s', function () {
     return view('https');
 })->name('http_s');
 
-Route::get('about', function () {
+/*Route::get('about', function () {
     return view('about');
-})->name('about');
+})->name('about');*/
 
 //Route::get('mxLookupData', [\App\Http\Controllers\LookupDataController::class, 'mxLookupData'])->name('mxLookupData');
 
@@ -82,6 +82,7 @@ Route::get('blogDetails/{id}', [\App\Http\Controllers\Clint\BlogController::clas
 
 Route::get('privacyPolicy', [App\Http\Controllers\AdminController::class, 'privacyPolicy'])->name('privacyPolicy');
 Route::get('services', [App\Http\Controllers\AdminController::class, 'services'])->name('services');
+Route::get('about', [App\Http\Controllers\AboutController::class, 'about'])->name('about');
 
 
 Route::post('postComment', [\App\Http\Controllers\CommentController::class, 'postComment'])->name('postComment');
@@ -113,6 +114,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
 
     Route::get('', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index');
+
+    Route::get('addAbout', [App\Http\Controllers\AboutController::class, 'addAbout'])->name('admin.addAbout');
+    Route::post('storeAbout', [App\Http\Controllers\AboutController::class, 'storeAbout'])->name('admin.storeAbout');
+    Route::get('categoryDelete/{id}', [App\Http\Controllers\AdminController::class, 'categoryDelete'])->name('admin.categoryDelete');
+
 
     Route::get('addCategory', [App\Http\Controllers\AdminController::class, 'addCategory'])->name('admin.addCategory');
     Route::post('storeCategory', [App\Http\Controllers\AdminController::class, 'storeCategory'])->name('admin.storeCategory');

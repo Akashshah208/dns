@@ -93,16 +93,13 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="mb-3">
-                            What is Dnsmastertools?
+                            {{ $about->title }}
                         </h4>
 
                         <span class="d-block">
-                                This test will list dnsmastertools records for a domain in priority order. The MX lookup
-                                is done directly against the domain's authoritative name server, so changes to
-                                dnsmastertools Records should show up instantly. You can click Diagnostics , which will
-                                connect to the mail server, verify reverse DNS records, perform a simple Open Relay
-                                check and measure response time performance. You may also check each dnsmastertools
-                                record (IP Address) against 105 DNS based blacklists . (Commonly called RBLs, DNSBLs)
+                                @php
+                                    echo("$about->description");
+                                @endphp
                             </span>
                     </div>
                 </div>
