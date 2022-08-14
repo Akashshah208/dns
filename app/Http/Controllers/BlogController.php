@@ -35,12 +35,13 @@ class BlogController extends Controller
     public function details($id)
     {
         $blog = Blog::findOrFail($id);
-        $strTags = implode(',', json_decode($blog->tag));
-        $tags = Category::findMany($strTags);
+        /*$strTags = implode(',', json_decode($blog->tag));
+        dd($strTags, json_decode($blog->tag)[0]);
+        $tags = Category::findMany($strTags);*/
+        $tags = json_decode($blog->tag);
         $allTags = Category::all();
         $authors = Author::all();
         $related_blogs = Blog::where('auth_id', '=', $blog->auth_id)->where('id', '!=', $blog->id)->get();
-       // dd($blog->comments);
         return view('admin.blog_detail', compact('blog', 'tags', 'allTags', 'authors', 'related_blogs'));
     }
 
@@ -107,12 +108,11 @@ class BlogController extends Controller
             Log::info($e->getMessage());
             return redirect()->back();
         }
-        dd('storeBlog', $request->all());
     }
 
     public function editBlog(Request $request)
     {
-        $input = $request->all();
+        /*$input = $request->all();
         $validator = Validator::make($input, [
             'id' => 'required',
             'title' => 'required',
@@ -127,8 +127,41 @@ class BlogController extends Controller
                 'type' => 'danger',
             ]);
             return redirect()->back();
-        }
+        }*/
         try {
+
+            $id = $request->input('id');
+            $title = $request->input('title');
+            $tags = $request->input('tags');
+            $banner = $request->file('banner');
+            $blog = Blog::findOrFail($id);
+
+            if ($request->input('title')) {
+                $blog->title = $request->input('title');
+            }
+            if ($request->input('tags')) {
+                $blog->tag = json_encode($request->input('tags'));
+            }
+            if ($request->input('description')) {
+                $blog->description = $request->input('description');
+            }
+            if ($request->input('auth')) {
+                $blog->auth_id = $request->input('auth');
+            }
+            if ($request->file('banner')) {
+                $destinationPath = public_path() . '/uploadFile/blogBanner/';
+                $fileName = $title . '_' . $banner->getClientOriginalName();
+                $image_path = public_path("/uploadFile/blogBanner/{$blog->banner}");
+                if (File::exists($image_path)) {
+                    unlink($image_path);
+                }
+                $banner->move($destinationPath, $fileName);
+                $blog->banner = $fileName;
+            }
+
+            $result = $blog->save();
+
+            /*dd($request->all());
             $id = $request->input('id');
             $title = $request->input('title');
             $tags = $request->input('tags');
@@ -153,7 +186,7 @@ class BlogController extends Controller
                 $blog->banner = $fileName;
             }
 
-            $result = $blog->save();
+            $result = $blog->save();*/
 
             if ($result) {
                 session()->flash('result', [
@@ -183,6 +216,12 @@ class BlogController extends Controller
 
             foreach ($comments as $comment) {
                 $comment->delete();
+            }
+
+
+            $image_path = public_path("/uploadFile/blogBanner/{$blog->banner}");
+            if (File::exists($image_path)) {
+                unlink($image_path);
             }
 
             $result = $blog->delete();

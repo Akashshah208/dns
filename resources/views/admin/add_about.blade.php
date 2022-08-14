@@ -101,9 +101,6 @@
                             </div>
                             <div class="text-center">
                                 <h3>{{ $founder->name }}</h3>
-                                <a href="javascript:void(0)">
-                                    <i class="fab fa-linkedin fs-7"></i>
-                                </a>
                                 @php
                                     echo("$founder->description");
                                 @endphp

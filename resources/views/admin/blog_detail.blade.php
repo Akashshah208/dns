@@ -26,21 +26,24 @@
                 {{ $blog->title }}
             </h2>
 
-                <div class="mb-4" x>
-                    @forelse($tags as $tag)
+            <div class="mb-4" x>
+                @forelse($tags as $tag)
+                    @php
+                        $tag_name = \App\Models\Category::findOrFail($tag)->name;
+                    @endphp
                     <a href="javascript:void(0)" class="bg-dark text-white badge">
-                        {{ $tag->name }}
+                        {{ $tag_name }}
                     </a>
                 @empty
                     <a href="javascript:void(0)" class="bg-dark text-white badge">
                         No Tags
                     </a>
                 @endforelse
-                </div>
+            </div>
 
 
-                <span class="text-secondary d-block mb-4">By <a href="#" target="_blank"
-                                                                class="me-1">{{ $blog->author ? $blog->author->name : 'Unknown Author'}}</a>
+            <span class="text-secondary d-block mb-4">By <a href="#" target="_blank"
+                                                            class="me-1">{{ $blog->author ? $blog->author->name : 'Unknown Author'}}</a>
                         {{ date_format($blog->created_at, "M d, Y") }}
                     </span>
 
@@ -78,79 +81,79 @@
                 </div>
             </div>
 
-                <h3 class="mb-4">Comments</h3>
-                @forelse($blog->comments as $comment)
-                    <div class="d-md-flex d-block align-items-start mb-5 pb-5 border-bottom">
-                        <div class="me-3">
-                            <img src="{{ Avatar::create($comment->name)->toBase64() }}" height="50" width="50"
-                                 class="mb-3 mb-md-0 rounded-circle"
-                                 alt="">
-                        </div>
+            <h3 class="mb-4">Comments</h3>
+            @forelse($blog->comments as $comment)
+                <div class="d-md-flex d-block align-items-start mb-5 pb-5 border-bottom">
+                    <div class="me-3">
+                        <img src="{{ Avatar::create($comment->name)->toBase64() }}" height="50" width="50"
+                             class="mb-3 mb-md-0 rounded-circle"
+                             alt="">
+                    </div>
 
-                        <div class="w-100">
-                            <div class="d-md-flex d-block align-items-center justify-content-between mb-0">
-                                <h6 class="fs-5 mb-0">{{ $comment->name }}</h6> <span
-                                    class="ms-md-3 fs-14 opacity-50 ms-0">
+                    <div class="w-100">
+                        <div class="d-md-flex d-block align-items-center justify-content-between mb-0">
+                            <h6 class="fs-5 mb-0">{{ $comment->name }}</h6> <span
+                                class="ms-md-3 fs-14 opacity-50 ms-0">
                              {{ date_format($comment->created_at, "M d, Y") }}
                         </span>
-                            </div>
-                            <p class="opacity-50">{{ $comment->email }}</p>
-                            <p class="mb-3">
-                                {{ $comment->comment }}
-                            </p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <a href="javascript:;"
-                                   class="reply-btn link-primary"
-                                   onclick="ReplyComment('{{ route('replyCommentPopup') }}', '{{ $blog->id }}', '{{ $comment->id }}', '{{ $comment->id }}')">
-                                    <i class='fas fa-reply me-2'></i>Reply</a>
-                                <a href="{{ route('admin.commentDelete', $comment->id) }}" type="button"
-                                   class="btn btn-danger d-flex align-items-center justify-content-center"><i
-                                        class='fas fa-trash-alt me-2'></i>Delete</a>
-                            </div>
+                        </div>
+                        <p class="opacity-50">{{ $comment->email }}</p>
+                        <p class="mb-3">
+                            {{ $comment->comment }}
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <a href="javascript:;"
+                               class="reply-btn link-primary"
+                               onclick="ReplyComment('{{ route('replyCommentPopup') }}', '{{ $blog->id }}', '{{ $comment->id }}', '{{ $comment->id }}')">
+                                <i class='fas fa-reply me-2'></i>Reply</a>
+                            <a href="{{ route('admin.commentDelete', $comment->id) }}" type="button"
+                               class="btn btn-danger d-flex align-items-center justify-content-center"><i
+                                    class='fas fa-trash-alt me-2'></i>Delete</a>
+                        </div>
 
-                            <!--  -->
-                            @forelse($comment->replies as $reply)
-                                <div class="d-md-flex d-block align-items-start mt-5">
-                                    <div class="me-3">
-                                        <img src="{{ Avatar::create($reply->name)->toBase64() }}" height="50" width="50"
-                                             class="mb-3 mb-md-0 rounded-circle" alt="">
-                                    </div>
+                        <!--  -->
+                        @forelse($comment->replies as $reply)
+                            <div class="d-md-flex d-block align-items-start mt-5">
+                                <div class="me-3">
+                                    <img src="{{ Avatar::create($reply->name)->toBase64() }}" height="50" width="50"
+                                         class="mb-3 mb-md-0 rounded-circle" alt="">
+                                </div>
 
-                                    <div class="w-100">
-                                        <div class="d-md-flex d-block align-items-center justify-content-between mb-0">
-                                            <h6 class="fs-5 mb-0">{{ $reply->name }}</h6> <span
-                                                class="ms-md-3 fs-14 opacity-50 ms-0">
+                                <div class="w-100">
+                                    <div class="d-md-flex d-block align-items-center justify-content-between mb-0">
+                                        <h6 class="fs-5 mb-0">{{ $reply->name }}</h6> <span
+                                            class="ms-md-3 fs-14 opacity-50 ms-0">
                                     {{ date_format($reply->created_at, "M d, Y") }}
                                 </span>
-                                        </div>
-                                        @php
-                                            $reply_name_obj = \App\Models\Comment::find($reply->reply_id);
-                                            $reply_name = $reply_name_obj ? $reply_name_obj->name : 'Deleted Comment';
-                                        @endphp
-                                        <p class="opacity-50">{{ $reply->email }}</p>
-                                        <p class="opacity-50">{{ $reply->name . ' Reply On ' . $reply_name  }} </p>
-                                        <p class="mb-3">
-                                            {{ $reply->comment }}
-                                        </p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <a href="javascript:;"
-                                               class="reply-btn link-primary"
-                                               onclick="ReplyComment('{{ route('replyCommentPopup') }}', '{{ $blog->id }}', '{{ $comment->id }}', '{{ $reply->id }}')">
-                                                <i class='fas fa-reply me-2'></i>Reply</a>
-                                            <a href="{{ route('admin.commentDelete', $reply->id) }}" type="button"
-                                               class="btn btn-danger d-flex align-items-center justify-content-center"><i
-                                                    class='fas fa-trash-alt me-2'></i>Delete</a>
-                                        </div>
+                                    </div>
+                                    @php
+                                        $reply_name_obj = \App\Models\Comment::find($reply->reply_id);
+                                        $reply_name = $reply_name_obj ? $reply_name_obj->name : 'Deleted Comment';
+                                    @endphp
+                                    <p class="opacity-50">{{ $reply->email }}</p>
+                                    <p class="opacity-50">{{ $reply->name . ' Reply On ' . $reply_name  }} </p>
+                                    <p class="mb-3">
+                                        {{ $reply->comment }}
+                                    </p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <a href="javascript:;"
+                                           class="reply-btn link-primary"
+                                           onclick="ReplyComment('{{ route('replyCommentPopup') }}', '{{ $blog->id }}', '{{ $comment->id }}', '{{ $reply->id }}')">
+                                            <i class='fas fa-reply me-2'></i>Reply</a>
+                                        <a href="{{ route('admin.commentDelete', $reply->id) }}" type="button"
+                                           class="btn btn-danger d-flex align-items-center justify-content-center"><i
+                                                class='fas fa-trash-alt me-2'></i>Delete</a>
                                     </div>
                                 </div>
-                            @empty
-                                <p>No Any Comment Reply</p>
-                            @endforelse
-                        </div>
+                            </div>
+                        @empty
+                            <p>No Any Comment Reply</p>
+                        @endforelse
                     </div>
-                @empty
-                    <p>No Comment</p>
-                @endforelse
+                </div>
+            @empty
+                <p>No Comment</p>
+            @endforelse
 
         </div>
 
@@ -175,7 +178,7 @@
                     <a href="{{ route('admin.blogDetails', $related_blog->id) }}">
                         <div class="overflow-hidden">
                             <img
-                                src='{{$blog->banner ? asset('uploadFile/blogBanner/'.$blog->banner) : asset('dist/images/user/user2.jpg')}}'
+                                src='{{$related_blog->banner ? asset('uploadFile/blogBanner/'.$related_blog->banner) : asset('dist/images/user/user2.jpg')}}'
                                 class="zoom-in img-fluid" alt="">
                         </div>
                     </a>
@@ -224,12 +227,12 @@
                             <label for="title" class="form-label opacity-75">Edit Blog
                                 Title <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="title" name="title" value="{{ $blog->title }}"
-                                   placeholder="Enter blog title" required>
+                                   placeholder="Enter blog title">
                         </div>
 
                         <div class="mb-3">
                             <label for="select2-with-tags" class="form-label d-flex opacity-75">Add Tags</label>
-                            <select class="form-control" multiple="" id="select2-with-tags" name="tags[]" required>
+                            <select class="form-control" multiple="" id="select2-with-tags" name="tags[]">
                                 <option disabled>Select Tags</option>
                                 @forelse($allTags as $tag)
                                     <option value="{{ $tag->id }}">{{ $tag->name }}</option>
@@ -243,21 +246,20 @@
                             <label for="formFile" class="form-label opacity-75">Upload Banner <span
                                     class="text-danger">*</span></label>
                             <input class="form-control" type="file" id="formFile" name="banner"
-                                   accept=".jpg,.jpeg, .png"
-                                   required>
+                                   accept=".jpg,.jpeg, .png">
                         </div>
 
                         <div class="mb-3">
                             <label class="form-label opacity-75">Edit
                                 Discription</label>
-                            <textarea name="description" id="description" cols="30" rows="10" class="summernote"
-                                      required>{{ $blog->description }}</textarea>
+                            <textarea name="description" id="description" cols="30" rows="10"
+                                      class="summernote">{{ $blog->description }}</textarea>
                         </div>
 
                         <div class="mb-5">
                             <label for="discaut" class="form-label opacity-75">Select Blog Author <span
                                     class="text-danger">*</span></label>
-                            <select class="form-select" name="auth" required>
+                            <select class="form-select" name="auth">
                                 <option value="1">Select Blog Author</option>
                                 @forelse($authors as $author)
                                     <option

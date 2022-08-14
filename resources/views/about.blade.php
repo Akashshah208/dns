@@ -60,8 +60,8 @@
                             <a class="nav-link" aria-current="page" href="{{route('blog')}}">Blog</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{{ route('privacyPolicy') }}">privacy
-                                policy</a>
+                            <a class="nav-link" aria-current="page" href="{{ route('privacyPolicy') }}">Privacy
+                                Policy</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="{{ route('services') }}">Terms of services</a>
@@ -98,12 +98,11 @@
                         <h4 class="mb-3">
                             {{ $about->title }}
                         </h4>
-
                         <span class="d-block">
                                 @php
                                     echo("$about->description");
                                 @endphp
-                            </span>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -144,11 +143,7 @@
                                         <h3 class="mb-3">
                                             {{ $founder->name }}
                                         </h3>
-
-                                        <a href="https://www.linkedin.com/in/akash-shah-a103abg/" class="text-indigo">
-                                            <i class="fab fa-linkedin fs-7"></i>
-                                        </a>
-
+                                        
                                         @php
                                             echo("$founder->description");
                                         @endphp

@@ -30,10 +30,12 @@ class BlogController extends Controller
     public function details($id)
     {
         $blog = Blog::findOrFail($id);
-        $strTags = implode(',', json_decode($blog->tag));
-        $tags = Category::findMany($strTags);
+        /*$strTags = implode(',', json_decode($blog->tag));
+        $tags = Category::findMany($strTags);*/
+        $tags = json_decode($blog->tag);
         $allTags = Category::all();
-        return view('blog_detail', compact('blog', 'tags', 'allTags'));
+        $related_blogs = Blog::where('auth_id', '=', $blog->auth_id)->where('id', '!=', $blog->id)->get();
+        return view('blog_detail', compact('blog', 'tags', 'allTags', 'related_blogs'));
     }
 
 }

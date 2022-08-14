@@ -60,8 +60,8 @@
                             <a class="nav-link" aria-current="page" href="{{ route('blog') }}">Blog</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{{ route('privacyPolicy') }}">privacy
-                                policy</a>
+                            <a class="nav-link" aria-current="page" href="{{ route('privacyPolicy') }}">Privacy
+                                Policy</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="{{ route('services') }}">Terms of services</a>

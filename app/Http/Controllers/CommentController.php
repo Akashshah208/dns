@@ -73,20 +73,18 @@ class CommentController extends Controller
 
     public function replyComment(Request $request)
     {
-        //dd($request->all());
-        /*try {*/
-        $input = $request->all();
-        if ($request->input('user')) {
-            $validator = Validator::make($input, [
-                'blog_id' => 'required',
-                'parent_id' => 'required',
-                'reply_id' => 'required',
-                'name' => 'required',
-                'email' => 'required',
-                'comment' => 'required',
-            ]);
+        try {
+            $input = $request->all();
+            if ($request->input('user')) {
+                $validator = Validator::make($input, [
+                    'blog_id' => 'required',
+                    'parent_id' => 'required',
+                    'reply_id' => 'required',
+                    'name' => 'required',
+                    'email' => 'required',
+                    'comment' => 'required',
+                ]);
         } else {
-            dd('2');
             $validator = Validator::make($input, [
                 'blog_id' => 'required',
                 'parent_id' => 'required',
@@ -96,7 +94,6 @@ class CommentController extends Controller
             ]);
         }
 
-        //dd($validator);
 
         if ($validator->fails()) {
             session()->flash('result', [
@@ -132,7 +129,7 @@ class CommentController extends Controller
         }
 
 
-        /*} catch (\Exception $e) {
+        } catch (\Exception $e) {
             session()->flash('result', [
                 'message' => 'Operation Failed..!',
                 'type' => 'danger',
@@ -142,7 +139,7 @@ class CommentController extends Controller
                 return redirect()->route('blogDetails', $request->input('blog_id'));
             }
             return redirect()->route('admin.blog');
-        }*/
+        }
     }
 
 

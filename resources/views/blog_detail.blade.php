@@ -60,11 +60,14 @@
                             <a class="nav-link" aria-current="page" href="{{route('about')}}">About Us</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="{{route('contact')}}">Contact Us</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="{{ route('blog') }}">Blog</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{{ route('privacyPolicy') }}">privacy
-                                policy</a>
+                            <a class="nav-link" aria-current="page" href="{{ route('privacyPolicy') }}">Privacy
+                                Policy</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="{{ route('services') }}">Terms of services</a>
@@ -104,8 +107,11 @@
 
                 <div class="mb-4">
                     @forelse($tags as $tag)
+                        @php
+                            $tag_name = \App\Models\Category::findOrFail($tag)->name;
+                        @endphp
                         <a href="javascript:void(0)" class="bg-dark text-white badge">
-                            {{ $tag->name }}
+                            {{ $tag_name }}
                         </a>
                     @empty
                         <a href="javascript:void(0)" class="bg-dark text-white badge">
@@ -266,6 +272,35 @@
                         </a>
                     @endforelse
                 </div>
+
+                <h3 class="mb-4">Related Articles</h3>
+                @forelse($related_blogs as $related_blog)
+                    <div class="card bg-transparent shadow-sm border-0 overflow-hidden w-100">
+                        <a href="{{ route('admin.blogDetails', $related_blog->id) }}">
+                            <div class="overflow-hidden">
+                                <img
+                                    src='{{$related_blog->banner ? asset('uploadFile/blogBanner/'.$related_blog->banner) : asset('dist/images/user/user2.jpg')}}'
+                                    class="zoom-in img-fluid" alt="">
+                            </div>
+                        </a>
+                        <div class="card-body">
+                            <h5 class="mb-3">
+                                <a href="{{ route('admin.blogDetails', $related_blog->id) }}" class="dark-link">
+                                    {{ $related_blog->title }}
+                                </a>
+                            </h5>
+                            <span class="text-secondary">By <a
+                                    href="{{ route('admin.blogDetails', $related_blog->id) }}"
+                                    target="_blank"
+                                    class="me-1">{{ $related_blog->author ? $related_blog->author->name : 'Unknown Author'}}</a>
+                                {{ date_format($related_blog->created_at, "M d, Y") }}
+                            </span>
+                        </div>
+                    </div>
+                @empty
+                    <p>No Related Blog</p>
+                @endforelse
+
 
             </div>
         </div>

@@ -74,7 +74,7 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Add
-                                Contain</a>
+                                Contain <i class="fas fa-chevron-down fs-3 ms-2"></i> </a>
                             <ul class="dropdown-menu dropdown-menu-end mt-2 shadow">
                                 <li>
                                     <a class="dropdown-item" href="{{ route('admin.addCategory') }}">Add Category</a>
