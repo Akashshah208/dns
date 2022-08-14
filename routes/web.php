@@ -152,6 +152,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
     Route::get('contactUs', [App\Http\Controllers\AdminController::class, 'contactUs'])->name('admin.contactUs');
     Route::get('contactUsDelete/{id}', [App\Http\Controllers\AdminController::class, 'contactUsDelete'])->name('admin.contactUsDelete');
+    Route::get('contactUsGeneratePdf', [App\Http\Controllers\AdminController::class, 'contactUsGeneratePdf'])->name('admin.contactUsGeneratePdf');
 
 
 });

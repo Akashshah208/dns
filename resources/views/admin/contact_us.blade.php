@@ -6,7 +6,16 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
-    <h2 class="fw-bold mb-4">Contact List</h2>
+    <div class="container-fluid max-width-base">
+        <div class="d-md-flex d-block align-items-center justify-content-between">
+            <h2 class="fw-bold mb-4">Blog Detail</h2>
+            <div>
+                <a href="{{ route('admin.contactUsGeneratePdf') }}" type="button" class="btn btn-success">
+                    Generate PDF
+                </a>
+            </div>
+        </div>
+    </div>
     <div class="table-responsive">
         <table class="table text-nowrap table-bordered align-middle mb-0">
             <thead>

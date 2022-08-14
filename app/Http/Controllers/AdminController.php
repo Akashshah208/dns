@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Contact;
 use App\Models\PrivacyPolicy;
 use App\Models\Services;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
@@ -395,6 +396,14 @@ class AdminController extends Controller
             Log::info($e->getMessage());
             return redirect()->back();
         }
+    }
+
+    public function contactUsGeneratePdf()
+    {
+        $contacts = Contact::all();
+        view()->share('contacts', $contacts);
+        $pdf = PDF::loadView('admin.contact_list_pdf');
+        return $pdf->download('pdfview.pdf');
     }
 
 
