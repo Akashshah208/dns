@@ -97,6 +97,7 @@
                              {{ date_format($comment->created_at, "M d, Y") }}
                         </span>
                         </div>
+                        <p class="opacity-50"></p>
                         <p class="opacity-50">{{ $comment->email }}</p>
                         <p class="mb-3">
                             {{ $comment->comment }}

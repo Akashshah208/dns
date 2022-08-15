@@ -30,6 +30,11 @@
         .modal-backdrop.show {
             display: none;
         }
+
+        .dark-link {
+            color: #252530;
+            transition: all 0.4s ease-in-out;
+        }
     </style>
 </head>
 
@@ -205,6 +210,7 @@
                              {{ date_format($comment->created_at, "M d, Y") }}
                         </span>
                                 </div>
+                                <p class="opacity-50"></p>
                                 <p class="mb-3">
                                     {{ $comment->comment }}
                                 </p>

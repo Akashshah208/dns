@@ -25,6 +25,12 @@
     <link rel="stylesheet" href="{{asset('assets/libs/node_modules/owl.carousel/dist/assets/owl.theme.green.css')}}">
     <link href="{{asset('assets/libs/node_modules/simplebar/dist/simplebar.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('dist/css/style.css')}}">
+    <style>
+        .dark-link {
+            color: #252530;
+            transition: all 0.4s ease-in-out;
+        }
+    </style>
 </head>
 
 <body data-simplebar>

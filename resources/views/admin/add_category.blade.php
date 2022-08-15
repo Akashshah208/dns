@@ -12,7 +12,7 @@
 
             <h2 class="mb-4">Add Category</h2>
 
-            <form action="{{ route('admin.storeCategory') }}" method="POST">
+            <form class="mb-5" action="{{ route('admin.storeCategory') }}" method="POST">
                 @csrf
                 <div class="mb-3">
                     <label for="title" class="form-label opacity-75">Add Category <span

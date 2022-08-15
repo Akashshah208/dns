@@ -8,13 +8,10 @@
     @endif
     <div class="container-fluid max-width-base">
         <div class="d-md-flex d-block align-items-center justify-content-between">
-            <h2 class="fw-bold mb-4">Blog Detail</h2>
+            <h2 class="fw-bold mb-4">User Data List</h2>
             <div>
                 <a href="{{ route('admin.userDataGeneratePdf') }}" type="button" class="btn btn-primary">
                     Generate PDF
-                </a>
-                <a href="{{ route('admin.userDataGeneratePdf') }}" type="button" class="btn btn-primary">
-                    Export
                 </a>
             </div>
         </div>

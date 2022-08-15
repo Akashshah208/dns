@@ -29,7 +29,6 @@
         <th>Last Name</th>
         <th>Email</th>
         <th>Phone Number</th>
-        <th>Message</th>
     </tr>
     @forelse($contacts as $contact)
         <tr>
@@ -37,7 +36,6 @@
             <td>{{ $contact->last_name }}</td>
             <td>{{ $contact->email }}</td>
             <td>{{ $contact->phone_no }}</td>
-            <td>{{ $contact->message }}</td>
         </tr>
     @empty
         <tr>
