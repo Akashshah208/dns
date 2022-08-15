@@ -330,13 +330,13 @@ class AdminController extends Controller
 
     public function contactUs()
     {
-        $contacts = Contact::all();
+        $contacts = Contact::paginate(10);
         return view('admin.contact_us', ['contacts' => $contacts]);
     }
 
     public function userData()
     {
-        $users = User::where('user_type', 'user')->get();
+        $users = User::where('user_type', 'user')->paginate(10);
         return view('admin.user_data', ['users' => $users]);
     }
 

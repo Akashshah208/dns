@@ -10,7 +10,7 @@
         <div class="d-md-flex d-block align-items-center justify-content-between">
             <h2 class="fw-bold mb-4">Contact List</h2>
             <div>
-                <a href="{{ route('admin.contactUsGeneratePdf') }}" type="button" class="btn btn-success">
+                <a href="{{ route('admin.contactUsGeneratePdf') }}" type="button" class="btn btn-primary">
                     Generate PDF
                 </a>
             </div>
@@ -50,5 +50,8 @@
             @endforelse
             </tbody>
         </table>
+        <div class="mt-3 float-end">
+            {!! $contacts->links() !!}
+        </div>
     </div>
 @stop

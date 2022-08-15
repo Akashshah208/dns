@@ -39,5 +39,8 @@
             @endforelse
             </tbody>
         </table>
+        <div class="mt-3 float-end">
+            {!! $users->links() !!}
+        </div>
     </div>
 @stop
