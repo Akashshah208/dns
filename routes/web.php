@@ -155,4 +155,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('contactUsGeneratePdf', [App\Http\Controllers\AdminController::class, 'contactUsGeneratePdf'])->name('admin.contactUsGeneratePdf');
 
 
+    Route::get('userData', [App\Http\Controllers\AdminController::class, 'userData'])->name('admin.userData');
+    Route::get('userDataGeneratePdf', [App\Http\Controllers\AdminController::class, 'userDataGeneratePdf'])->name('admin.userDataGeneratePdf');
+
+
 });

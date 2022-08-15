@@ -21,23 +21,17 @@
 </head>
 <body>
 
-<h2>Contact List</h2>
+<h2>User Data List</h2>
 
 <table>
     <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
+        <th>Name</th>
         <th>Email</th>
-        <th>Phone Number</th>
-        <th>Message</th>
     </tr>
-    @forelse($contacts as $contact)
+    @forelse($users as $user)
         <tr>
-            <td>{{ $contact->first_name }}</td>
-            <td>{{ $contact->last_name }}</td>
-            <td>{{ $contact->email }}</td>
-            <td>{{ $contact->phone_no }}</td>
-            <td>{{ $contact->message }}</td>
+            <td>{{ $user->name }}</td>
+            <td>{{ $user->email }}</td>
         </tr>
     @empty
         <tr>

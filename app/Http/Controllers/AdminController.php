@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Contact;
 use App\Models\PrivacyPolicy;
 use App\Models\Services;
+use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -331,6 +332,12 @@ class AdminController extends Controller
         return view('admin.contact_us', ['contacts' => $contacts]);
     }
 
+    public function userData()
+    {
+        $users = User::where('user_type', 'user')->get();
+        return view('admin.user_data', ['users' => $users]);
+    }
+
     public function contactUsDelete($id)
     {
         try {
@@ -403,7 +410,15 @@ class AdminController extends Controller
         $contacts = Contact::all();
         view()->share('contacts', $contacts);
         $pdf = PDF::loadView('admin.contact_list_pdf');
-        return $pdf->download('pdfview.pdf');
+        return $pdf->download('dnsmastertools_contact_us.pdf');
+    }
+
+    public function userDataGeneratePdf()
+    {
+        $users = User::where('user_type', 'user')->get();
+        view()->share('users', $users);
+        $pdf = PDF::loadView('admin.user_data_list_pdf');
+        return $pdf->download('dnsmastertools_user_data.pdf');
     }
 
 

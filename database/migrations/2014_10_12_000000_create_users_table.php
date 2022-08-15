@@ -18,9 +18,9 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->enum('user_type', ['admin', 'user']);
             $table->string('email')->unique();
-            $table->string('contact_no');
+            $table->string('contact_no')->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Author;
 use App\Models\Comment;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -36,6 +37,13 @@ class CommentController extends Controller
             $comment->email = $request->email;
             $comment->comment = $request->comment;
             $result = $comment->save();
+
+            $user = new User();
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->user_type = 'user';
+            $user->save();
+
             if ($result) {
                 session()->flash('result', [
                     'message' => 'Comment Post Successfully..!',
@@ -110,6 +118,11 @@ class CommentController extends Controller
         if ($request->input('user')) {
             $comment->name = $request->name;
             $comment->email = $request->email;
+            $user = new User();
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->user_type = 'user';
+            $user->save();
         } else {
             $authData = Author::findOrFail($request->auth);
             $comment->name = $authData->name;
