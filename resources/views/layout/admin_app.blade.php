@@ -177,11 +177,12 @@
             </div>
             <div class="hstack mt-3 mt-md-0 gap-3">
                 <div class="text-white">
-                    privacy policy
+                    <a class="nav-link" aria-current="page" href="{{ route('privacyPolicy') }}">Privacy
+                        Policy</a>
                 </div>
                 <div class="vr text-white"></div>
                 <div class="text-white">
-                    Terms of services
+                    <a class="nav-link" aria-current="page" href="{{ route('services') }}">Terms of services</a>
                 </div>
             </div>
         </div>
@@ -201,26 +202,56 @@
         <div class="d-lg-none d-block">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-lg-none d-block">
                 <li class="nav-item border-bottom">
-                    <a href="{{ route('admin.index') }}" class="nav-link active py-1">
-                        Blog
-                    </a>
+                    <a class="nav-link" aria-current="page" href="{{ route('admin.index') }}">Blog</a>
                 </li>
                 <li class="nav-item border-bottom">
-                    <a href="{{ route('admin.addBlog') }}" class="nav-link active py-1">
-                        Add Blog
-                    </a>
+                    <a class="nav-link" aria-current="page" href="{{ route('admin.addBlog') }}">Add Blog</a>
                 </li>
                 <li class="nav-item border-bottom">
-                    <a data-bs-toggle="modal" data-bs-target="#addcategory" href="javascript:void(0)"
-                       class="nav-link active py-1">
-                        Add Category
-                    </a>
+                    <a class="nav-link" aria-current="page" href="{{ route('admin.contactUs') }}">Contact
+                        List</a>
                 </li>
                 <li class="nav-item border-bottom">
-                    <a href="{{ route('admin.addAuthor') }}"
-                       class="nav-link active py-1">
-                        Add Author
+                    <a class="nav-link" aria-current="page" href="{{ route('admin.userData') }}">User Data</a>
+                </li>
+                <li class="nav-item border-bottom">
+                    <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Add
+                        Contain <i class="fas fa-chevron-down fs-3 ms-2"></i> </a>
+                    <ul class="dropdown-menu dropdown-menu-end mt-2 shadow">
+                        <li>
+                            <a class="dropdown-item" href="{{ route('admin.addCategory') }}">Add Category</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ route('admin.addAuthor') }}">Add Author</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ route('admin.addPrivacyPolicy') }}">Add
+                                Privacy Policy</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ route('admin.addServices') }}">Add Terms Of
+                                Services</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ route('admin.addAbout') }}">Add About</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        <img src="{{asset('dist/images/user/user6.jpg')}}" class="rounded-circle" height="50"
+                             alt="">
+                        <i class="fas fa-chevron-down fs-3 ms-2"></i>
                     </a>
+                    <ul class="dropdown-menu dropdown-menu-end mt-2 shadow">
+                        <li><a class="dropdown-item" href="{{ route('admin.account') }}"><i
+                                    class="far fa-user me-2"></i> Account</a>
+                        </li>
+                        <li><a class="dropdown-item" href="{{ route('logout') }}"><i
+                                    class="fas fa-sign-out-alt me-2"></i> Log
+                                Out</a></li>
+                    </ul>
                 </li>
             </ul>
         </div>
