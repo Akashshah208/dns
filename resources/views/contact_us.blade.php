@@ -108,14 +108,16 @@
                             <div class="mb-3">
                                 <label for="firstName" class="form-label opacity-75">First Name <span
                                         class="text-danger">*</span></label>
-                                <input class="form-control" type="text" name="firstName" id="firstName" required>
+                                <input class="form-control" type="text" name="firstName" id="firstName"
+                                       placeholder="Enter First Name" required>
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="mb-3">
                                 <label for="lastName" class="form-label opacity-75">Last Name <span
                                         class="text-danger">*</span></label>
-                                <input class="form-control" type="text" name="lastName" id="lastName" required>
+                                <input class="form-control" type="text" name="lastName" id="lastName"
+                                       placeholder="Enter Last Name" required>
                             </div>
                         </div>
                     </div>
@@ -123,13 +125,15 @@
                     <div class="mb-3">
                         <label for="formEmail" class="form-label opacity-75">Email <span
                                 class="text-danger">*</span></label>
-                        <input class="form-control" type="text" name="email" id="formEmail" required>
+                        <input class="form-control" type="text" name="email" id="formEmail" placeholder="Enter Email"
+                               required>
                     </div>
 
                     <div class="mb-3">
                         <label for="formEmail" class="form-label opacity-75">Phone Number <span
                                 class="text-danger">*</span></label>
-                        <input class="form-control" type="text" name="phone_no" id="formEmail" required>
+                        <input class="form-control" type="text" name="phone_no" id="formEmail"
+                               placeholder="Enter Phone No" required>
                     </div>
 
                     <div class="mb-4">
