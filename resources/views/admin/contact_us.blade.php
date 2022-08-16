@@ -17,7 +17,7 @@
         </div>
     </div>
     <div class="table-responsive">
-        <table class="table text-nowrap table-bordered align-middle mb-0">
+        <table class="table text-nowrap table-bordered align-middle mb-0 mt-3">
             <thead>
             <tr>
                 <th scope="col">First Name</th>

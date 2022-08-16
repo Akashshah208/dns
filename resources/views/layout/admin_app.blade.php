@@ -36,6 +36,13 @@
     <link rel="stylesheet" href="{{asset('assets/extra-libs/select2/dist/css/select2.css')}}">
 
     <link rel="stylesheet" href="{{asset('dist/css/style_admin.css')}}">
+    <style>
+        @media (max-width: 991px) {
+            .navbar-nav .dropdown-menu {
+                position: absolute;
+            }
+        }
+    </style>
 </head>
 
 <body data-simplebar>
@@ -53,13 +60,14 @@
             <a class="navbar-brand" href="{{ route('admin.index') }}">
                 <img src="{{asset('dist/images/logo/logo-white.svg')}}" height="50" alt="">
             </a>
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
                 <span class="fas fa-bars"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <div class="d-lg-block d-none ms-auto">
+                <div class="ms-auto">
                     <ul class="navbar-nav mb-2 mb-lg-0 align-items-center">
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="{{ route('admin.index') }}">Blog</a>

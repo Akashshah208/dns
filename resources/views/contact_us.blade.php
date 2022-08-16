@@ -57,19 +57,22 @@
                             <a class="nav-link" aria-current="page" href="{{route('contact')}}">Contact Us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{{route('blog')}}">Blog</a>
+                            <a class="nav-link" aria-current="page" href="{{ route('blog') }}">Blog</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{{ route('privacyPolicy') }}">Privacy
-                                Policy</a>
+                            <a href="{{ route('privacyPolicy') }}" class="nav-link">
+                                Privacy Policy
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{{ route('services') }}">Terms of services</a>
+                            <a href="{{ route('services') }}" class="nav-link">
+                                Terms of Services
+                            </a>
                         </li>
                         <li class="nav-item">
                             <a class="btn btn-primary text-white px-4 nav-link" aria-current="page"
                                href="{{ route('login') }}">
-                                Login
+                                {{ \Illuminate\Support\Facades\Auth::user() ? \Illuminate\Support\Facades\Auth::user()->name : 'Login' }}
                             </a>
                         </li>
                     </ul>
@@ -77,6 +80,120 @@
             </div>
         </div>
     </nav>
+
+    <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+         aria-labelledby="offcanvasWithBothOptionsLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Menu</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="d-lg-none d-block">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-lg-none d-block">
+                    <li class="nav-item border-bottom">
+                        <a href="{{route('about')}}" class="nav-link py-1">
+                            About Us
+                        </a>
+                    </li>
+                    <li class="nav-item border-bottom">
+                        <a href="{{route('contact')}}" class="nav-link py-1">
+                            Contact Us
+                        </a>
+                    </li>
+                    <li class="nav-item border-bottom">
+                        <a href="{{ route('blog') }}" class="nav-link py-1">
+                            Blog
+                        </a>
+                    </li>
+                    <li class="nav-item border-bottom">
+                        <a href="{{ route('privacyPolicy') }}" class="nav-link py-1">
+                            Privacy Policy
+                        </a>
+                    </li>
+                    <li class="nav-item border-bottom">
+                        <a href="{{ route('services') }}" class="nav-link py-1">
+                            Terms of Services
+                        </a>
+                    </li>
+                </ul>
+
+
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-lg-none d-block">
+                    <li class="nav-item border-bottom">
+                        <a href="{{route('index')}}" class="nav-link py-1">
+                            MX Lookup
+                        </a>
+                    </li>
+                    <li class="nav-item border-bottom">
+                        <a href="{{route('blacklist_check')}}" class="nav-link py-1">
+                            Blacklist Check
+                        </a>
+                    </li>
+                    <li class="nav-item border-bottom">
+                        <a href="{{route('email_server_tester')}}" class="nav-link py-1">
+                            Email Server Tester
+                        </a>
+                    </li>
+                    <li class="nav-item border-bottom">
+                        <a href="{{route('reverse_dns')}}" class="nav-link py-1">
+                            Reverse DNS Lookup
+                        </a>
+                    </li>
+                    <li class="nav-item border-bottom">
+                        <a href="{{route('dns')}}" class="nav-link py-1">
+                            DNS Check
+                        </a>
+                    </li>
+                    <li class="nav-item border-bottom">
+                        <a href="{{route('spf')}}" class="nav-link py-1">
+                            SPF Lookup
+                        </a>
+                    </li>
+                    <li class="nav-item border-bottom">
+                        <a href="{{route('dmarc')}}" class="nav-link py-1">
+                            DMARC Lookup
+                        </a>
+                    </li>
+                    <li class="nav-item border-bottom">
+                        <a href="{{route('ssl')}}" class="nav-link py-1">
+                            SSL Lookup
+                        </a>
+                    </li>
+                    <li class="nav-item border-bottom">
+                        <a href="{{route('bmi')}}" class="nav-link py-1">
+                            BMI Lookup
+                        </a>
+                    </li>
+                    <li class="nav-item border-bottom">
+                        <a href="{{route('cname')}}" class="nav-link py-1">
+                            CNAME Lookup
+                        </a>
+                    </li>
+                    <li class="nav-item border-bottom">
+                        <a href="{{route('txt')}}" class="nav-link py-1">
+                            TXT Lookup
+                        </a>
+                    </li>
+                    <li class="nav-item border-bottom">
+                        <a href="{{route('http')}}" class="nav-link py-1">
+                            HTTP Lookup
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('http_s')}}" class="nav-link py-1">
+                            HTTPS Lookup
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="mt-4">
+                    <a href="{{ route('login') }}" class="btn btn-primary text-white nav-link py-1">
+                        {{ \Illuminate\Support\Facades\Auth::user() ? \Illuminate\Support\Facades\Auth::user()->name : 'Login' }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 </header>
 <!-- ================================ -->
 <!-- Header End -->
@@ -195,7 +312,7 @@
             </div>
             <div class="hstack mt-3 mt-md-0 gap-3">
                 <div class="text-white">
-                    privacy policy
+                    Privacy Policy
                 </div>
                 <div class="vr text-white"></div>
                 <div class="text-white">
@@ -208,112 +325,6 @@
 <!-- ================================ -->
 <!-- Footer End -->
 <!-- ================================ -->
-
-<div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
-     aria-labelledby="offcanvasWithBothOptionsLabel">
-    <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Lookups</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
-        <div class="d-lg-none d-block">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-lg-none d-block">
-                <li class="nav-item border-bottom">
-                    <a class="nav-link" aria-current="page" href="{{route('about')}}">About Us</a>
-                </li>
-                <li class="nav-item border-bottom">
-                    <a class="nav-link" aria-current="page" href="{{route('contact')}}">Contact Us</a>
-                </li>
-                <li class="nav-item border-bottom">
-                    <a class="nav-link" aria-current="page" href="{{ route('blog') }}">Blog</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{ route('privacyPolicy') }}">Privacy
-                        Policy</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{ route('services') }}">Terms of services</a>
-                </li>
-            </ul>
-
-
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-lg-none d-block">
-                <li class="nav-item border-bottom">
-                    <a href="{{route('index')}}" class="nav-link active py-1">
-                        MX Lookup
-                    </a>
-                </li>
-                <li class="nav-item border-bottom">
-                    <a href="{{route('blacklist_check')}}" class="nav-link py-1">
-                        Blacklist Check
-                    </a>
-                </li>
-                <li class="nav-item border-bottom">
-                    <a href="{{route('email_server_tester')}}" class="nav-link py-1">
-                        Email Server Tester
-                    </a>
-                </li>
-                <li class="nav-item border-bottom">
-                    <a href="{{route('reverse_dns')}}" class="nav-link py-1">
-                        Reverse DNS Lookup
-                    </a>
-                </li>
-                <li class="nav-item border-bottom">
-                    <a href="{{route('dns')}}" class="nav-link py-1">
-                        DNS Check
-                    </a>
-                </li>
-                <li class="nav-item border-bottom">
-                    <a href="{{route('spf')}}" class="nav-link py-1">
-                        SPF Lookup
-                    </a>
-                </li>
-                <li class="nav-item border-bottom">
-                    <a href="{{route('dmarc')}}" class="nav-link py-1">
-                        DMARC Lookup
-                    </a>
-                </li>
-                <li class="nav-item border-bottom">
-                    <a href="{{route('ssl')}}" class="nav-link py-1">
-                        SSL Lookup
-                    </a>
-                </li>
-                <li class="nav-item border-bottom">
-                    <a href="{{route('bmi')}}" class="nav-link py-1">
-                        BMI Lookup
-                    </a>
-                </li>
-                <li class="nav-item border-bottom">
-                    <a href="{{route('cname')}}" class="nav-link py-1">
-                        CNAME Lookup
-                    </a>
-                </li>
-                <li class="nav-item border-bottom">
-                    <a href="{{route('txt')}}" class="nav-link py-1">
-                        TXT Lookup
-                    </a>
-                </li>
-                <li class="nav-item border-bottom">
-                    <a href="{{route('http')}}" class="nav-link py-1">
-                        HTTP Lookup
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{route('http_s')}}" class="nav-link py-1">
-                        HTTPS Lookup
-                    </a>
-                </li>
-            </ul>
-
-            <div class="mt-4">
-                <a class="btn btn-primary text-white px-4 nav-link" aria-current="page"
-                   href="{{ route('login') }}">
-                    {{ \Illuminate\Support\Facades\Auth::user() ? \Illuminate\Support\Facades\Auth::user()->name : 'Login' }}
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 <!-- ================================ -->
