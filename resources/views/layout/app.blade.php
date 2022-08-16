@@ -242,6 +242,26 @@
         <div class="d-lg-none d-block">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-lg-none d-block">
                 <li class="nav-item border-bottom">
+                    <a class="nav-link" aria-current="page" href="{{route('about')}}">About Us</a>
+                </li>
+                <li class="nav-item border-bottom">
+                    <a class="nav-link" aria-current="page" href="{{route('contact')}}">Contact Us</a>
+                </li>
+                <li class="nav-item border-bottom">
+                    <a class="nav-link" aria-current="page" href="{{ route('blog') }}">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{{ route('privacyPolicy') }}">Privacy
+                        Policy</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{{ route('services') }}">Terms of services</a>
+                </li>
+            </ul>
+
+
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 d-lg-none d-block">
+                <li class="nav-item border-bottom">
                     <a href="{{route('index')}}" class="nav-link active py-1">
                         MX Lookup
                     </a>
@@ -307,6 +327,13 @@
                     </a>
                 </li>
             </ul>
+
+            <div class="mt-4">
+                <a class="btn btn-primary text-white px-4 nav-link" aria-current="page"
+                   href="{{ route('login') }}">
+                    {{ \Illuminate\Support\Facades\Auth::user() ? \Illuminate\Support\Facades\Auth::user()->name : 'Login' }}
+                </a>
+            </div>
         </div>
     </div>
 </div>
