@@ -13,9 +13,9 @@ use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
-use phpDocumentor\Reflection\Types\Context;
 
 class AdminController extends Controller
 {
@@ -371,7 +371,10 @@ class AdminController extends Controller
             'firstName' => 'required',
             'lastName' => 'required',
             'email' => 'required',
-            'phone_no' => 'required',
+            'phone_no' => 'required|max:10|min:10',
+            'state' => 'required',
+            'city' => 'required',
+            'zip_code' => 'required',
             'message' => 'required',
         ]);
 
@@ -382,29 +385,27 @@ class AdminController extends Controller
             ]);
             return redirect()->back();
         }
-        try {
-            $contact = new Contact();
-            $contact->first_name = $request->input('firstName');
-            $contact->last_name = $request->input('lastName');
-            $contact->email = $request->input('email');
-            $contact->phone_no = $request->input('phone_no');
-            $contact->message = $request->input('message');
-            $result = $contact->save();
-            if ($result) {
-                session()->flash('result', [
-                    'message' => 'Contact Save Successfully..!',
-                    'type' => 'success',
-                ]);
-                return redirect()->back();
-            }
-        } catch (\Exception $e) {
+        $contact = new Contact();
+        $contact->first_name = $request->input('firstName');
+        $contact->last_name = $request->input('lastName');
+        $contact->email = $request->input('email');
+        $contact->phone_no = $request->input('phone_no');
+        $contact->state = $request->input('state');
+        $contact->city = $request->input('city');
+        $contact->zip_code = $request->input('zip_code');
+        $contact->message = $request->input('message');
+        $result = $contact->save();
+        if ($result) {
+
+            Mail::to($request->input('email'))->send(new \App\Mail\ContactUsMail($contact));
+
             session()->flash('result', [
-                'message' => 'Operation Failed..!',
-                'type' => 'danger',
+                'message' => 'Contact Save Successfully..!',
+                'type' => 'success',
             ]);
-            Log::info($e->getMessage());
             return redirect()->back();
         }
+
     }
 
     public function contactUsGeneratePdf()

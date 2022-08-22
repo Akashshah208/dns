@@ -76,6 +76,19 @@ Route::get('http_s', function () {
 
 //Route::get('mxLookupData', [\App\Http\Controllers\LookupDataController::class, 'mxLookupData'])->name('mxLookupData');
 
+Route::get('send-mail', function () {
+
+    $details = [
+        'title' => 'Mail from ItSolutionStuff.com',
+        'body' => 'This is for testing email using smtp'
+    ];
+
+    \Mail::to('your_receiver_email@gmail.com')->send(new \App\Mail\ContactUsMail($details));
+
+    dd("Email is Sent.");
+});
+
+
 Route::match(['get', 'post'], '/', [\App\Http\Controllers\LookupDataController::class, 'mxLookupData'])->name('index');
 Route::match(['get', 'post'], 'email_server_tester', [\App\Http\Controllers\LookupDataController::class, 'emailServerTester'])->name('email_server_tester');
 Route::match(['get', 'post'], 'dns', [\App\Http\Controllers\LookupDataController::class, 'dns'])->name('dns');

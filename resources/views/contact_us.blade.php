@@ -250,8 +250,39 @@
                         <label for="formEmail" class="form-label opacity-75">Phone Number <span
                                 class="text-danger">*</span></label>
                         <input class="form-control" type="text" name="phone_no" id="formEmail"
-                               placeholder="Enter Phone No" required>
+                               placeholder="Enter Phone No" max="10" min="10" required>
                     </div>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label for="firstName" class="form-label opacity-75">State <span
+                                        class="text-danger">*</span></label>
+                                <input class="form-control" type="text" name="state" id="state"
+                                       placeholder="Enter State" required>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label for="lastName" class="form-label opacity-75">City <span
+                                        class="text-danger">*</span></label>
+                                <input class="form-control" type="text" name="city" id="city"
+                                       placeholder="Enter City" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label for="firstName" class="form-label opacity-75">Zip Code <span
+                                        class="text-danger">*</span></label>
+                                <input class="form-control" type="text" name="zip_code" id="zip_code"
+                                       placeholder="Enter Zip Code" required>
+                            </div>
+                        </div>
+                    </div>
+
 
                     <div class="mb-4">
                         <label class="form-label opacity-75">Your Message <span class="text-danger">*</span></label>
